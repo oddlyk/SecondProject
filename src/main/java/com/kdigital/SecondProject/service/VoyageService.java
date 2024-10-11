@@ -26,12 +26,12 @@ public class VoyageService {
 	public VoyageDTO selectVoyageWithCallSign(String callSign) {
 		log.info("항해 정보를 콜사인으로 검색합니다. 콜사인명은 {} 입니다.",callSign);
 		
-		List<VoyageEntity> entityList = voyageRepository.findByCallSign(callSign);
+		List<VoyageEntity> entityList = voyageRepository.findByShip_CallSign(callSign);
 		List<VoyageDTO> dtoList = new ArrayList<>();
 		if(entityList.size()!=0) {
 			entityList.forEach((entity)->dtoList.add(VoyageDTO.toDTO(entity)));
 			for(int i = 0;i<dtoList.size();++i) {
-				log.info("{}번째 항해: {}",i,dtoList.get(i));
+				log.info("{}번째 항해: {}",i,dtoList.get(i).toString());
 			}
 			return dtoList.get(0);
 		}

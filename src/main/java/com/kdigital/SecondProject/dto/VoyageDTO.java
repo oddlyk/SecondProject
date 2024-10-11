@@ -2,6 +2,7 @@ package com.kdigital.SecondProject.dto;
 
 import java.time.LocalDateTime;
 
+import com.kdigital.SecondProject.entity.ShipEntity;
 import com.kdigital.SecondProject.entity.VoyageEntity;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +20,8 @@ import lombok.ToString;
 @Builder
 public class VoyageDTO {
 	private Long vNumber;
-	private String callSign;
+	//private String callSign;
+	private ShipEntity ship;
 	private LocalDateTime departureDate;
 	private LocalDateTime arrivalDate;
 	private String departure;
@@ -35,7 +37,8 @@ public class VoyageDTO {
 	public static VoyageDTO toDTO(VoyageEntity entity) {
 		return VoyageDTO.builder()
 		.vNumber(entity.getVNumber())
-		.callSign(entity.getCallSign())
+		//.callSign(entity.getCallSign()) : 외래키 참조를 넣지 않았을 때
+		.ship(entity.getShip()) // 외래키 참조 시, ship 객체를 통째로 가져옴
 		.departureDate(entity.getDepartureDate())
 		.arrivalDate(entity.getArrivalDate())
 		.departure(entity.getDeparture())

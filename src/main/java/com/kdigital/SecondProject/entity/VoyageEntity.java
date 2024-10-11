@@ -2,7 +2,6 @@ package com.kdigital.SecondProject.entity;
 
 import java.time.LocalDateTime;
 
-
 import com.kdigital.SecondProject.dto.VoyageDTO;
 
 import jakarta.persistence.Column;
@@ -10,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,8 +34,12 @@ public class VoyageEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long vNumber;
 	
-	@Column(name="call_sign")
-	private String callSign;
+//	@Column(name="call_sign")
+//	private String callSign;
+	
+	@ManyToOne
+    @JoinColumn(name = "call_sign", referencedColumnName = "call_sign")  // 외래 키 매핑
+    private ShipEntity ship;  // 외래 키로 ShipEntity 참조
 	
 	@Column(name="departure_date")
 	private LocalDateTime departureDate;
@@ -71,7 +76,8 @@ public class VoyageEntity {
 	public static VoyageEntity toEntity(VoyageDTO dto) {
 		return VoyageEntity.builder()
 		.vNumber(dto.getVNumber())
-		.callSign(dto.getCallSign())
+		//.callSign(dto.getCallSign()) : 외래키 참조를 넣지 않았을 때
+		.ship(dto.getShip()) // 외래키 참조 시, ship 객체를 통째로 가져옴
 		.departureDate(dto.getDepartureDate())
 		.arrivalDate(dto.getArrivalDate())
 		.departure(dto.getDeparture())
