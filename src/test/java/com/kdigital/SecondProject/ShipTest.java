@@ -24,8 +24,8 @@ public class ShipTest {
 	/**
 	 * 선박의 콜사인으로 특정 선박 검색
 	 * */
-//	@Test
-//	void testSearchShip() {
-//		service.selectOneShip("2BOK5");
-//	}
+	@Test
+	void testSearchShip() {
+		service.selectOneShip("2BOK5");
+	}
 }

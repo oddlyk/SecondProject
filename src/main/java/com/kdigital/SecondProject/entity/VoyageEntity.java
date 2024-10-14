@@ -41,8 +41,8 @@ public class VoyageEntity {
 //	@Column(name="call_sign")
 //	private String callSign;
 	
-	@ManyToOne
-    @JoinColumn(name = "call_sign", referencedColumnName = "call_sign")  // 외래 키 매핑
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "call_sign")  // 외래 키 매핑
     private ShipEntity ship;  // 외래 키로 ShipEntity 참조
 	
 	@Column(name="departure_date")
@@ -77,21 +77,6 @@ public class VoyageEntity {
 	
 	@Column(name="security_fee")
 	private int securityFee;
-	
-	
-	@OneToMany(mappedBy = "voyage", fetch = FetchType.LAZY)
-	@JsonIgnore  // JSON 직렬화에서 제외
-	private List<AISEntity> aisDataList; // AISData와의 관계 설정
-	
-	public VoyageEntity(String destination, String onBoarding, int extraTonnage, int entryExitFee, int berthingFee, int anchorageFee, int securityFee) {
-	    this.destination = destination;
-	    this.onBoarding = onBoarding;
-	    this.extraTonnage = extraTonnage;
-	    this.entryExitFee = entryExitFee;
-	    this.berthingFee = berthingFee;
-	    this.anchorageFee = anchorageFee;
-	    this.securityFee = securityFee;
-	}
 	
 	
 	//dto->entity

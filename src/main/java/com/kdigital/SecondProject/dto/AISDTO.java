@@ -22,7 +22,7 @@ import lombok.ToString;
 public class AISDTO {
 	private Long aisNumber;
 	private String callSign;
-	private Long vNumber;
+	private VoyageEntity voyage;
 	private LocalDateTime signalDate;
 	private double latitude;
 	private double longitude;
@@ -37,7 +37,7 @@ public class AISDTO {
 		return AISDTO.builder()
 				.aisNumber(entity.getAisNumber())
 				.callSign(entity.getCallSign())
-				.vNumber(entity.getVNumber())
+				.voyage(entity.getVoyage())
 				.signalDate(entity.getSignalDate())
 				.latitude(entity.getLatitude())
 				.longitude(entity.getLongitude())
