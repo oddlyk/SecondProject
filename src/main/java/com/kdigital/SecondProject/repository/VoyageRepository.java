@@ -3,8 +3,6 @@ package com.kdigital.SecondProject.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.kdigital.SecondProject.entity.VoyageEntity;
 
@@ -17,4 +15,12 @@ public interface VoyageRepository extends JpaRepository<VoyageEntity, Long> {
 	List<VoyageEntity> findByShip_CallSign(String callSign);  // ShipEntity의 callSign을 기반으로 검색
 					//외래키 참조 형을 사용하지 않으면 findBy변수명 으로 함수명을 생성 : findByCallSign
 					// 외래키 참조 형을 사용했다면 findBy변수명(entity변수)_참조한entity의 찾고자 하는 컬럼명 으로 함수명 생성 : findByShip_CallSign
+	
+	// mmsi로 검색
+	List<VoyageEntity> findByShip_Mmsi(String mmsi);  // ShipEntity의 mmsi를 기반으로 검색
+	
+	// imo로 검색
+	List<VoyageEntity> findByShip_Imo(String imo);  // ShipEntity의 imo를 기반으로 검색
+
+	
 }

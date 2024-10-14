@@ -25,7 +25,7 @@ public class VoyageDTO {
 	private LocalDateTime departureDate;
 	private LocalDateTime arrivalDate;
 	private String departure;
-	private String destination;
+	private String destination; //private PortEntity port;
 	private String onBoarding;
 	private int extraTonnage;
 	private int entryExitFee;
@@ -42,7 +42,7 @@ public class VoyageDTO {
 		.departureDate(entity.getDepartureDate())
 		.arrivalDate(entity.getArrivalDate())
 		.departure(entity.getDeparture())
-		.destination(entity.getDestination())
+		.destination(entity.getDestination()) //port(entity.getPort())
 		.onBoarding(entity.getOnBoarding())
 		.extraTonnage(entity.getExtraTonnage())
 		.entryExitFee(entity.getEntryExitFee())
