@@ -3,7 +3,6 @@ package com.kdigital.SecondProject.dto;
 import java.time.LocalDateTime;
 
 import com.kdigital.SecondProject.entity.AISEntity;
-import com.kdigital.SecondProject.entity.ShipEntity;
 import com.kdigital.SecondProject.entity.VoyageEntity;
 
 import lombok.AllArgsConstructor;

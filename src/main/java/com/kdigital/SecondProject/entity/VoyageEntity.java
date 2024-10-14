@@ -1,9 +1,7 @@
 package com.kdigital.SecondProject.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kdigital.SecondProject.dto.VoyageDTO;
 
 import jakarta.persistence.Column;

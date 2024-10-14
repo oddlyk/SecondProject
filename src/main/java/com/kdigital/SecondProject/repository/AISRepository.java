@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.kdigital.SecondProject.entity.AISEntity;
-import com.kdigital.SecondProject.entity.VoyageEntity;
 
 public interface AISRepository extends JpaRepository<AISEntity, Long> {
 	// vNumber로 검색

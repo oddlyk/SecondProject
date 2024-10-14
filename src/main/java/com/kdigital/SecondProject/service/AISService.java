@@ -23,7 +23,7 @@ public class AISService {
 	/**
 	 * 항해 번호로 해당 항해의 ais 신호 추출해오기
 	 * @param vNumber
-	 * @return AISDTO
+	 * @return List<AISDTO>
 	 * */
 	@Transactional
 	public List<AISDTO> selectAISAll(Long vNumber) {
@@ -36,7 +36,7 @@ public class AISService {
 		
 		if(!entityList.isEmpty()) {
 			log.info("존재하는 전체 신호의 수는 총 {}개 입니다.",entityList.size());
-			log.info("{}",entityList.get(0).toString());
+			log.info("첫번째 신호: {}",entityList.get(0).toString());
 			for (AISEntity entity : entityList) {
 				dtoList.add(AISDTO.toDTO(entity));
 			}

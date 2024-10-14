@@ -25,7 +25,7 @@ public class VoyageTest {
 	 * */
 	@Test
 	void testSearchVoyageAsCallSign() {
-		service.selectVoyageWithCallSign("V7ER5");
+		service.selectVoyageWithCallSign("2BOK5");
 	}
 	
 	/**
