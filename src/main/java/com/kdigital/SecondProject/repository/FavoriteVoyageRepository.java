@@ -8,6 +8,6 @@ import com.kdigital.SecondProject.entity.FavoriteVoyageEntity;
 
 public interface FavoriteVoyageRepository extends JpaRepository<FavoriteVoyageEntity, Long> {
 
-	Optional<FavoriteVoyageEntity> findByUserTopFavorite(String string);
+	Optional<FavoriteVoyageEntity> findByTopFavorite(String string);
 
 }

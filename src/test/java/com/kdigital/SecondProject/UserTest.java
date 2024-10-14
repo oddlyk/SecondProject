@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.kdigital.SecondProject.dto.UserDTO;
 import com.kdigital.SecondProject.service.UsersService;
 
 @SpringBootTest
@@ -18,5 +19,12 @@ public class UserTest {
 	   void testSearchUser() {
 	      service.existId("user001");
 	   }
-
+	   
+	   /**
+	    * 회원 가입
+	    * */
+	   @Test
+	   void joinUser() {
+		   service.join(new UserDTO("user003","password3","사용자3","user3@naver.com","010-0000-0000",4));
+	   }
 }

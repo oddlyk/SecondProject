@@ -23,26 +23,36 @@ public class UsersService {
 	/**
 	 * 전달 받은 userDTO를 userEntity로 변경한 후 DB save();
 	 * @param userDTO
+	 * @return true/false
 	 */
 	public boolean join(UserDTO userDTO) {
-		// 가입하려는 id가 이미 사용중인지 확인 : 사용중인 아이디이면 true
+		// 가입하려는 id가 이미 사용중인지 확인 : 사용중인 아이디이면 true를 받아오기에 가입 실패 return
 		boolean isExistUser = userRepository.existsById(userDTO.getUserId());
+		log.info("id 사용중 여부: {}",isExistUser);
 		if(isExistUser) return false;		// 이미 사용중인 아이디이므로 가입 실패
 		
 		// 비밀번호 암호화
 		userDTO.setUserPwd(bCryptPasswordEncoder.encode(userDTO.getUserPwd()));
 		
 		UserEntity userEntity = UserEntity.toEntity(userDTO);
-		userRepository.save(userEntity);  	// 가입 성공
+		log.info("새로 가입한 사람의 정보: {}",userEntity.toString());
+		UserEntity temp = userRepository.save(userEntity);  	// 가입 성공
+		if(temp!=null) {
+			log.info("가입 성공!");
+			return true;
+		}
+		else {
+			log.info("가입 실패!");
+			return false;
+		}
 		
-		return true;
 	}
 	
 	/**
 	 * useId에 해당하는 사용자 존재 여부 확인
 	 * 
 	 * @param userId
-	 * @return
+	 * @return true/false
 	 */
 	public boolean existId(String userId) {
 		log.info("검색할 아이디 : {}",userId);
