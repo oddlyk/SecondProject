@@ -18,14 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class PortService {
-
-	private PortRepository portRepository;
+	final PortRepository portRepository; /*@Autowired는 test파일에서 사용해야 합니다.*/
 	
 	/**
      * 모든 항구 정보 조회
      * @return List<PortDTO>
      */
-	@Transactional
     public List<PortDTO> getAllPorts() {
         log.info("모든 항구 정보를 조회합니다.");
         List<PortEntity> entityList = portRepository.findAll();

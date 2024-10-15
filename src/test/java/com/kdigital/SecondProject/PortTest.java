@@ -17,6 +17,15 @@ public class PortTest {
 	private PortService service;
 	
 	/**
+	 * 모든 항구 정보 조회
+	 * */
+	//@Test
+	void getAllPort() {
+		service.getAllPorts();
+	}
+	
+	
+	/**
 	 * 항구 코드로 항구 정보 조회
 	 * */
 	@Test

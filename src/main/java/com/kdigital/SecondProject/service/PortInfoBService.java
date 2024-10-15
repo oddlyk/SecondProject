@@ -10,6 +10,7 @@ import com.kdigital.SecondProject.dto.PortInfoBDTO;
 import com.kdigital.SecondProject.entity.PortInfoBEntity;
 import com.kdigital.SecondProject.repository.PortInfoBRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,13 +27,20 @@ public class PortInfoBService {
 	 * @param portCode 항구 코드
 	 * @return List<PortInfoBDTO>
 	 */
+	@Transactional
 	public List<PortInfoBDTO> getPortInfoByPortCode(String portCode) {
 		log.info("항구 코드 {}에 해당하는 PortInfoB 데이터를 조회합니다.", portCode);
 		List<PortInfoBEntity> portInfoBEntities = portInfoBRepository.findByPort_PortCode(portCode);
-		
-		return portInfoBEntities.stream()
-				.map(PortInfoBDTO::toDTO)
-				.collect(Collectors.toList());
+		if(!portInfoBEntities.isEmpty()) {
+			log.info("총 개수: {}",portInfoBEntities.size());
+			log.info("첫번째 값: {}",portInfoBEntities.get(0).toString());
+
+			return portInfoBEntities.stream()
+	                .map(PortInfoBDTO::toDTO)  // Entity -> DTO 변환
+	                .collect(Collectors.toList());
+		}
+		log.info("데이터가 없습니다.");
+        return null;
 	}
 		/**
 	     * 특정 위치 타입에 해당하는 PortInfoB 데이터 조회
