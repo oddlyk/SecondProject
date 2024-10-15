@@ -43,11 +43,11 @@ public class FavoriteVoyageEntity {
     private String topFavorite;
 
     // DTO에서 엔티티로 변환하는 메소드
-    public static FavoriteVoyageEntity toEntity(FavoriteVoyageDTO favoriteVoyageDTO, UserEntity userEntity, VoyageEntity voyageEntity) {
+    public static FavoriteVoyageEntity toEntity(FavoriteVoyageDTO favoriteVoyageDTO) {
         return FavoriteVoyageEntity.builder()
                 .fsNumber(favoriteVoyageDTO.getFsNumber())
-                .userEntity(userEntity)  // 인자로 받은 UserEntity 객체 사용
-                .voyageEntity(voyageEntity)
+                .userEntity(favoriteVoyageDTO.getUserEntity())  // 인자로 받은 UserEntity 객체 사용
+                .voyageEntity(favoriteVoyageDTO.getVoyageEntity())
                 .topFavorite(favoriteVoyageDTO.getTopFavorite())
                 .build();
     }

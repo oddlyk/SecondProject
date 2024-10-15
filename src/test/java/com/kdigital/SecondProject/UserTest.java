@@ -25,6 +25,6 @@ public class UserTest {
 	    * */
 	   @Test
 	   void joinUser() {
-		   service.join(new UserDTO("user003","password3","사용자3","user3@naver.com","010-0000-0000",4));
+		   service.join(new UserDTO("user004","password4","사용자4","user4@naver.com","010-0000-0000",1));
 	   }
 }
