@@ -3,7 +3,7 @@ package com.kdigital.SecondProject.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.kdigital.SecondProject.dto.PortInfoBDTO;
@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PortInfoBService {
 
-	@Autowired
-	private final PortInfoBRepository portInfoBRepository;
+	final PortInfoBRepository portInfoBRepository;
 	
 	/**
 	 * 특정 항구 코드에 해당하는 PortInfoB 데이터 조회
