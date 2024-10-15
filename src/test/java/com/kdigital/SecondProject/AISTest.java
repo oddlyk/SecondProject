@@ -25,6 +25,6 @@ public class AISTest {
 	 * */
 	@Test
 	void testGetAllSignal() {
-		service.selectAISAll((long) 95);
+		service.selectAISAll((long) 63);
 	}
 }

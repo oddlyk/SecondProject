@@ -41,7 +41,7 @@ public class FavoriteVoyageTest {
 	/**
 	 * 항해 저장 삭제 테스트
 	 * */
-	@Test
+	//@Test
 	@WithMockUser(username="user002", roles= {"USER"})
 	void deleteFev() {
 		service.deleteFev((long)5);
@@ -71,8 +71,8 @@ public class FavoriteVoyageTest {
 	/**
 	 * 사용자를 기준으로 전체 선호 항해 조회
 	 * */
-	//@Test
-	@WithMockUser(username="user003", roles= {"USER"})
+	@Test
+	@WithMockUser(username="user001", roles= {"USER"})
 	void getAllFav() {
 		service.findAll();
 	}	

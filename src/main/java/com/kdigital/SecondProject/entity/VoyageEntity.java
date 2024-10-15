@@ -53,10 +53,9 @@ public class VoyageEntity {
 	private String departure;
 	
 	// 목적지 정보 코드가 존재해야 테스트 해볼 수 있음
-	// @ManyToOne
-	// @JoinColumn(name = "destination", referencedColumnName = "destination")  // 외래 키 매핑
-	@Column(name="destination")
-	private String destination; //private PortEntity port;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "destination")  // 외래 키 매핑
+	private PortEntity port;
 	
 	@Column(name="on_boarding")
 	private String onBoarding;
@@ -86,7 +85,7 @@ public class VoyageEntity {
 		.departureDate(dto.getDepartureDate())
 		.arrivalDate(dto.getArrivalDate())
 		.departure(dto.getDeparture())
-		.destination(dto.getDestination())  //port(dto.getPort())
+		.port(dto.getPort())
 		.onBoarding(dto.getOnBoarding())
 		.extraTonnage(dto.getExtraTonnage())
 		.entryExitFee(dto.getEntryExitFee())

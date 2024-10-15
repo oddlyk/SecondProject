@@ -2,6 +2,7 @@ package com.kdigital.SecondProject.dto;
 
 import java.time.LocalDateTime;
 
+import com.kdigital.SecondProject.entity.PortEntity;
 import com.kdigital.SecondProject.entity.ShipEntity;
 import com.kdigital.SecondProject.entity.VoyageEntity;
 
@@ -25,7 +26,7 @@ public class VoyageDTO {
 	private LocalDateTime departureDate;
 	private LocalDateTime arrivalDate;
 	private String departure;
-	private String destination; //private PortEntity port;
+	private PortEntity port;
 	private String onBoarding;
 	private int extraTonnage;
 	private int entryExitFee;
@@ -42,7 +43,7 @@ public class VoyageDTO {
 		.departureDate(entity.getDepartureDate())
 		.arrivalDate(entity.getArrivalDate())
 		.departure(entity.getDeparture())
-		.destination(entity.getDestination()) //port(entity.getPort())
+		.port(entity.getPort())
 		.onBoarding(entity.getOnBoarding())
 		.extraTonnage(entity.getExtraTonnage())
 		.entryExitFee(entity.getEntryExitFee())
