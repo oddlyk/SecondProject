@@ -3,6 +3,8 @@ package com.kdigital.SecondProject.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.kdigital.SecondProject.entity.VoyageEntity;
 
@@ -21,6 +23,10 @@ public interface VoyageRepository extends JpaRepository<VoyageEntity, Long> {
 	
 	// imo로 검색
 	List<VoyageEntity> findByShip_Imo(String imo);  // ShipEntity의 imo를 기반으로 검색
+
+	
+	@Query("SELECT v FROM VoyageEntity v JOIN FETCH v.ship s WHERE s.callSign = :callSign")
+	List<VoyageEntity> findVoyageWithShipByCallSign(@Param("callSign") String callSign);
 
 	
 }
