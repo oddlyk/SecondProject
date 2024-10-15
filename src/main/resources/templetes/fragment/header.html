@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헤더</title>
+    <style>
+        .header {
+            background-color: #fff;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.19);
+            display: flex;
+            align-items: center;
+            gap: 40px 68px;
+            font-family: KoddiUD OnGothic, sans-serif;
+            font-weight: 800;
+            text-align: center;
+            flex-wrap: wrap;
+            padding: 11px 49px 0;
+        }
+
+        .logo {
+            aspect-ratio: 5.24;
+            object-fit: contain;
+            object-position: center;
+            width: 262px;
+            align-self: stretch;
+            max-width: 100%;
+            margin: auto 0;
+        }
+
+        .nav-menu {
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            gap: 40px 100px;
+            font-size: 26px;
+            color: #344c64;
+            line-height: 1;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link,
+        .nav-link-wide,
+        .username,
+        .login-button,
+        .nav-link-tall {
+            color: #344c64;
+            text-decoration: none;
+        }
+
+        .nav-item {
+            align-self: stretch;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            margin: auto 0;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            align-self: stretch;
+            min-height: 38px;
+            gap: 6px;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .nav-item-wide {
+            align-self: stretch;
+            display: flex;
+            min-height: 38px;
+            align-items: start;
+            justify-content: start;
+            flex-grow: 1;
+            width: 111px;
+            margin: auto 0;
+            text-decoration: none;
+        }
+
+        .nav-link-wide {
+            align-self: stretch;
+            width: 150px;
+            min-height: 38px;
+            gap: 6px;
+            text-decoration: none;
+            white-space: nowrap;
+            /* 이 속성이 줄 바꿈을 방지합니다 */
+        }
+
+        .nav-link-tall {
+            .nav-link-tall {
+                width: 137px;
+                background-color: #fff;
+                padding: 12px 0;
+                text-decoration: none;
+                white-space: normal;
+                /* 줄바꿈 허용 */
+                word-break: break-word;
+                line-height: 1.2;
+                text-align: center;
+            }
+        }
+
+
+        .nav-item-calculator {
+            align-self: stretch;
+            display: flex;
+            min-height: 74px;
+            line-height: 25px;
+            justify-content: start;
+            flex-grow: 1;
+            width: 87px;
+            margin: auto 0;
+            text-decoration: none;
+        }
+
+
+        .calculator-link {
+            background-color: #fff;
+            width: 137px;
+            padding: 12px 0;
+            text-decoration: none;
+        }
+
+        .user-info {
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            white-space: nowrap;
+            margin: auto 0;
+        }
+
+        .username {
+            color: #344c64;
+            font-size: 26px;
+            line-height: 1;
+            align-self: stretch;
+            flex-grow: 1;
+            margin: auto 0;
+        }
+
+        .user-suffix {
+            color: #000;
+            font-size: 27px;
+            line-height: 1;
+            align-self: stretch;
+            margin: auto 0;
+        }
+
+        .user-icon {
+            aspect-ratio: 1;
+            object-fit: contain;
+            object-position: center;
+            width: 30px;
+            align-self: stretch;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .logout-btn {
+            color: #072a63;
+            font-size: 18px;
+            align-self: flex-end;
+        }
+
+        @media (max-width: 991px) {
+            .header {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                max-width: 100%;
+            }
+
+            .user-info {
+                white-space: initial;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8dfec0d885d4ee67f98a3db6e0c794767fd7e9ee2c6714867ad04ed72d7bc14?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+            alt="Company logo" class="logo" />
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="#" class="nav-link">선박 정보</a>
+            </div>
+            <div class="nav-item-wide">
+                <a href="#" class="nav-link-wide">목적지 정보</a>
+            </div>
+            <div class="nav-item-tall">
+                <a href="#" class="nav-link-tall">항만 사용료 계산기</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">About Us</a>
+            </div>
+        </nav>
+
+        <!-- 로그인 정보 -->
+        <div id="user">
+            <ul>
+                <!-- 비로그인 상태 -->
+                <li sec:authorize="isAnonymous()">
+                    <button class="login-button">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18d8a057f3538cb2faa0c0d8b1e221c4cd0124c6e0e5334f257fdc79dc7c7ce4?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            alt="" class="login-icon" />
+                        <span class="login-text">로그인</span>
+                    </button>
+                </li>
+
+                <!-- 로그인 상태 -->
+                <li sec:authorize="isAuthenticated()">
+                    <div class="user-info">
+                        <span class="username">[[${#authentication.name}]]</span>
+                        <span class="user-suffix">님</span>
+                        <button class="mypage">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ddf6288af139996e440e7a00c6a0b52c98c99eb4253301259661b81ed60c9ef6?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                                alt="User Profile" class="user-icon" />
+                        </button>
+                    </div>
+                    <button class="logout-btn">로그아웃</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+</body>
+
+</html>

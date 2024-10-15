@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>목적지 정보</title>
+    <link rel="stylesheet" th:href="@{/css/destination.css}">
+    <!-- Google Maps API 불러오기 -->
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
+    <script defer src="/script/destination.js"></script>
+</head>
+
+<body>
+    <div class="header" th:replace="fragment/header(title='헤더')"></div>
+    <div class="container">
+        <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+            class="wave" alt="물결 배경">
+    </div>
+    <div id="map" style="height: 500px; width: 100%;"></div> <!-- 구글 지도 표시 -->
+    <div class="port-box">
+        <div class="destination-port">
+            <select name="port" id="portchoose">
+                <optgroup>
+                    <option value="KRPUS" checked>부산항</option> <!-- <input type="text" id="email1" class="email1"> -->
+                    <option value="KRBNP">부산신항</option>
+                    <option value="KRICN">인천항</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="portInfo-box">
+        <div class="portInfo">
+            <div class="portName">도착항</div>
+            <div class="weather">날씨 이미지</div>
+            <div class="port-phone">항만공사: <span class="phone-num">전화번호</span></div>
+            <button class="homepage">
+                <div class="page-box">
+                    <p class="page-text">홈페이지</p>
+                </div>
+            </button>
+            <div class="processing">항만 선석 이용 현황:</div>
+            <button class="berthInfo">
+                <div class="berth-box">
+                    <div class="berth-working">n</div>
+                    <div class="berth-slash">/</div>
+                    <div class="berth-total">n</div>
+                </div>
+            </button>
+            <div class="accident-statics">전년도 당월 사고 통계</div>
+            <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>
+            <div class="accident_box1">
+                <div class="rank1">1위</div>
+                <div class="reason1">사고내역</div>
+                <div class="count">회</div>
+            </div>
+            <div class="accident_box2">
+                <div class="rank2">2위</div>
+                <div class="reason2">사고내역</div>
+                <div class="count">회</div>
+            </div>
+            <div class="accident_box3">
+                <div class="rank3">3위</div>
+                <div class="reason3">사고내역</div>
+                <div class="count">회</div>
+            </div>
+        </div>
+    </div>
+    <div class="toggle-box">
+        <div class="waiting-area">
+            <div class="toggle1">인근 대기지</div>
+            <div class="mark1"><img src="/imgages/waiting.png"></div>
+            <label class="switch1">
+                <input type="checkbox" id="toggle-info">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="terminal">
+            <div class="toggle2">컨테이너 터미널</div>
+            <div class="mark1"><img src="/imgages/terminal.png"></div>
+            <label class="switch2">
+                <input type="checkbox" id="toggle-info">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="congestion-area">
+            <div class="toggle3">혼잡 주의 지역</div>
+            <div class="mark1"><img src="/imgages/warning.png"></div>
+            <label class="switch3">
+                <input type="checkbox" id="toggle-info">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</body>
+
+</html>

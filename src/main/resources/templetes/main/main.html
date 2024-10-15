@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+    <div class="container" th:replace="fragment/header(title='헤더')"></div>
+    <div class="container" th:replace="fragment/footer(title='푸터')"></div>
+    <div class="background">
+        <div class="search_box">
+            <img src="">
+            <input type="text" id="search_ship" name="search_ship" placeholder="선박을 입력하세요. (Call Sign / MMSI / IMO)">
+            <span class="search">찾기</span>
+        </div>
+        <button class="register-btn">등록</button>
+        <div class="main_services">
+            <div class="service_box1">
+                <img src="">
+                <p class="shipInfo">선박명<span class="callSign">(Call Sign)</span></p>
+                <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
+                <div class="dep_arr">
+                    <img class="whale" src="">
+                    <div class="text_wrapper">출발지</div>
+                    <div class="text_wrapper_2">도착지</div>
+                </div>
+                <div class="dep_arr_name">
+                    <div class="text_wrap">출발항명</div>
+                    <div class="text_wrap2">도착항명</div>
+                </div>
+                <div class="proceeding">n<span class="percent">%</span></div>
+            </div>
+
+            <div class="service_box2">
+                <div class="headBox">
+                    <p class="arr_info"><span class="port_name"></span> 현재 날씨</p>
+                    <div class="weather">날씨 png</div>
+                    <p class="temparature">nn<span class="celsius">°C</span></p>
+                </div>
+                <div class="accident">
+                    <p class="accident_title">전년도 당월 사고 현황</p>
+                    <div class="Line1" style="width: 350px; height: 0px; border: 2px #B1AEAE solid"></div>
+                    <div class="accident_box1">
+                        <div class="rank1">1위</div>
+                        <div class="reason1">사고내역</div>
+                        <div class="count">회</div>
+                    </div>
+                    <div class="accident_box2">
+                        <div class="rank2">2위</div>
+                        <div class="reason2">사고내역</div>
+                        <div class="count">회</div>
+                    </div>
+                    <div class="accident_box3">
+                        <div class="rank3">3위</div>
+                        <div class="reason3">사고내역</div>
+                        <div class="count">회</div>
+                    </div>
+                </div>
+
+                <div class="service_box3">
+                    <p class="fee_title">예상 항만 사용료</p>
+                    <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
+                    <div class="label">
+                        <div class="port_fee">125,111,000 (스크립트에서 숫자 포맷팅)</div>
+                    </div>
+                    <div class="won">원</div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

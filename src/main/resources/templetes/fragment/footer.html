@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>푸터</title>
+    <style>
+        .footer {
+            background-color: rgba(76, 77, 88, 0.86);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 42px 80px;
+            width: 100%;
+            position: absolute;
+            /* 혹은 fixed로 변경 가능 */
+            bottom: 0;
+            /* 하단에 고정 */
+        }
+
+        .footer-content {
+            display: flex;
+            width: 100%;
+            align-items: flex-start;
+            gap: 40px 48px;
+            justify-content: flex-start;
+        }
+
+        .footer-right {
+            display: flex;
+            min-width: 240px;
+            width: 100%;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex: 1;
+            flex-basis: 0%;
+        }
+
+        .footer-menu {
+            display: flex;
+            width: 515px;
+            max-width: 100%;
+            align-items: center;
+            gap: 16px;
+            color: #fff;
+            justify-content: flex-end;
+            font: 800 16px/1 KoddiUD OnGothic, -apple-system, Roboto, Helvetica, sans-serif;
+            text-decoration: none;
+        }
+
+        .menu-item {
+            align-self: stretch;
+            padding: 12px 8px;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 16px;
+            width: 100%;
+            align-items: center;
+            gap: 16px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: inherit;
+            /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+        }
+
+        a {
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: inherit;
+            /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+        }
+
+        .social-icon {
+            aspect-ratio: 1;
+            object-fit: contain;
+            object-position: center;
+            width: 24px;
+            align-self: stretch;
+            margin: auto 0;
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: inherit;
+            /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+        }
+
+        .copyright {
+            color: #fff;
+            text-align: right;
+            margin-top: 16px;
+            font: 800 14px/1.4 KoddiUD OnGothic, -apple-system, Roboto, Helvetica, sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .footer {
+                padding: 0 20px;
+            }
+
+            .footer-content,
+            .footer-right,
+            .footer-menu,
+            .social-icons {
+                max-width: 100%;
+            }
+
+            .footer-menu {
+                white-space: normal;
+            }
+
+            .menu-item {
+                white-space: normal;
+            }
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-right">
+                <nav class="footer-menu">
+                    <a href="#" class="menu-item">Eleven</a>
+                    <a href="#" class="menu-item">Twelve</a>
+                    <a href="#" class="menu-item">Thirteen</a>
+                    <a href="#" class="menu-item">Fourteen</a>
+                    <a href="#" class="menu-item">Fifteen</a>
+                    <a href="#" class="menu-item">Sixteen</a>
+                </nav>
+                <div class="social-icons">
+                    <a href="#" aria-label="Social Media Link 1">
+                        <img loading="lazy"
+                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/716ee5b713894e67a84af54311da239363bc1aa9f54418141c9e2523ff6d0e66?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            class="social-icon" alt="" />
+                    </a>
+                    <a href="#" aria-label="Social Media Link 2">
+                        <img loading="lazy"
+                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/faff34d0ee21f0e3f3e65b81c639217e22aac917da2da2f8642d8248614a4bd5?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            class="social-icon" alt="" />
+                    </a>
+                    <a href="#" aria-label="Social Media Link 3">
+                        <img loading="lazy"
+                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c9e1598bec5cbc79bbef6c7cc057babcbdc5845ce41ff6877b21ed148b6954eb?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            class="social-icon" alt="" />
+                    </a>
+                    <a href="#" aria-label="Social Media Link 4">
+                        <img loading="lazy"
+                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/7f11370eaefb0f1a5711b5a5db98bbe57e537d20923fda1b50131873ea8a32fd?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            class="social-icon" alt="" />
+                    </a>
+                    <a href="#" aria-label="Social Media Link 5">
+                        <img loading="lazy"
+                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/1885e5c9a9af0f6b879bf903daf6851cd4204deaf567e2a2ed933ffa2237f028?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                            class="social-icon" alt="" />
+                    </a>
+                </div>
+                <p class="copyright">CompanyName @ 202X. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

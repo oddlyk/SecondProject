@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+    <link rel="stylesheet" th:href="@{/css/join.css}">
+</head>
+
+<body>
+    <div class="header" th:replace="fragment/header(title='헤더')"></div>
+    <div class="container">
+        <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+            class="wave" alt="물결 배경">
+    </div>
+    <div class="joinbox">
+        <div class="left-box">
+            <img src="/static/images/로고.png" class="logo" alt="로고">
+        </div>
+        <div class="top-joinbox">
+            <div class="top-join">
+                <div class="overlap-group"><span class="top-join-text">회원 가입</span></div>
+            </div>
+        </div>
+        <div class="namebox">
+            <div class="label">이름</div>
+            <input type="text" id="username" class="username">
+        </div>
+        <div class="idbox">
+            <div class="label">아이디</div>
+            <input type="text" id="userId" class="userId">
+            <div class="duplicate">
+                <div class="duplicate-check">중복 확인</div>
+            </div>
+        </div>
+        <div class="pwdbox">
+            <div class="label">비밀번호</div>
+            <input type="password" id="userPwd" class="userPwd">
+        </div>
+        <div class="pwdCheckBox">
+            <input type="text" id="pwdCheck" class="pwdCheck" placeholder="비밀번호를 재입력해 주세요">
+            <div class="label">일치 여부</div>
+        </div>
+        <div class="phone">
+            <div class="label">전화번호</div>
+            <input type="text" id="phone" class="phone">
+        </div>
+        <div class="email">
+            <div class="label">이메일</div>
+            <input type="email" id="text" class="text">
+            <div class="at">@</div>
+            <select name="email" id="emailchoose">
+                <optgroup>
+                    <option value="직접 입력"></option> <!-- <input type="text" id="email1" class="email1"> -->
+                    <option value="naver.com"></option>
+                    <option value="gmail.com"></option>
+                    <option value="daum.net"></option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="userType">
+            <div class="label">사용자 유형</div>
+            <div class="typeSelect">
+                <input type="radio" name="userType" value="1" checked> 선박 운영자
+                <input type="radio" name="userType" value="2" checked> 화물 소유자
+                <input type="radio" name="userType" value="3" checked> 무역업 종사자
+                <input type="radio" name="userType" value="4" checked> 일반 사용자
+            </div>
+        </div>
+        <button class="bottom-box">
+            <div class="bottom-join">
+                <div class="overlap-group1"><span class="btm-join-text">회원 가입</span></div>
+            </div>
+        </button>
+    </div>
+</body>
+
+</html>

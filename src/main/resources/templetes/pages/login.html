@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+    <div class="header" th:replace="fragment/header(title='헤더')"></div>
+    <div class="container">
+        <img loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+            class="wave" alt="물결 배경">
+    </div>
+    <div class="loginbox">
+        <div class="left-box">
+            <img src="/static/images/로고.png" class="logo" alt="로고">
+        </div>
+        <div class="top-loginbox">
+            <div class="top-login">
+                <div class="overlap-group"><span class="top-login-text">로그인</span></div>
+            </div>
+        </div>
+        <div class="id-box">
+            <img src="/static/images/user.png" class="user" alt="아이디">
+            <input type="text" id="id" placeholder="아이디">
+        </div>
+        <div class="pwd-box">
+            <img src="/static/images/password.png" class="password" alt="비밀번호">
+            <input type="text" id="pwd" placeholder="비밀번호">
+        </div>
+        <button class="bottom-box">
+            <div class="bottom-login">
+                <div class="overlap-group1"><span class="btm-login-text">로그인</span></div>
+            </div>
+        </button>
+        <div class="btm-text-box">
+            <p class="notyet">아직 회원이 아니신가요?</p>
+            <button class="join-btn">
+                <span class="join">회원 가입</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

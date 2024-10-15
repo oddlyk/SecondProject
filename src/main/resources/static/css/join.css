@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.top-joinbox {
+    width: 251px;
+    height: 103px;
+}
+
+.top-joinbox .top-join {
+    position: fixed;
+    width: 253px;
+    height: 103px;
+    top: 0;
+    left: 0;
+}
+
+.top-joinbox .overlap-group {
+    position: relative;
+    width: 251px;
+    height: 103px;
+    background-color: #3d86ce;
+    border-radius: 0px 25px 5px 100px;
+}
+
+.top-joinbox .top-join-text {
+    position: absolute;
+    width: 188px;
+    height: 50px;
+    top: 19px;
+    left: 43px;
+    font-family: "KoddiUD OnGothic-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}

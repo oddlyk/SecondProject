@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.footer {
+    background-color: rgba(76, 77, 88, 0.86);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 42px 80px;
+    width: 100%;
+    position: absolute;
+    /* 혹은 fixed로 변경 가능 */
+    bottom: 0;
+    /* 하단에 고정 */
+}
+
+.footer-content {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 40px 48px;
+    justify-content: flex-start;
+}
+
+.footer-right {
+    display: flex;
+    min-width: 240px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    flex-basis: 0%;
+}
+
+.footer-menu {
+    display: flex;
+    width: 515px;
+    max-width: 100%;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    justify-content: flex-end;
+    font: 800 16px/1 KoddiUD OnGothic, -apple-system, Roboto, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+.menu-item {
+    align-self: stretch;
+    padding: 12px 8px;
+}
+
+.social-icons {
+    display: flex;
+    margin-top: 16px;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: inherit;
+    /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+}
+
+a {
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: inherit;
+    /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+}
+
+.social-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 24px;
+    align-self: stretch;
+    margin: auto 0;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: inherit;
+    /* 기본 색상으로 설정, 또는 원하는 색상 설정 가능 */
+}
+
+.copyright {
+    color: #fff;
+    text-align: right;
+    margin-top: 16px;
+    font: 800 14px/1.4 KoddiUD OnGothic, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+    .footer {
+        padding: 0 20px;
+    }
+
+    .footer-content,
+    .footer-right,
+    .footer-menu,
+    .social-icons {
+        max-width: 100%;
+    }
+
+    .footer-menu {
+        white-space: normal;
+    }
+
+    .menu-item {
+        white-space: normal;
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
