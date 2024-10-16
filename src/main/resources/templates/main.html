@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>main</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 
 <body>
-    <div class="container" th:replace="fragment/header(title='헤더')"></div>
-    <div class="container" th:replace="fragment/footer(title='푸터')"></div>
+    <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div>
     <div class="background">
         <div class="search_box">
             <img src="">
