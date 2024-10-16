@@ -33,12 +33,9 @@ public class MainController {
 	@GetMapping({"","/"})
 	public String main(
 			@AuthenticationPrincipal  UserDTO loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
-			@RequestParam(name="ship", defaultValue="집갈래") String shipInfo, //검색버튼 클릭 시
+			@RequestParam(name="search_ship", defaultValue="집갈래") String shipInfo, //검색버튼 클릭 시
 			Model model
 			) {
-		// 항해 정보 저장
-		VoyageDTO voyageDTO = new VoyageDTO();
-		log.info("(service) 데이터를 입력 받기 전의 항해 정보: {}",voyageDTO.toString());
 		// 인증을 받은 사용자라면 그 이름 저장 
 		if(loginUser!=null) {
 			model.addAttribute("loginName", loginUser.getUserId());
@@ -50,6 +47,9 @@ public class MainController {
 			model.addAttribute("search", 0); //검색 하지 않고 접근함.
 			return "main";
 		}
+		// 항해 정보 저장
+		VoyageDTO voyageDTO = new VoyageDTO();
+		log.info("(service) 데이터를 입력 받기 전의 항해 정보: {}",voyageDTO.toString());
 			// 검색을 통해 접근
 		VoyageDTO temp = voyageService.selectVoyageWithCallSign(shipInfo);
 		log.info("(service) call sign으로 찾아온 항해 정보: {}",temp);
