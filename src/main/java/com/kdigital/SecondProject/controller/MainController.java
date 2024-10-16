@@ -1,11 +1,15 @@
 package com.kdigital.SecondProject.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kdigital.SecondProject.dto.AISDTO;
 import com.kdigital.SecondProject.dto.UserDTO;
 import com.kdigital.SecondProject.dto.VoyageDTO;
 import com.kdigital.SecondProject.service.AISService;
@@ -61,7 +65,9 @@ public class MainController {
 	}
 
 	private double getVoyagePer(Long vNumber) {
-		aisService.selectAISAll(vNumber);
+		//LocalDateTime de = voyageService.selectVoyageWithCallSign(null)
+		LocalDateTime currentSignal = aisService.currentAISsignal(vNumber).getSignalDate();
+		
 		return 0;
 	}
 }
