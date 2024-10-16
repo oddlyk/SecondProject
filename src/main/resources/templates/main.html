@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>main</title>
+<<<<<<< HEAD
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script defer th:src="@{/script/main.js}"></script>
+=======
+>>>>>>> 12ddebcb33bc23eb61a4f30a4688ecedb4118239
 </head>
 
 <body>
-    <div class="container" th:replace="fragment/header(title='헤더')"></div>
-    <div class="container" th:replace="fragment/footer(title='푸터')"></div>
+    <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div>
     <div class="background">
         <div class="search_box">
             <img src="">

@@ -12,7 +12,23 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		// +) POST 요청 시 CSRF(웹사이트 보안 공격 중 하나(Cross-Site Request Forgery)) 공격을 받을 수도 있음.
 		//		따라서 본래 이를 보호하기 위해 key값을 가지고 있으나, 개발 시 번거로움이 있기에 일시적으로 막아둘 수 있음
-		http.csrf((auth)->auth.disable());
+		http.csrf((auth)->auth.disable())
+			.authorizeHttpRequests((authz) -> authz
+				.requestMatchers("/static/**", "/css/**", "/js/**", "/images/**").permitAll()  // 정적 리소스에 대한 접근 허용
+	            .requestMatchers("/","/user/login", "/user/join", "/resources/**").permitAll() // 로그인, 회원가입, 리소스 접근 허용
+	            .anyRequest().authenticated()  // 그 외의 요청은 인증 필요
+	        )
+	        .formLogin((form) -> form
+	            .loginPage("/user/login")  // 커스텀 로그인 페이지 경로
+	            .defaultSuccessUrl("/", true)  // 로그인 성공 시 리다이렉트 경로
+	            .permitAll()
+	        )
+	        .logout((logout) -> logout
+	            .logoutUrl("/user/logout")
+	            .logoutSuccessUrl("/")
+	            .permitAll()
+	        );
+		
 		return http.build();
 	}
 			
