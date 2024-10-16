@@ -1,6 +1,10 @@
 package com.kdigital.SecondProject.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class CalcController {
+	
 	/**
 	 * 상단 메뉴바를 통한 계산 정보 화면 요청
 	 * */
@@ -19,4 +24,5 @@ public class CalcController {
 	public String hearderPortD() {
 		return "pages/calculator";
 	}
+	
 }

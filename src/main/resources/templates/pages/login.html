@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="content">
-                <form th:action="@{/user/login}" method="POST" id="loginForm">
+                <form th:action="@{/user/loginProc}" method="POST" >
                     <div class="id-box">
                         <img src="/static/images/user.png" class="user" alt="아이디">
                         <input type="text" name="id" id="id" placeholder="아이디">
@@ -35,9 +35,7 @@
                         <img src="/static/images/password.png" class="password" alt="비밀번호">
                         <input type="text" name="pwd" id="pwd" placeholder="비밀번호">
                     </div>
-                    <div th:if="${errorMessage}" class="error">
-                        <p th:text="${errorMessage}" class="errorText"></p>
-                    </div>
+         
                     <div class="bottom-box">
                         <div class="bottom-login">
                             <input type="submit" id="submitBtn" value="로그인">

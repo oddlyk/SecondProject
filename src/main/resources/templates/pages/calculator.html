@@ -28,7 +28,7 @@
                     <div class="port-name">목적항</div>
                     <div class="port-layout2"></div>
                 </div>
-                <form th:action="@{/calc/}" method="POST" id="calcForm">
+                <form th:action="@{/calc/calcForm}" method="POST" id="calcForm">
                     <div class="weight">
                         <div class="weight-text">선박 무게</div>
                         <input type="text" name="tonnage" id="tonnage">
@@ -44,11 +44,11 @@
                     </div>
                     <div class="working">
                         <div class="working-text">작업 시간</div>
-                        <input type="datetime" name="workingTime" id="workingTime">
+                        <input type="time" name="workingTime" id="workingTime">
                     </div>
                     <div class="waiting">
                         <div class="waiting-text">대기 시간</div>
-                        <input type="datetime" name="waitingTime" id="waitingTime">
+                        <input type="time" name="waitingTime" id="waitingTime">
                         <input type="checkbox" name="openSea" id="openSea">
                         <div class="checkbox-text">외해 정박</div>
                     </div>
@@ -56,13 +56,11 @@
                         <button class="button-calc">
                             <span class="button-text">계산</span>
                         </button>
-                        <button class="button-save">
+                        <button type="submit" class="button-save">
                             <span class="button-text">저장</span>
-                            <input type="submit" name="saveBtn" id="saveBtn">
                         </button>
-                        <button class="button-reset">
+                        <button type="reset" class="button-reset">
                             <span class="button-text">초기화</span>
-                            <input type="reset" name="resetBtn" id="resetBtn">
                         </button>
                     </div>
                 </form>
@@ -104,15 +102,24 @@
                         </div>
                         <div class="group4">
                             <div class="circle4"></div>
-                            <div class="title4">정박료</div>
+                            <div class="title4">계선료</div>
                             <div class="won">₩</div>
-                            <div class="fee3">금액</div>
-                            <div class="portion3">rr</div>
+                            <div class="fee4">금액</div>
+                            <div class="portion4">rr</div>
+                            <div class="portion">%</div>
+                        </div>
+                        <div class="group5">
+                            <div class="circle5"></div>
+                            <div class="title5">보안료</div>
+                            <div class="won">₩</div>
+                            <div class="fee5">금액</div>
+                            <div class="portion5">rr</div>
                             <div class="portion">%</div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="reference">※ 출항 예정 일시가 미확인 된 선박은 항구별 평균 대기 시간을 사용해 계산하였습니다.</div>
         </div>
     </div>
     </div>
