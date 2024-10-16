@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/calculator.css}">
+    <script defer th:src="@{/script/calculator.js}"></script>
+</head>
+
+<body>
+    <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="background">
+        <div class="container">
+            <img loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                class="wave" alt="물결 배경">
+        </div>
+        <div class="title">
+            <div class="title-text">항만 사용료 계산기</div>
+            <div class="subtitle-text">데이터를 기반으로 예상되는 값이며, 오차가 발생할 수 있습니다.</div>
+        </div>
+        <div class="calcbox">
+            <div class="left-content">
+                <div class="port">
+                    <div class="port-std">기준항:</div>
+                    <div class="port-layout1">[</div>
+                    <div class="port-name">목적항</div>
+                    <div class="port-layout2"></div>
+                </div>
+                <form th:action="@{/calc/}" method="POST" id="calcForm">
+                    <div class="weight">
+                        <div class="weight-text">선박 무게</div>
+                        <input type="text" name="tonnage" id="tonnage">
+                        <div class="weight-ton">ton</div>
+                    </div>
+                    <div class="import">
+                        <div class="import-text">입항 예정 일시</div>
+                        <input type="date" name="importDate" id="importDate">
+                    </div>
+                    <div class="export">
+                        <div class="export-text">출항 예정 일시</div>
+                        <input type="date" name="exportDate" id="exportDate">
+                    </div>
+                    <div class="working">
+                        <div class="working-text">작업 시간</div>
+                        <input type="datetime" name="workingTime" id="workingTime">
+                    </div>
+                    <div class="waiting">
+                        <div class="waiting-text">대기 시간</div>
+                        <input type="datetime" name="waitingTime" id="waitingTime">
+                        <input type="checkbox" name="openSea" id="openSea">
+                        <div class="checkbox-text">외해 정박</div>
+                    </div>
+                    <div class="buttons">
+                        <button class="button-calc">
+                            <span class="button-text">계산</span>
+                        </button>
+                        <button class="button-save">
+                            <span class="button-text">저장</span>
+                            <input type="submit" name="saveBtn" id="saveBtn">
+                        </button>
+                        <button class="button-reset">
+                            <span class="button-text">초기화</span>
+                            <input type="reset" name="resetBtn" id="resetBtn">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="right-content-box">
+                <div class="right-content">
+                    <div class="ship">
+                        <div class="ship-name">선박명</div>
+                        <div class="ship-sign">(callsign)</div>
+                    </div>
+                    <div class="result">
+                        <div class="result-won">₩</div>
+                        <div class="result-num"></div>
+                    </div>
+                    <div class="bar-chart">
+                        <div class="group1">
+                            <div class="circle1"></div>
+                            <div class="title1">입출항료</div>
+                            <div class="won">₩</div>
+                            <div class="fee1">금액</div>
+                            <div class="portion1">rr</div>
+                            <div class="portion">%</div>
+                        </div>
+                        <div class="group2">
+                            <div class="circle2"></div>
+                            <div class="title2">접안료</div>
+                            <div class="won">₩</div>
+                            <div class="fee2">금액</div>
+                            <div class="portion2">rr</div>
+                            <div class="portion">%</div>
+                        </div>
+                        <div class="group3">
+                            <div class="circle3"></div>
+                            <div class="title3">정박료</div>
+                            <div class="won">₩</div>
+                            <div class="fee3">금액</div>
+                            <div class="portion3">rr</div>
+                            <div class="portion">%</div>
+                        </div>
+                        <div class="group4">
+                            <div class="circle4"></div>
+                            <div class="title4">정박료</div>
+                            <div class="won">₩</div>
+                            <div class="fee3">금액</div>
+                            <div class="portion3">rr</div>
+                            <div class="portion">%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
