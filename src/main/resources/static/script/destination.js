@@ -11,12 +11,12 @@ window.initMap = function () {
     // 마커 이미지 설정
     const terminalImage = {
         url: '/images/terminal.png',
-        scaledSize: new google.map.Size(50, 50)
+        scaledSize: new google.maps.Size(50, 50)
     };
 
     const congestionImage = {
         url: '/images/warning.png',
-        scaledSize: new google.map.Size(50, 50)
+        scaledSize: new google.maps.Size(50, 50)
     };
 
     // 토글 버튼 제어
@@ -29,7 +29,7 @@ window.initMap = function () {
     // 컨테이너 터미널 마커
     toggleTerminal.addEventListener('change', function () {
         if (this.checked) {
-            terminalMarker = new google.map.Marker({
+            terminalMarker = new google.maps.Marker({
                 position: { lat: 37.5700, lng: 126.9768 },
                 map: map,
                 icon: terminalImage,

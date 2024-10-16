@@ -75,6 +75,12 @@
                 <input type="checkbox" id="toggle-info">
                 <span class="slider"></span>
             </label>
+            
+            <ul th:if="$(#ids.prev('toggle-info-waiting').checked)">
+            	<li th:each="area : $(waitingAreas)">
+            		[[${area.info}]] (위치: [[${area.location}]])
+            	</li>
+            </ul>
         </div>
         <div class="terminal">
             <div class="toggle2">컨테이너 터미널</div>
@@ -83,6 +89,12 @@
                 <input type="checkbox" id="toggle-info">
                 <span class="slider"></span>
             </label>
+            
+            <ul th:if="${#ids.prev('toggle-info-terminal').checked}">
+        		<li th:each="terminal : ${containerTerminals}">
+            		[[${terminal.info}]] (위치: [[${terminal.location}]])
+        		</li>
+    		</ul>
         </div>
         <div class="congestion-area">
             <div class="toggle3">혼잡 주의 지역</div>
