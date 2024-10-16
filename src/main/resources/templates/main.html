@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org">
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="@http://thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
     <title>main</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script defer th:src="@{/script/main.js}"></script>
 </head>
 
 <body>
@@ -20,7 +21,9 @@
         <div class="main_services">
             <div class="service_box1">
                 <img src="">
-                <p class="shipInfo">선박명<span class="callSign">(Call Sign)</span></p>
+                [[${voyage}]]
+                <p class="shipInfo"><span th:text="${voyage != null ? voyage.ship.shipName : '선박명'}">선박명</span>
+                <span class="callSign" th:text="'(' + (${voyage} != null ? ${voyage.ship.callSign} : 'Call Sign') + ')'">(Call Sign)</span></p>
                 <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
                 <div class="dep_arr">
                     <img class="whale" src="">
