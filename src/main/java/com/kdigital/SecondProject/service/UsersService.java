@@ -66,5 +66,30 @@ public class UsersService {
 			return false;
 		}
 	}
+	
+	/**
+	 * 로그인 처리
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
+	
+	public boolean login(String userId, String userPwd) {
+	    log.info("로그인 시도 - userId: {}", userId);
+	    List<UserEntity> userEntity = userRepository.findByUserId(userId);
+	    if (userEntity.isEmpty()) {
+	        log.info("로그인 실패 - 아이디 없음");
+	        return false;
+	    } else {
+	        UserEntity user = userEntity.get(0);
+	        if (bCryptPasswordEncoder.matches(userPwd, user.getUserPwd())) {
+	            log.info("로그인 성공");
+	            return true;
+	        } else {
+	            log.info("로그인 실패 - 비밀번호 불일치");
+	            return false;
+	        }
+	    }
+	}
 
 }

@@ -216,11 +216,13 @@
             <ul>
                 <!-- 비로그인 상태 -->
                 <li sec:authorize="isAnonymous()">
+                <a th:href="@{/user/login}">
                     <button class="login-button">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18d8a057f3538cb2faa0c0d8b1e221c4cd0124c6e0e5334f257fdc79dc7c7ce4?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
                             alt="" class="login-icon" />
                         <span class="login-text">로그인</span>
                     </button>
+                </a>
                 </li>
 
                 <!-- 로그인 상태 -->
@@ -233,7 +235,9 @@
                                 alt="User Profile" class="user-icon" />
                         </button>
                     </div>
-                    <button class="logout-btn">로그아웃</button>
+                    <form th:action="@{/user/logout}" method="POST">
+                    	<button type="submit" class="logout-btn">로그아웃</button>
+                    </form>
                 </li>
             </ul>
         </div>
