@@ -19,12 +19,22 @@ public class AISTest {
 	private AISService service;
 	
 	/**
-	 * 항해 번호로 ais 신호 추출 
+	 * 항해 번호로 ais 신호 전체 추출 
 	 * @param vNumber
 	 * @return List<AISDTO>
 	 * */
-	@Test
+	//@Test
 	void testGetAllSignal() {
 		service.selectAISAll((long) 63);
+	}
+	
+	/**
+	 * 항해 번호로 가장 최근의 ais 신호 추출
+	 * @param vNumber
+	 * @return AISDTO
+	 * */
+	@Test
+	void testGetLastSignal() {
+		service.currentAISsignal((long) 114);
 	}
 }

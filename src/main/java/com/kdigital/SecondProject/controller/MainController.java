@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kdigital.SecondProject.dto.UserDTO;
 import com.kdigital.SecondProject.dto.VoyageDTO;
+import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.VoyageService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MainController {
 	final VoyageService voyageService;
+	final AISService aisService;
 	
 	/**
 	 * 첫 화면 요청
@@ -36,14 +38,30 @@ public class MainController {
 		if(loginUser!=null) {
 			model.addAttribute("loginName", loginUser.getUserId());
 		}
-		// 검색을 통해 접근했다면...
+		
+		// 검색을 통해 접근했다면 선박 검색
 		if(!shipInfo.equals("0")) {
-			voyageDTO = voyageService.selectVoyageWithCallSign(shipInfo);
-			log.info("(service) call sign으로 찾아온 항해 정보: {}",voyageDTO);
-			if(voyageDTO!=null) {
-				model.addAttribute("voyage", voyageDTO);
-			}
+			VoyageDTO temp = voyageService.selectVoyageWithCallSign(shipInfo);
+			log.info("(service) call sign으로 찾아온 항해 정보: {}",temp);
+			if(temp!=null) voyageDTO = temp;
+			
+			temp = voyageService.selectVoyageWithMmsi(shipInfo);
+			log.info("(service) MMSI로 찾아온 항해 정보: {}",temp);
+			if(temp!=null) voyageDTO = temp;
+			
+			temp = voyageService.selectVoyageWithImo(shipInfo);
+			log.info("(service) IMO로 찾아온 항해 정보: {}",temp);
+			if(temp!=null) voyageDTO = temp;
+			
+			model.addAttribute("voyage", voyageDTO);
+			
+			double voyagePer = getVoyagePer(voyageDTO.getVNumber());
 		}
 		return "main";
+	}
+
+	private double getVoyagePer(Long vNumber) {
+		aisService.selectAISAll(vNumber);
+		return 0;
 	}
 }

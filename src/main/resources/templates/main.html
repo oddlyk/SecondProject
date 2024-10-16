@@ -32,8 +32,8 @@
                     <div class="text_wrapper_2">도착지</div>
                 </div>
                 <div class="dep_arr_name">
-                    <div class="text_wrap">출발항명</div>
-                    <div class="text_wrap2">도착항명</div>
+                    <div class="text_wrap"  th:text="${voyage != null ? voyage.departure : 'None'}">출발항명</div>
+                    <div class="text_wrap2" th:text="${voyage != null ? voyage.port.portName : 'None'}">도착항명</div>
                 </div>
                 <div class="proceeding">n<span class="percent">%</span></div>
             </div>
