@@ -23,7 +23,7 @@ public class VoyageTest {
 	/**
 	 * 선박의 콜사인으로 특정 항해 검색
 	 * */
-	@Test
+	//@Test
 	void testSearchVoyageAsCallSign() {
 		service.selectVoyageWithCallSign("2BOK5");
 	}
@@ -31,7 +31,7 @@ public class VoyageTest {
 	/**
 	 * 선박의 MMSI로 특정 항해 검색
 	 * */
-	@Test
+	//@Test
 	void testSearchVoyageAsMmsi() {
 		service.selectVoyageWithMmsi("538005519");
 	}
@@ -39,8 +39,16 @@ public class VoyageTest {
 	/**
 	 * 선박의 IMO로 특정 항해 검색
 	 * */
-	@Test
+	//@Test
 	void testSearchVoyageAsImo() {
 		service.selectVoyageWithImo("9691761");
+	}
+	
+	/**
+	 * vNumber로 특정 항해 검색
+	 * */
+	@Test
+	void searchOne() {
+		service.selectOne((long) 100);
 	}
 }

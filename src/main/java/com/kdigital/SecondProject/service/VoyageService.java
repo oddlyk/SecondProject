@@ -1,6 +1,7 @@
 package com.kdigital.SecondProject.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -98,6 +99,28 @@ public class VoyageService {
 			// on-boarding이 0인 항해만 존재함.
 			log.info("살아있는 항해를 찾을 수 없었습니다");
 			return null;
+		}
+		// 항해가 없었음.
+		log.info("해당 항해를 찾을 수 없었습니다");
+		return null;
+	}
+	
+	/**
+	 * 저장된 항해 vNumber로 찾기
+	 * @param vNumber
+	 * @return voyageDTO
+	 * */
+	@Transactional
+	public VoyageDTO selectOne(Long vNumber) {
+		log.info("항해 정보를 vNumber로 검색합니다. vNumber명은 {} 입니다.",vNumber);
+		// vNumber로 항해 검색
+		Optional<VoyageEntity> entity = voyageRepository.findById(vNumber);
+		// 항해가 추출되어 왔으면 on-boarding이 1인 항해를 찾아 return
+		if(entity.isPresent()) {
+			VoyageDTO dto = VoyageDTO.toDTO(entity.get());
+			log.info("항해: {}",dto.toString());
+			return dto;
+
 		}
 		// 항해가 없었음.
 		log.info("해당 항해를 찾을 수 없었습니다");
