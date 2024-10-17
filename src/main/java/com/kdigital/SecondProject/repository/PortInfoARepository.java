@@ -12,4 +12,6 @@ public interface PortInfoARepository extends JpaRepository<PortInfoAEntity, Inte
 	
 	// LocType으로 PortInfoAEntity 검색
 	List<PortInfoAEntity> findByLocType(int locType);
+	
+	List<PortInfoAEntity> findByPort_PortCodeAndLocType(String portCode, int locType);
 }

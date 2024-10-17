@@ -33,7 +33,7 @@ public class AccidentStatusService {
         LocalDate currentDate = LocalDate.now();
         String previousYearMonth = (currentDate.getYear() - 1) + "_" + String.format("%02d", currentDate.getMonthValue());
 		
-        // "YYYY-MM" 형태로 accidentDate가 전년도 동일 월에 해당하는 데이터만 필터링
+        // "YYYY_MM" 형태로 accidentDate가 전년도 동일 월에 해당하는 데이터만 필터링
         List<AccidentStatusEntity> accidentStatusEntities = accidentStatusRepository.findByPort_PortCode(portCode)
             .stream()
             .filter(entity -> entity.getAccidentDate().startsWith(previousYearMonth))  // 전년도 동일 월 필터링
