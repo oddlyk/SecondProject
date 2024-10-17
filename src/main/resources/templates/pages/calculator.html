@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>항만 사용료 계산기</title>
     <link rel="stylesheet" th:href="@{/css/calculator.css}">
     <script defer th:src="@{/script/calculator.js}"></script>
 </head>
@@ -25,30 +25,40 @@
                 <div class="port">
                     <div class="port-std">기준항:</div>
                     <div class="port-layout1">[</div>
-                    <div class="port-name">목적항</div>
-                    <div class="port-layout2"></div>
+                    <div class="port-name" th:text="${portName}">목적항</div>
+                    <div class="port-layout2">]</div>
                 </div>
                 <form th:action="@{/calc/calcForm}" method="POST" id="calcForm">
                     <div class="weight">
                         <div class="weight-text">선박 무게</div>
-                        <input type="text" name="tonnage" id="tonnage">
+                        <input type="text" name="tonnage" id="tonnage" th:value="${tonnage}">
                         <div class="weight-ton">ton</div>
                     </div>
                     <div class="import">
                         <div class="import-text">입항 예정 일시</div>
-                        <input type="date" name="importDate" id="importDate">
+                        <input type="date" name="importDate" id="importDate" th:value="${importDate}">
                     </div>
                     <div class="export">
                         <div class="export-text">출항 예정 일시</div>
-                        <input type="date" name="exportDate" id="exportDate">
+                        <input type="date" name="exportDate" id="exportDate" th:value="${exportDate}"
+                            th:disabled="${isExportDateDisabled ? 'disabled' : null}">
                     </div>
                     <div class="working">
                         <div class="working-text">작업 시간</div>
-                        <input type="time" name="workingTime" id="workingTime">
+                        <input type="number" name="workingHour" id="workingHour" min="0" max="23"
+                            value="${workingHour}">
+                        <label for="workingHour">시간</label>
+                        <input type="number" name="workingMinute" id="workingMinute" min="0" max="59"
+                            value="${workingMinute}">
                     </div>
                     <div class="waiting">
                         <div class="waiting-text">대기 시간</div>
-                        <input type="time" name="waitingTime" id="waitingTime">
+                        <input type="number" name="waitingHour" id="waitingHour" min="0" max="23"
+                            value="${waitingHour}">
+                        <label for="workingHour">시간</label>
+                        <input type="number" name="waitingMinute" id="waitingMinute" min="0" max="59"
+                            value="${waitingMinute}">
+                        <label for="workingMinute">분</label>
                         <input type="checkbox" name="openSea" id="openSea">
                         <div class="checkbox-text">외해 정박</div>
                     </div>
@@ -56,10 +66,10 @@
                         <button class="button-calc">
                             <span class="button-text">계산</span>
                         </button>
-                        <button type="submit" class="button-save">
+                        <button type="submit" class="button-save" id="saveButton" disabled>
                             <span class="button-text">저장</span>
                         </button>
-                        <button type="reset" class="button-reset">
+                        <button type="reset" class="button-reset" id="resetButton">
                             <span class="button-text">초기화</span>
                         </button>
                     </div>
@@ -68,52 +78,52 @@
             <div class="right-content-box">
                 <div class="right-content">
                     <div class="ship">
-                        <div class="ship-name">선박명</div>
-                        <div class="ship-sign">(callsign)</div>
+                        <div class="ship-name" th:text="${shipName}"></div>
+                        <div class="ship-sign" th:text="${callSign}"></div>
                     </div>
                     <div class="result">
                         <div class="result-won">₩</div>
-                        <div class="result-num"></div>
+                        <div class="result-num" th:text="${result}"></div>
                     </div>
                     <div class="bar-chart">
                         <div class="group1">
                             <div class="circle1"></div>
                             <div class="title1">입출항료</div>
                             <div class="won">₩</div>
-                            <div class="fee1">금액</div>
-                            <div class="portion1">rr</div>
+                            <div class="fee1" th:text="${fee}">금액</div>
+                            <div class="portion1" th:text="${portion}">rr</div>
                             <div class="portion">%</div>
                         </div>
                         <div class="group2">
                             <div class="circle2"></div>
                             <div class="title2">접안료</div>
                             <div class="won">₩</div>
-                            <div class="fee2">금액</div>
-                            <div class="portion2">rr</div>
+                            <div class="fee2" th:text="${fee}">금액</div>
+                            <div class="portion2" th:text="${portion}">rr</div>
                             <div class="portion">%</div>
                         </div>
                         <div class="group3">
                             <div class="circle3"></div>
                             <div class="title3">정박료</div>
                             <div class="won">₩</div>
-                            <div class="fee3">금액</div>
-                            <div class="portion3">rr</div>
+                            <div class="fee3" th:text="${fee}">금액</div>
+                            <div class="portion3" th:text="${portion}">rr</div>
                             <div class="portion">%</div>
                         </div>
                         <div class="group4">
                             <div class="circle4"></div>
                             <div class="title4">계선료</div>
                             <div class="won">₩</div>
-                            <div class="fee4">금액</div>
-                            <div class="portion4">rr</div>
-                            <div class="portion">%</div>
+                            <div class="fee4" th:text="${fee}">금액</div>
+                            <div class="portion4" th:text="${portion}">rr</div>
+                            <div class="portion" \>%</div>
                         </div>
                         <div class="group5">
                             <div class="circle5"></div>
                             <div class="title5">보안료</div>
                             <div class="won">₩</div>
-                            <div class="fee5">금액</div>
-                            <div class="portion5">rr</div>
+                            <div class="fee5" th:text="${fee}">금액</div>
+                            <div class="portion5" th:text="${portion}">rr</div>
                             <div class="portion">%</div>
                         </div>
                     </div>
