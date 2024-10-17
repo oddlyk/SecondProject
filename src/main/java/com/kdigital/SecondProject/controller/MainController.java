@@ -2,6 +2,8 @@ package com.kdigital.SecondProject.controller;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kdigital.SecondProject.dto.AccidentStatusDTO;
-import com.kdigital.SecondProject.dto.UserDTO;
+import com.kdigital.SecondProject.dto.FavoriteVoyageDTO;
+import com.kdigital.SecondProject.dto.LoginUserDetails;
 import com.kdigital.SecondProject.dto.VoyageDTO;
 import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.AccidentStatusService;
@@ -36,21 +39,65 @@ public class MainController {
 	 * */
 	@GetMapping({"","/"})
 	public String main(
-			@AuthenticationPrincipal  UserDTO loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
+			@AuthenticationPrincipal  LoginUserDetails loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
 			@RequestParam(name="search_ship", defaultValue="집갈래") String shipInfo, //검색버튼 클릭 시
 			Model model
 			) {
 		// 인증을 받은 사용자라면 그 이름 저장 
 		if(loginUser!=null) {
-			model.addAttribute("loginName", loginUser.getUserId());
+			model.addAttribute("loginName", loginUser.getUserName()); //사용자의 이름
+			log.info("로그인됨!:{}",loginUser.getUsername());	//사용자의 아이디
+		}else {
+			log.info("로그인 안됨");
 		}
 		
 		// 검색을 통해 접근했는지 여부 파악
 			// 검색하지 않은 접근시, 바로 메인
 		if(shipInfo.equals("집갈래")) {
-			model.addAttribute("search", 0); //검색 하지 않고 접근함.
-			return "main";
+			// 로그인된 사용자라면...
+			if(loginUser!=null) {
+				// 즐겨찾기 항해 정보 전달
+				FavoriteVoyageDTO fvDTO = fvService.getTopFavoriteVoyage();
+				// 즐겨찾기 항해가 없는 경우 랜덤한 항해 1개 전달
+				if(fvDTO==null) {
+					List<FavoriteVoyageDTO> fvDTOs = fvService.findAll();
+					if(fvDTOs!=null) {
+						Random random = new Random();
+				        int randomIndex = random.nextInt(fvDTOs.size());
+				        fvDTO = fvDTOs.get(randomIndex);
+					}
+				}
+				//저장된 항해가 하나도 없는 경우 그냥 초기화면으로.
+				if(fvDTO==null) {
+					model.addAttribute("search", 0); 
+					return "main";
+				}
+
+				VoyageDTO dto = VoyageDTO.toDTO(fvDTO.getVoyageEntity());
+				log.info("사용자의 메인 항해: {}",dto);
+				model.addAttribute("voyage", dto);
+				model.addAttribute("search", 1); //사용자의 즐겨찾기 항해 정보를 포함함.
+				// 항해 진행률 생성 및 전달
+				String voyagePer = getVoyagePer(dto.getVNumber());
+				model.addAttribute("voyagePer", voyagePer);
+				
+				// 목적항 사고 현황 전달
+				AccidentStatusDTO asDTO = asService.getAccidentStatusByPortCode(dto.getPort().getPortCode()).get(0);
+				model.addAttribute("accidentStatus", asDTO);
+				
+				// 항만 이용료 전달
+				int usingFee = dto.getAnchorageFee()+dto.getBerthingFee()+dto.getEntryExitFee()+dto.getEntryExitFee()+dto.getSecurityFee();
+				String portFee = String.format("%,d", usingFee);
+				model.addAttribute("portFee", portFee);
+				model.addAttribute("search_ship",dto.getShip().getCallSign());
+				return "main";
+			}
+			else {
+				model.addAttribute("search", 0); //검색 하지 않고 접근함.
+				return "main";
+			}
 		}
+		
 		// 항해 정보 저장
 		VoyageDTO voyageDTO = new VoyageDTO();
 		log.info("(Controller) 데이터를 입력 받기 전의 항해 정보: {}",voyageDTO.toString());
@@ -90,6 +137,7 @@ public class MainController {
 		int usingFee = voyageDTO.getAnchorageFee()+voyageDTO.getBerthingFee()+voyageDTO.getEntryExitFee()+voyageDTO.getEntryExitFee()+voyageDTO.getSecurityFee();
 		String portFee = String.format("%,d", usingFee);
 		model.addAttribute("portFee", portFee);
+		model.addAttribute("search_ship",voyageDTO.getShip().getCallSign());
 		return "main";
 	}
 

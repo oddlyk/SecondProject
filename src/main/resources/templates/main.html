@@ -13,6 +13,15 @@
 </head>
 
 <body>
+<input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
+<th:block sec:authorize="isAuthenticated()">
+		<input type="text" th:value="${search_ship}" id="controller_ship">
+    	<a th:href="@{user/login}" id="tologin"></a>
+    	<a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
+        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
+        <a th:href="@{port/portdetail(callSign=${search_ship})}" id="getPort"></a>
+        <a th:href="@{port/calcdetail/(callSign=${search_ship})}" id="getCalc"></a>
+</th:block>
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
     <!-- <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div> -->
     <div class="background">
@@ -94,20 +103,16 @@
         <div class="main_services" id="searchYes" th:if="${voyage != null}">
         <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
         <input type="hidden" th:value="${voyage.vNumber}" id="vNumber">
-            <form th:action="@{/user/login}" method="get" id="move0">
-            </form>
-
-            <form th:action="@{voyage/voyagedetail}" method="get" id="move1">
-                <input type="hidden" th:value="${voyage.ship.callSign}" name="callSign">
+                
                 <div class="service_box1">
                     <img src="">
-                    [[${voyage}]]
                     <input type="hidden" th:value="${voyage.port.portName}" id="port">
                     <p class="shipInfo"><span th:text="${voyage.ship.shipName}" class="shipName">선박명</span>
                         <span class="callSign" th:text="'(' + ${voyage.ship.callSign}+ ')'">(Call Sign)</span>
                     </p>
                     <div class=" Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid">
                     </div>
+                  
                     <div class="dep_arr">
                         <img class="whale" src="">
                         <div class="text_wrapper">출발지</div>
@@ -119,10 +124,7 @@
                     </div>
                     <div class="proceeding"><span class="percent" th:text="${voyagePer}+'%'">%</span></div>
                 </div>
-            </form>
-
-            <form th:action="@{port/portdetail}" method="get" id="move2">
-                <input type="hidden" th:value="${voyage.ship.callSign}" name="callSign">
+			
                 <div class="service_box2">
                     <div class="headBox">
                         <p class="arr_info"><span class="port_name"></span>[[${voyage.port.portName}]] 현재
@@ -151,11 +153,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
 
 
-            <form th:action="@{/calc/calcdetail}" method="get" id="move3">
-                <input type="hidden" th:value="${voyage.ship.callSign}" name="callSign">
                 <div class="service_box3">
                     <p class="fee_title">예상 항만 사용료</p>
                     <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
@@ -164,7 +163,6 @@
                     </div>
                     <div class="won">원</div>
                 </div>
-            </form>
 
         </div>
     </div>
