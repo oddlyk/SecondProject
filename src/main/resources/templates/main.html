@@ -17,7 +17,7 @@
     <a th:href="@{user/login}" id="tologin"></a>
     <th:block sec:authorize="isAuthenticated()">
         <input type="text" th:value="${search_ship}" id="controller_ship">
-        
+
         <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
         <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
         <a th:href="@{port/portdetail(callSign=${search_ship})}" id="getPort"></a>
@@ -28,7 +28,7 @@
     <div class="background">
         <!-- 검색된 결과가 존재하는지 여부 출력. 존재하지 않는다면 alert 출력할 것. -->
         <input type="hidden" th:value="${search}" id="isItsearch">
-        
+
         <div id="req1"></div>
         <div class="search_box">
             <img src="">
