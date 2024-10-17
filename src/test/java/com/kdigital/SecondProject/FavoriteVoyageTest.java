@@ -23,7 +23,7 @@ public class FavoriteVoyageTest {
 	//@Test
 	@WithMockUser(username="user001", roles= {"USER"})
 	void searchFavVoyage() {
-		boolean result = service.favorite("DSQG4");
+		boolean result = service.favorite((long) 135);
 		System.out.println("Test result: " + result);
 		//assertTrue(result);
 	}
