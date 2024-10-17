@@ -2,10 +2,8 @@ package com.kdigital.SecondProject.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +17,8 @@ import com.kdigital.SecondProject.service.PortService;
 import com.kdigital.SecondProject.service.ShipService;
 import com.kdigital.SecondProject.service.VoyageService;
 
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -26,12 +26,13 @@ import lombok.extern.slf4j.Slf4j;
  * */
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class CalcController {
 	
-	@Autowired
-	private VoyageService voyageService;
-	private ShipService shipService; 
-	private PortService portService;
+	
+final private VoyageService voyageService;
+final private ShipService shipService; 
+final private PortService portService;
 	
 	
 	/**
@@ -77,6 +78,7 @@ public class CalcController {
 	 * @param model
 	 * @return
 	 */
+	@Transactional
 	@GetMapping("calc/calcdetail")
 	public String mainLink(@RequestParam("callSign") String callSign, Model model) {
 		// call sign 기준 항해, 선박 정보 조회
@@ -100,6 +102,10 @@ public class CalcController {
 		LocalDateTime exportDate = arrivalDate.plusHours(hours).plusMinutes(minutes);
 		
 		
+		// LocalDateTime을 yyyy-MM-dd 형식의 문자열로 변환
+	    String arrivalDateStr = arrivalDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	    String exportDateStr = exportDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
 		
 		// 대기 시간과 작업 시간 변환
 		// 1. 작업 시간
@@ -114,8 +120,8 @@ public class CalcController {
 		// 기본 값 설정
 		model.addAttribute("portName", port.getPortName());
 		model.addAttribute("tonnage", ship.getTonnage());
-		model.addAttribute("importDate", voyage.getArrivalDate());
-		model.addAttribute("exportDate", exportDate);
+		model.addAttribute("importDate", arrivalDateStr);
+		model.addAttribute("exportDate", exportDateStr);
 		model.addAttribute("workingHour", hour);
 	    model.addAttribute("workingMinute", minute);
 	    model.addAttribute("waitingHour", hour1);
