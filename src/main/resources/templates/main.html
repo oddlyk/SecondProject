@@ -7,7 +7,9 @@
 
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script defer th:src="@{/script/main.js}"></script> <!-- th:src="@{/script/main.js}" -->
-    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- 날씨 api용 --><!-- axios 라이브러리 외부 CDN으로 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 날씨 api용 --><!-- axios 라이브러리 외부 CDN으로 추가 -->
 </head>
 
 <body>
@@ -16,7 +18,7 @@
     <div class="background">
         <!-- 검색된 결과가 존재하는지 여부 출력. 존재하지 않는다면 alert 출력할 것. -->
         <input type="hidden" th:value="${search}" id="isItsearch">
-        <input type="text" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
+        <input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
         <div id="req1"></div>
         <div class="search_box">
             <img src="">
@@ -26,8 +28,10 @@
                 <input class="search" id="search_icon" type="button" value="찾기">
             </form>
         </div>
-        <button class="register-btn">등록</button>
-
+        <form th:action="@{/}" method="post" id="saveVoyage">
+        <input type="hidden" th:value="${voyage != null ? voyage.vNumber : '-1'}" name="voyageN">
+        <input type="submit" id="register-btn" value="등록">
+		</form>
 
         <!-- 검색에 실패했거나, 검색을 통한 접근이 아닐때 -->
         <div class="main_services" id="searchNo" th:unless="${voyage != null}">
@@ -91,54 +95,69 @@
 
         <!-- 검색 결과가 존재할 때 -->
         <div class="main_services" id="searchYes" th:if="${voyage != null}">
-            <div class="service_box1">
-                <img src="">
-                [[${voyage}]]
-                <input type="hidden" th:value="${voyage.port.portName}" id="port">
-                <p class="shipInfo"><span th:text="${voyage.ship.shipName}" class="shipName">선박명</span>
-                    <span class="callSign" th:text="'(' + ${voyage.ship.callSign}+ ')'" id="callSign" >(Call Sign)</span>
-                </p>
-                <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
-                <div class="dep_arr">
-                    <img class="whale" src="">
-                    <div class="text_wrapper">출발지</div>
-                    <div class="text_wrapper_2">도착지</div>
-                </div>
-                <div class="dep_arr_name">
-                    <div class="text_wrap" th:text="${voyage.departure}">출발항명</div>
-                    <div class="text_wrap2" th:text="${voyage.port.portCode}">도착항명</div>
-                </div>
-                <div class="proceeding"><span class="percent" th:text="${voyagePer}+'%'">%</span></div>
-            </div>
+        <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
+            <form th:action="@{/user/login}" method="get" id="move0">
+            </form>
 
-            <div class="service_box2">
-                <div class="headBox">
-                    <p class="arr_info"><span class="port_name"></span>[[${voyage.port.portName}]] 현재
-                        날씨</p>
-                    <div class="weather"><img src="" alt="Weather Icon" id="weatherIcon">
-</div>
-                    <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
+            <form th:action="@{voyage/voyagedetail}" method="get" id="move1">
+                <input type="hidden" th:value="${voyage.ship.callSign}" name="search_ship">
+                <div class="service_box1">
+                    <img src="">
+                    [[${voyage}]]
+                    <input type="hidden" th:value="${voyage.port.portName}" id="port">
+                    <p class="shipInfo"><span th:text="${voyage.ship.shipName}" class="shipName">선박명</span>
+                        <span class="callSign" th:text="'(' + ${voyage.ship.callSign}+ ')'">(Call Sign)</span>
+                    </p>
+                    <div class=" Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid">
+                    </div>
+                    <div class="dep_arr">
+                        <img class="whale" src="">
+                        <div class="text_wrapper">출발지</div>
+                        <div class="text_wrapper_2">도착지</div>
+                    </div>
+                    <div class="dep_arr_name">
+                        <div class="text_wrap" th:text="${voyage.departure}">출발항명</div>
+                        <div class="text_wrap2" th:text="${voyage.port.portCode}">도착항명</div>
+                    </div>
+                    <div class="proceeding"><span class="percent" th:text="${voyagePer}+'%'">%</span></div>
                 </div>
-                <div class="accident">
-                    <p class="accident_title">전년도 당월 사고 현황</p>
-                    <div class="Line1" style="width: 350px; height: 0px; border: 2px #B1AEAE solid"></div>
-                    <div class="accident_box1">
-                        <div class="rank1">1위</div>
-                        <div class="reason1" th:text="${accidentStatus.firstRank}">사고내역</div>
-                        <div class="count" th:text="${accidentStatus.firstPer}+'%'">0.00%</div>
-                    </div>
-                    <div class="accident_box2">
-                        <div class="rank2">2위</div>
-                        <div class="reason2" th:text="${accidentStatus.secondRank}">사고내역</div>
-                        <div class="count" th:text="${accidentStatus.secondPer}+'%'">0.00%</div>
-                    </div>
-                    <div class="accident_box3">
-                        <div class="rank3">3위</div>
-                        <div class="reason3" th:text="${accidentStatus.thirdRank}">사고내역</div>
-                        <div class="count" th:text="${accidentStatus.thirdPer}+'%'">0.00%</div>
-                    </div>
-                </div>
+            </form>
 
+            <form th:action="@{port/portdetail}" method="get" id="move2">
+                <input type="hidden" th:value="${voyage.ship.callSign}" name="search_ship">
+                <div class="service_box2">
+                    <div class="headBox">
+                        <p class="arr_info"><span class="port_name"></span>[[${voyage.port.portName}]] 현재
+                            날씨</p>
+                        <div class="weather"><img src="" alt="Weather Icon" id="weatherIcon">
+                        </div>
+                        <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
+                    </div>
+                    <div class="accident">
+                        <p class="accident_title">전년도 당월 사고 현황</p>
+                        <div class="Line1" style="width: 350px; height: 0px; border: 2px #B1AEAE solid"></div>
+                        <div class="accident_box1">
+                            <div class="rank1">1위</div>
+                            <div class="reason1" th:text="${accidentStatus.firstRank}">사고내역</div>
+                            <div class="count" th:text="${accidentStatus.firstPer}+'%'">0.00%</div>
+                        </div>
+                        <div class="accident_box2">
+                            <div class="rank2">2위</div>
+                            <div class="reason2" th:text="${accidentStatus.secondRank}">사고내역</div>
+                            <div class="count" th:text="${accidentStatus.secondPer}+'%'">0.00%</div>
+                        </div>
+                        <div class="accident_box3">
+                            <div class="rank3">3위</div>
+                            <div class="reason3" th:text="${accidentStatus.thirdRank}">사고내역</div>
+                            <div class="count" th:text="${accidentStatus.thirdPer}+'%'">0.00%</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form th:action="@{/calc/calcdetail}" method="get" id="move3">
+                <input type="hidden" th:value="${voyage.ship.callSign}" name="callSign">
                 <div class="service_box3">
                     <p class="fee_title">예상 항만 사용료</p>
                     <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
@@ -147,8 +166,10 @@
                     </div>
                     <div class="won">원</div>
                 </div>
-            </div>
+            </form>
+
         </div>
+    </div>
     </div>
 </body>
 

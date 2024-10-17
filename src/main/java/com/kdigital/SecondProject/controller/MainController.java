@@ -2,16 +2,21 @@ package com.kdigital.SecondProject.controller;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kdigital.SecondProject.dto.AccidentStatusDTO;
 import com.kdigital.SecondProject.dto.UserDTO;
 import com.kdigital.SecondProject.dto.VoyageDTO;
+import com.kdigital.SecondProject.entity.PortEntity;
+import com.kdigital.SecondProject.entity.ShipEntity;
 import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.AccidentStatusService;
 import com.kdigital.SecondProject.service.VoyageService;
@@ -101,5 +106,18 @@ public class MainController {
 		double voyageProgress = ((double) untilTodayMinutes / totalVoyageMinutes) * 100;
 		log.info("현재 항해에 대한 항해 진행률: {}",voyageProgress);
 		return String.format("%.2f", voyageProgress);
+	}
+	
+	/**
+	 * 항해 저장 요청
+	 * */
+	@PostMapping("/")
+	public String predict(
+			@AuthenticationPrincipal  UserDTO loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
+			@RequestParam(name="voyageN") String temp, // 등록 버튼 클릭 시
+			Model model) {
+		log.info("String : {}",Long.parseLong(temp));
+		
+		return "main";
 	}
 }

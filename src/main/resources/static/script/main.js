@@ -2,7 +2,10 @@
 /*
 	메인 화면과 연결되는 JS 코드
  */
-
+// 화면 시작 시...
+document.getElementById('register-btn').disabled = true; // 버튼 비활성화
+	
+	
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
 let searchForm = document.getElementById('SearchVoyage');
@@ -32,51 +35,59 @@ if (isItSearch == 0) {
 
 // 검색 결과 존재
 if (isItSearch == 1) {
+	document.getElementById('search_ship').value = document.getElementById('searched_ship').value;
 	// 회원 여부에 따른 상세 페이지 이동 여부
 	let user = document.getElementById('userId').value;
-	let callSign = document.getElementById('callSign').textContent.trim().replace('(','').replace(')','').trim();
+	// 회원이면 등록 버튼 활성화
+	if(user==='true'){
+		document.getElementById('register-btn').disabled = false; // 버튼 비활성화
+	}
+	
 	// 각 요소에 대해 반복하며 이벤트 리스너를 추가
+	//회원 연관 이벤트 : 로그인된 회원이라면 요청 전송. 아니라면 로그인 화면으로.
+
+
+	// 선박 상세 정보 전달
 	document.querySelectorAll('.service_box1').forEach(element => {
-	    element.addEventListener('click', () => goto1(user,callSign));
+		element.addEventListener('click', function () {
+			if (user === 'true') {
+				let form = document.getElementById('move1');
+				form.submit();
+			} else {
+				let form = document.getElementById('move0');
+				form.submit();
+			}
+		});
 	});
+	// 목적지 상세 정보 전달
 	document.querySelectorAll('.service_box2').forEach(element => {
-		    element.addEventListener('click', () => goto2(user,callSign));
+		element.addEventListener('click', function () {
+			if (user === 'true') {
+				let form = document.getElementById('move2');
+				form.submit();
+			} else {
+				let form = document.getElementById('move0');
+				form.submit();
+			}
 		});
+	});
+	// 계산 상세 정보 전달
 	document.querySelectorAll('.service_box3').forEach(element => {
-		    element.addEventListener('click', () => goto3(user,callSign));
+		element.addEventListener('click', function () {
+			if (user === 'true') {
+				let form = document.getElementById('move3');
+				form.submit();
+			} else {
+				let form = document.getElementById('move0');
+				form.submit();
+			}
 		});
+	});
 }
 
 if (isItSearch == 2) {
 	alert("현재 항해 중인 선박이 아닙니다. 다른 단어로 검색해 주세요.");
 }
-
-//회원 연관 이벤트 : 로그인된 회원이라면 요청 전송. 아니라면 로그인 화면으로.
-	// 선박 상세 정보 전달
-function goto1(user,callSign) {
-	if (user == 'true') {
-		window.location.href =  '/';
-	} else {
-		window.location.href = '/user/login';
-	}
-}
-	// 목적지 상세 정보 전달
-function goto2(user,callSign) {
-	if (user == 'true') {
-			window.location.href = '/';
-		} else {
-			window.location.href = '/user/login';
-		}
-}
-	// 계산 상세 정보 전달
-function goto3(user,callSign) {
-	if (user == 'true') {
-			window.location.href = '/calc/calcdetail?callSign='+callSign;
-		} else {
-			window.location.href = '/user/login';
-		}
-}
-
 
 
 

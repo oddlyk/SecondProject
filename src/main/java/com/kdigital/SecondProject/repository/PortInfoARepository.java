@@ -9,4 +9,7 @@ import com.kdigital.SecondProject.entity.PortInfoAEntity;
 public interface PortInfoARepository extends JpaRepository<PortInfoAEntity, Integer> {
 
 	List<PortInfoAEntity> findByPort_PortCode(String portCode);
+	
+	// LocType으로 PortInfoAEntity 검색
+	List<PortInfoAEntity> findByLocType(int locType);
 }
