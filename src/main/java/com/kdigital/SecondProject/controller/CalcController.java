@@ -45,8 +45,9 @@ public class CalcController {
 		model.addAttribute("tonnage", 0);
 				
 		LocalDate today = LocalDate.now();
-		model.addAttribute("importDate", today);
-		model.addAttribute("exportDate", today);
+		String todayformat = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		model.addAttribute("importDate", todayformat);
+		model.addAttribute("exportDate", todayformat);
 			
 		// 작업 시간과 대기 시간 설정
 	    int defaultHour = 0;
@@ -63,9 +64,19 @@ public class CalcController {
 		model.addAttribute("fee", "-");
 		model.addAttribute("portion", "-");
 		
+		// 저장 버튼 상태 플래그 설정
+	    model.addAttribute("isSaveEnabled", false);
+		
 		return "pages/calculator";
 	}
 	
+	
+	/**
+	 * 메인 화면을 통한 접속
+	 * @param callSign
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("calc/calcdetail")
 	public String mainLink(@RequestParam("callSign") String callSign, Model model) {
 		// call sign 기준 항해, 선박 정보 조회
@@ -114,6 +125,9 @@ public class CalcController {
 		
 		// exportDate를 수정할 수 없도록 설정
 	    model.addAttribute("isExportDateDisabled", true);
+	    
+	    // 저장 버튼 상태 플래그 설정
+	    model.addAttribute("isSaveEnabled", true);
 		
 		
 		
