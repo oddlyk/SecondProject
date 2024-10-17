@@ -2,7 +2,10 @@
 /*
 	메인 화면과 연결되는 JS 코드
  */
-
+// 화면 시작 시...
+document.getElementById('register-btn').disabled = true; // 버튼 비활성화
+	
+	
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
 let searchForm = document.getElementById('SearchVoyage');
@@ -32,8 +35,14 @@ if (isItSearch == 0) {
 
 // 검색 결과 존재
 if (isItSearch == 1) {
+	document.getElementById('search_ship').value = document.getElementById('searched_ship').value;
 	// 회원 여부에 따른 상세 페이지 이동 여부
 	let user = document.getElementById('userId').value;
+	// 회원이면 등록 버튼 활성화
+	if(user==='true'){
+		document.getElementById('register-btn').disabled = false; // 버튼 비활성화
+	}
+	
 	// 각 요소에 대해 반복하며 이벤트 리스너를 추가
 	//회원 연관 이벤트 : 로그인된 회원이라면 요청 전송. 아니라면 로그인 화면으로.
 

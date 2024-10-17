@@ -28,8 +28,10 @@
                 <input class="search" id="search_icon" type="button" value="찾기">
             </form>
         </div>
-        <button class="register-btn">등록</button>
-
+        <form th:action="@{/}" method="post" id="saveVoyage">
+        <input type="hidden" th:value="${voyage != null ? voyage.vNumber : '-1'}" name="voyageN">
+        <input type="submit" id="register-btn" value="등록">
+		</form>
 
         <!-- 검색에 실패했거나, 검색을 통한 접근이 아닐때 -->
         <div class="main_services" id="searchNo" th:unless="${voyage != null}">
@@ -93,6 +95,7 @@
 
         <!-- 검색 결과가 존재할 때 -->
         <div class="main_services" id="searchYes" th:if="${voyage != null}">
+        <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
             <form th:action="@{/user/login}" method="get" id="move0">
             </form>
 
