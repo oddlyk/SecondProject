@@ -71,4 +71,10 @@ public class PortController {
 		
 		return "pages/destination";
 	}
+	
+	@GetMapping("/api/waiting-areas")
+	public List<PortInfoADTO> getWaitingAreas() {
+	    // loc_type이 1인 인근 대기지 데이터를 가져옵니다.
+	    return portInfoAService.getPortInfoByLocType(1);
+	}
 }

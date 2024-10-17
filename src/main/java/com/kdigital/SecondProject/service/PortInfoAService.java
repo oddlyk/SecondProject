@@ -41,6 +41,21 @@ public class PortInfoAService {
 		log.info("데이터가 없습니다.");
         return null;
     }
+	
+	 /**
+     * 특정 loc_type에 해당하는 PortInfoA 데이터 조회
+     * @param locType 위치 타입 (예: 1 인근 대기지)
+     * @return List<PortInfoADTO>
+     */
+    @Transactional
+    public List<PortInfoADTO> getPortInfoByLocType(int locType) {
+        log.info("loc_type {}에 해당하는 PortInfoA 데이터를 조회합니다.", locType);
+        List<PortInfoAEntity> portInfoAEntities = portInfoARepository.findByLocType(locType);
+        return portInfoAEntities.stream()
+                .map(PortInfoADTO::toDTO)  // Entity -> DTO 변환
+                .collect(Collectors.toList());
+    }
+	
 
     /**
      * 모든 PortInfoA 데이터 조회
