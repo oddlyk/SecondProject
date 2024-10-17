@@ -82,6 +82,10 @@ public class MainController {
 		AccidentStatusDTO asDTO = asService.getAccidentStatusByPortCode(voyageDTO.getPort().getPortCode()).get(0);
 		model.addAttribute("accidentStatus", asDTO);
 		
+		// 항만 이용료 전달
+		int usingFee = voyageDTO.getAnchorageFee()+voyageDTO.getBerthingFee()+voyageDTO.getEntryExitFee()+voyageDTO.getEntryExitFee()+voyageDTO.getSecurityFee();
+		String portFee = String.format("%,d", usingFee);
+		model.addAttribute("portFee", portFee);
 		return "main";
 	}
 
