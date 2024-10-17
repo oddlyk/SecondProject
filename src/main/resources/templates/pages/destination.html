@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <title>목적지 정보</title>
     <link rel="stylesheet" th:href="@{/css/destination.css}">
-    <!-- Google Maps API 불러오기 -->
-    <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
+    <!-- Google Maps API 불러오기 --> 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap" async defer></script>
     <script defer src="/script/destination.js"></script>
 </head>
 
@@ -33,10 +33,12 @@
     </div>
     <div class="portInfo-box">
         <div class="portInfo">
-            <div class="portName">도착항</div>
+        	<button id="zoom-in">Zoom In</button>
+			<button id="zoom-out">Zoom Out</button>
+            <div id="port-name" class="portName">도착항</div>
             <div class="weather">날씨</div>
-            <div class="port-phone">항만공사: <span class="phone-num">전화번호</span></div>
-            <button class="homepage">
+            <div id="phone-num" class="port-phone">항만공사: <span>전화번호</span></div>
+            <button class="homepage" id="homepage-link">
                 <div class="page-box">
                     <p class="page-text">홈페이지</p>
                 </div>
@@ -76,7 +78,7 @@
     <div class="toggle-box">
         <div class="waiting-area">
             <div class="toggle1">인근 대기지</div>
-            <div class="mark1"><img src="/imgages/waiting.png"></div>
+            <div class="mark1"><img src="/images/waiting.png"></div>
             <label class="switch1">
                 <input type="checkbox" id="toggleInfoWaiting">
                 <span class="slider"></span>
@@ -90,7 +92,7 @@
         </div>
         <div class="terminal">
             <div class="toggle2">컨테이너 터미널</div>
-            <div class="mark1"><img src="/imgages/terminal.png"></div>
+            <div class="mark1"><img src="/images/terminal.png"></div>
             <label class="switch2">
                 <input type="checkbox" id="toggleInfoTerminal">
                 <span class="slider"></span>
@@ -104,7 +106,7 @@
         </div>
         <div class="congestion-area">
             <div class="toggle3">혼잡 주의 지역</div>
-            <div class="mark1"><img src="/imgages/warning.png"></div>
+            <div class="mark1"><img src="/images/warning.png"></div>
             <label class="switch3">
                 <input type="checkbox" id="toggleInfoCongestion">
                 <span class="slider"></span>

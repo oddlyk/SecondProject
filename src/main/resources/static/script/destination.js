@@ -72,20 +72,21 @@ const portName = document.getElementById("port-name");
 const phoneNum = document.getElementById("phone-num");
 const homepageLink = document.getElementById("homepage-link");
 
+// 데이터 업데이트 함수
 portSelect.addEventListener('change', function() {
     const selectedPort = portSelect.value;
 	if (selectedPort === "KRPUS") {
 	        portName.textContent = "부산항";
-	        phoneNum.textContent = "051-999-3000"; // 부산항 전화번호
-	        homepageLink.setAttribute('href', "http://www.busanpa.com"); // 부산항 홈페이지
+	        phoneNum.textContent = "051-999-3000"; 
+	        homepageLink.setAttribute('href', "http://www.busanpa.com");
 	    } else if (selectedPort === "KRBNP") {
 	        portName.textContent = "부산신항";
-	        phoneNum.textContent = "051-941-6400"; // 부산신항 전화번호
-	        homepageLink.setAttribute('href', "http://www.busanpa.com"); // 부산신항 홈페이지 (같음)
+	        phoneNum.textContent = "051-941-6400"; 
+	        homepageLink.setAttribute('href', "http://www.busanpa.com");
 	    } else if (selectedPort === "KRICN") {
 	        portName.textContent = "인천항";
-	        phoneNum.textContent = "032-890-8000"; // 인천항 전화번호
-	        homepageLink.setAttribute('href', "http://www.icpa.or.kr"); // 인천항 홈페이지
+	        phoneNum.textContent = "032-890-8000"; 
+	        homepageLink.setAttribute('href', "http://www.icpa.or.kr");
 	    }
 });
 
