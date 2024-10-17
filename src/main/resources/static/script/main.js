@@ -3,8 +3,9 @@
 	메인 화면과 연결되는 JS 코드
  */
 // 화면 시작 시...
+
 document.getElementById('saveBtn').disabled = true; // 버튼 비활성화
-	
+
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
 let searchForm = document.getElementById('SearchVoyage');
@@ -38,66 +39,63 @@ if (isItSearch == 1) {
 	// 회원 여부에 따른 상세 페이지 이동 여부
 	let user = document.getElementById('userId').value;
 	// 회원이면 등록 버튼 활성화
-	if(user==='true'){
+	if (user === 'true') {
 		document.getElementById('saveBtn').disabled = false; // 버튼 활성화
-		$('#saveBtn').on('click',function(){
-			let sendData = {"vNumber":$('#vNumber').val()}
+		$('#saveBtn').on('click', function () {
+			let sendData = { "vNumber": $('#vNumber').val() }
 			$.ajax({
-					url:"save",
-					method:"POST",
-					asyns: false, //비동기 처리를 막음 
-					data:sendData,
-					success: function(resp){
-								if(resp==="OK")alert("저장되었습니다.");
-								if(resp==="exist") alert("이미 저장된 항해입니다.");
-							},
-					error: function(resp){
-						alert("저장에 실패하였습니다.");
-					}
-				})
+				url: "save",
+				method: "POST",
+				asyns: false, //비동기 처리를 막음 
+				data: sendData,
+				success: function (resp) {
+					if (resp === "OK") alert("저장되었습니다.");
+					if (resp === "exist") alert("이미 저장된 항해입니다.");
+				},
+				error: function (resp) {
+					alert("저장에 실패하였습니다.");
+				}
+			})
 		});
 	}
-	
+
 	// 각 요소에 대해 반복하며 이벤트 리스너를 추가
 	//회원 연관 이벤트 : 로그인된 회원이라면 요청 전송. 아니라면 로그인 화면으로.
-
-
 	// 선박 상세 정보 전달
 	document.querySelectorAll('.service_box1').forEach(element => {
-		element.addEventListener('click', function () {
-			if (user === 'true') {
-				let form = document.getElementById('move1');
-				form.submit();
-			} else {
-				let form = document.getElementById('move0');
-				form.submit();
-			}
-		});
+		element.addEventListener('click', goto1);
 	});
+	function goto1() {
+		if (user === 'true') {
+			document.getElementById('getship').click();
+		} else {
+			document.getElementById('tologin').click();
+		}
+	}
+
 	// 목적지 상세 정보 전달
 	document.querySelectorAll('.service_box2').forEach(element => {
-		element.addEventListener('click', function () {
-			if (user === 'true') {
-				let form = document.getElementById('move2');
-				form.submit();
-			} else {
-				let form = document.getElementById('move0');
-				form.submit();
-			}
-		});
+		element.addEventListener('click', goto2);
 	});
+	function goto2() {
+		if (user === 'true') {
+			document.getElementById('getPort').click();
+		} else {
+			document.getElementById('tologin').click();
+		}
+	}
 	// 계산 상세 정보 전달
 	document.querySelectorAll('.service_box3').forEach(element => {
-		element.addEventListener('click', function () {
-			if (user === 'true') {
-				let form = document.getElementById('move3');
-				form.submit();
-			} else {
-				let form = document.getElementById('move0');
-				form.submit();
-			}
-		});
+		element.addEventListener('click', goto3);
 	});
+	function goto3() {
+		if (user === 'true') {
+			document.getElementById('getCalc').click();
+		} else {
+			document.getElementById('tologin').click();
+		}
+	}
+
 }
 
 if (isItSearch == 2) {
