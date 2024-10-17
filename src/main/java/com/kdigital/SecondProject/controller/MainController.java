@@ -2,8 +2,6 @@ package com.kdigital.SecondProject.controller;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -11,14 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kdigital.SecondProject.dto.AccidentStatusDTO;
 import com.kdigital.SecondProject.dto.UserDTO;
 import com.kdigital.SecondProject.dto.VoyageDTO;
-import com.kdigital.SecondProject.entity.PortEntity;
-import com.kdigital.SecondProject.entity.ShipEntity;
 import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.AccidentStatusService;
+import com.kdigital.SecondProject.service.FavoriteVoyageService;
 import com.kdigital.SecondProject.service.VoyageService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +29,7 @@ public class MainController {
 	final VoyageService voyageService;
 	final AISService aisService;
 	final AccidentStatusService asService;
+	final FavoriteVoyageService fvService;
 	/**
 	 * 첫 화면 요청
 	 * @return "main.html"
@@ -54,18 +53,18 @@ public class MainController {
 		}
 		// 항해 정보 저장
 		VoyageDTO voyageDTO = new VoyageDTO();
-		log.info("(service) 데이터를 입력 받기 전의 항해 정보: {}",voyageDTO.toString());
+		log.info("(Controller) 데이터를 입력 받기 전의 항해 정보: {}",voyageDTO.toString());
 			// 검색을 통해 접근
 		VoyageDTO temp = voyageService.selectVoyageWithCallSign(shipInfo);
-		log.info("(service) call sign으로 찾아온 항해 정보: {}",temp);
+		log.info("(Controller) call sign으로 찾아온 항해 정보: {}",temp);
 		if(temp!=null) voyageDTO = temp;
 		
 		temp = voyageService.selectVoyageWithMmsi(shipInfo);
-		log.info("(service) MMSI로 찾아온 항해 정보: {}",temp);
+		log.info("(Controller) MMSI로 찾아온 항해 정보: {}",temp);
 		if(temp!=null) voyageDTO = temp;
 		
 		temp = voyageService.selectVoyageWithImo(shipInfo);
-		log.info("(service) IMO로 찾아온 항해 정보: {}",temp);
+		log.info("(Controller) IMO로 찾아온 항해 정보: {}",temp);
 		if(temp!=null) voyageDTO = temp;
 		
 		// 해당 선박 또는 항해가 없는 경우
@@ -111,13 +110,35 @@ public class MainController {
 	/**
 	 * 항해 저장 요청
 	 * */
-	@PostMapping("/")
-	public String predict(
-			@AuthenticationPrincipal  UserDTO loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
-			@RequestParam(name="voyageN") String temp, // 등록 버튼 클릭 시
-			Model model) {
-		log.info("String : {}",Long.parseLong(temp));
+	@PostMapping("/save")
+	@ResponseBody
+	public String saveFV(@RequestParam(name="vNumber") String SvNumber) {
+		Long vNumber = Long.parseLong(SvNumber);
+		boolean result = false;
 		
-		return "main";
+		//이미 존재하는지 확인
+		result = fvService.isExist(vNumber);
+		if(result) return "exist";
+		result = false;
+		result = fvService.favorite(vNumber);
+		if(result) {
+			return "OK";
+		}
+		return "fail";
 	}
+	/*
+	 * @PostMapping("/")
+	public String predict(
+			@RequestParam(name="callSign") String callSign, // 등록 버튼 클릭 시
+			Model model) {
+		log.info("String : {}",callSign);
+		if(callSign=="-1") {
+			return "main";
+		}
+		boolean result = fvService.favorite(callSign);
+		if(result) {
+			return "main";
+		}
+	}
+	 * */
 }

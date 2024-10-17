@@ -3,8 +3,7 @@
 	메인 화면과 연결되는 JS 코드
  */
 // 화면 시작 시...
-document.getElementById('register-btn').disabled = true; // 버튼 비활성화
-	
+document.getElementById('saveBtn').disabled = true; // 버튼 비활성화
 	
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
@@ -40,7 +39,23 @@ if (isItSearch == 1) {
 	let user = document.getElementById('userId').value;
 	// 회원이면 등록 버튼 활성화
 	if(user==='true'){
-		document.getElementById('register-btn').disabled = false; // 버튼 비활성화
+		document.getElementById('saveBtn').disabled = false; // 버튼 활성화
+		$('#saveBtn').on('click',function(){
+			let sendData = {"vNumber":$('#vNumber').val()}
+			$.ajax({
+					url:"save",
+					method:"POST",
+					asyns: false, //비동기 처리를 막음 
+					data:sendData,
+					success: function(resp){
+								if(resp==="OK")alert("저장되었습니다.");
+								if(resp==="exist") alert("이미 저장된 항해입니다.");
+							},
+					error: function(resp){
+						alert("저장에 실패하였습니다.");
+					}
+				})
+		});
 	}
 	
 	// 각 요소에 대해 반복하며 이벤트 리스너를 추가

@@ -36,12 +36,12 @@ public class FavoriteVoyageService {
 	 * @return
 	 */
 	 @Transactional
-	public boolean favorite(String callSign) {
+	public boolean favorite(Long vNumber) {
 		// 1. 항해 정보 확인
-		List<VoyageEntity> voyageEntity = voyageRepository.findVoyageWithShipByCallSign(callSign);
+		Optional<VoyageEntity> voyageEntity = voyageRepository.findById(vNumber);
 		if (voyageEntity.isEmpty()) return false;
 		
-		VoyageEntity voyEntity = voyageEntity.get(0);
+		VoyageEntity voyEntity = voyageEntity.get();
 		
 		
 		// 2. 현재 사용자 정보 가져오기
