@@ -53,7 +53,6 @@ public class UserController {
 			, @RequestParam(value="errMessage", required=false) String errMessage 
 			, Model model
 			) {
-
 		System.out.println(error);
 		System.out.println(errMessage);
 
