@@ -194,6 +194,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             if (document.getElementById('userId').value === 'true') {
                 if (document.getElementById('controller_ship').value != "-1") {
+                	console.log(`\n 전해져온 선박: ${controller_ship}`);
                     document.getElementById('gotoShip').addEventListener('click', function (event) {
                         event.preventDefault();
                         document.getElementById('getship').click();

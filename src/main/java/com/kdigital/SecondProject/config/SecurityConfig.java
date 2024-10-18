@@ -6,8 +6,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.kdigital.SecondProject.handler.CustomSuccessHandler;
+
+import lombok.RequiredArgsConstructor;
+
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+	private final CustomSuccessHandler handler;
+	
 	@Bean //Spring에서 생성 주기를 관리하는 Bean 객체임을 명시
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		// +) POST 요청 시 CSRF(웹사이트 보안 공격 중 하나(Cross-Site Request Forgery)) 공격을 받을 수도 있음.
@@ -20,6 +27,7 @@ public class SecurityConfig {
 	        )
 	        .formLogin((form) -> form
 	            .loginPage("/user/login")  // 커스텀 로그인 페이지 경로
+	            //.successHandler(handler) // 로그인에 성공했을 때 처리할 핸들러, defaultSuccessUrl를 빼고 사용해야 함.
 	            .usernameParameter("id")
 				.passwordParameter("pwd")
 				.loginProcessingUrl("/user/loginProc")

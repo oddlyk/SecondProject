@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kdigital.SecondProject.dto.AISDTO;
 import com.kdigital.SecondProject.dto.AccidentStatusDTO;
 import com.kdigital.SecondProject.dto.FavoriteVoyageDTO;
 import com.kdigital.SecondProject.dto.LoginUserDetails;
@@ -149,8 +150,13 @@ public class MainController {
 	private String getVoyagePer(Long vNumber) {
 		LocalDateTime arrivalDate = voyageService.selectOne(vNumber).getArrivalDate();
 		LocalDateTime departureDate = voyageService.selectOne(vNumber).getDepartureDate();
-		LocalDateTime currentSignal = aisService.currentAISsignal(vNumber).getSignalDate();
-		
+		LocalDateTime currentSignal = null;
+		AISDTO aisDTO = aisService.currentAISsignal(vNumber);
+		if(aisDTO==null) {
+			log.info("항해 시작 전");
+			return String.format("%.2f", 0.0);
+		}
+		currentSignal = aisDTO.getSignalDate(); // aisDTO가 null이 아닐 때만 호출
 		long totalVoyageMinutes = Duration.between(departureDate, arrivalDate).toMinutes();
 		long untilTodayMinutes = Duration.between(currentSignal, arrivalDate).toMinutes();
 		
@@ -175,6 +181,10 @@ public class MainController {
 		result = false;
 		result = fvService.favorite(vNumber);
 		if(result) {
+			List<FavoriteVoyageDTO> fvdtos = fvService.findAll();
+			if(fvdtos.size()>=10) {
+				return "over";
+			}
 			return "OK";
 		}
 		return "fail";

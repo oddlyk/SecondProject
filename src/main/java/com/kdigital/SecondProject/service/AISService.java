@@ -65,6 +65,7 @@ public class AISService {
 			log.info("추출된 가장 최근의 ais 신호: {}",dto.getSignalDate());
 			return dto;
 		}
+		log.info("(Service) 항해 시작 전");
 		return null;
 	}
 }
