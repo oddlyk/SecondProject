@@ -25,10 +25,8 @@
 
 <body>
     <div class="header" th:replace="fragment/header(title='헤더')"></div>
-    <input type="hidden" id="GetformerLoc" th:value="${formerLoc}">
-    <input type="text" id="GetnowLoc" th:value="${nowLoc}">
-    <input type="text" id="Getvoyage" th:value="${voyage}">
-    <input type="text" id="GetshipInfo" th:value="${shipInfo}">
+    <input type="hidden" id="GetnowLoc" th:value="${nowLoc}">
+    <input type="hidden" id="Getvoyage" th:value="${voyage}">
 
     <!-- 구글 지도 표시 -->
     <div id="map" style="height: 500px; width: 100%;"></div>
@@ -70,12 +68,6 @@
             </div>
         </div>
     </div>
-    <!-- 
-    <div id="zoom-control">
-        <button id="zoom-in">+</button>
-        <button id="zoom-out">-</button>
-    </div>
-     -->
     
     
     

@@ -44,7 +44,14 @@ async function myMap() {
 		document.getElementById("map"), // 'map' ID를 가진 div를 사용
 		{
 			center: nowLoc,
-			zoom: 7
+			zoom: 7,
+			zoomControl: true,  // 확대/축소 버튼 활성화
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT // 버튼 위치 설정
+            },
+			mapTypeControl: false, // 지형 버튼 제거
+			streetViewControl: false,  // 스트리트 뷰 버튼 제거
+			fullscreenControl: false    // 전체 화면 보기 버튼 제거
 		}
 	);
 
@@ -61,6 +68,7 @@ async function myMap() {
 			icon: markerImage,
 			title: "현재 위치"
 		});
+		
 		//선박 바로 위 팝업에 들어갈 HTML
 		// div 요소 가져오기
 		let overTheMap = document.getElementById('overTheMap');
@@ -75,10 +83,8 @@ async function myMap() {
 		marker.addListener("click", () => {
 			shipInfo.open(map, marker);
 		});
-		
-		//과거 경로
 	}
-
-	//항해 정보 띄우기 
+	
+	//항해 정보 띄우기 : CSS
 }
 

@@ -79,7 +79,8 @@ public class VoyageController {
 		model.addAttribute("voyagePer", voyagePer);
 		model.addAttribute("leftDate", leftDate);
 		
-		
+		/*
+		 * 
 		//과거 좌표들 latitude=29.84079, longitude=122.20612
 		List<AISDTO> aisList = aisService.selectAISAll(dto.getVNumber());
 		String formerLoc = "[";
@@ -95,6 +96,7 @@ public class VoyageController {
 		formerLoc+="]";
 		//System.out.println(formerLoc);
 		model.addAttribute("formerLoc", formerLoc);
+		 * */
 		
 		
 		
@@ -114,9 +116,11 @@ public class VoyageController {
 		currentSignal = aisDTO.getSignalDate(); // aisDTO가 null이 아닐 때만 호출
 		long totalVoyageMinutes = Duration.between(departureDate, arrivalDate).toMinutes();
 		long untilTodayMinutes = Duration.between(currentSignal, arrivalDate).toMinutes();
-		
 		//현재 항해일 수 / 총 항해일 수 * 100 = 항해 진행률
 		double voyageProgress = ((double) untilTodayMinutes / totalVoyageMinutes) * 100;
+		if(voyageProgress==0) {
+			voyageProgress=100;
+		}
 		log.info("현재 항해에 대한 항해 진행률: {}",voyageProgress);
 		return String.format("%.2f", voyageProgress);
 	}
