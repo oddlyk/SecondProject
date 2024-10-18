@@ -5,29 +5,22 @@
     <meta charset="UTF-8">
     <title>목적지 정보</title>
     <link rel="stylesheet" th:href="@{/css/destination.css}">
-    <!-- Google Maps API 불러오기 --> 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
+    <script defer src="/script/destination.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap" ></script>
 </head>
 
+
 <body>
-<input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
-    <a th:href="@{user/login}" id="tologin"></a>
-    <th:block sec:authorize="isAuthenticated()">
-        <input type="hidden" th:value="${search_ship}" id="controller_ship">
-        
-        <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
-        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
-        <a th:href="@{port/portdetail(callSign=${search_ship})}" id="getPort"></a>
-        <a th:href="@{port/calcdetail/(callSign=${search_ship})}" id="getCalc"></a>
-    </th:block>
+
     <div class="header" th:fragment="header(title='헤더')"></div>
     <div class="container">
         <img loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
             class="wave" alt="물결 배경">
     </div>
-    <div id="map" style="height: 500px; width: 100%;"></div> <!-- 구글 지도 표시 -->
+    <div id="map" style="height: 500px; width: 100%;"></div>
+    
     <div class="port-box">
         <div class="destination-port">
             <select name="port" id="portchoose">
@@ -61,25 +54,25 @@
             <div class="accident-statics">전년도 당월 사고 통계</div>
             <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>
             <div th:if="${accidentStats != null}">
-            	<div class="accident_box1">
-                	<div class="rank1">1위</div>
-                	<div class="reason1">[[${accidentStats[0].reason}]]</div>
-                	<div class="count">[[${accidentStats[0].count}]] 회</div>
-            	</div>
-            	<div class="accident_box2">
-	                <div class="rank2">2위</div>
-	                <div class="reason2">[[${accidentStats[1].reason}]]</div>
-	                <div class="count">[[${accidentStats[1].count}]] 회</div>
-	            </div>
-	            <div class="accident_box3">
-	                <div class="rank3">3위</div>
-	                <div class="reason3">[[${accidentStats[2].reason}]]</div>
-	                <div class="count">[[${accidentStats[2].count}]] 회</div>
-	            </div>
+                <div class="accident_box1">
+                    <div class="rank1">1위</div>
+                    <div class="reason1">[[${accidentStats[0].reason}]]</div>
+                    <div class="count">[[${accidentStats[0].count}]] 회</div>
+                </div>
+                <div class="accident_box2">
+                    <div class="rank2">2위</div>
+                    <div class="reason2">[[${accidentStats[1].reason}]]</div>
+                    <div class="count">[[${accidentStats[1].count}]] 회</div>
+                </div>
+                <div class="accident_box3">
+                    <div class="rank3">3위</div>
+                    <div class="reason3">[[${accidentStats[2].reason}]]</div>
+                    <div class="count">[[${accidentStats[2].count}]] 회</div>
+                </div>
             </div>
             <div th:if="${accidentStats == null}">
-    			<p>사고 통계 데이터를 불러올 수 없습니다.</p>
-			</div>
+                <p>사고 통계 데이터를 불러올 수 없습니다.</p>
+            </div>
         </div>
     </div>
     <div class="toggle-box">
@@ -126,6 +119,7 @@
             </ul>
         </div>
     </div>
+    
 </body>
 
 </html>
