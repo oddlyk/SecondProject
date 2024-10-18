@@ -43,14 +43,17 @@
                     <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
                         <div class="list-tuple" th:each="voyage, iterStat : ${voyages}">
                             <input type="checkbox" name="vNumbers" th:value="${voyage.vNumber}" class="choose-one">
-                            <div class="tuple1" th:text="${voyage.ship.shipName}">선박명</div>
-                            <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
-                            <div class="tuple3" th:text="${voyage.departure}">출발지</div>
-                            <div th:if="${voyage.port != null}">
-                                <span th:text="${voyage.port.portCode}">도착지</span>
-                            </div>
-                            <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
-                            <input type="checkbox" name="favorite" id="favorite"
+                            <!-- 링크로 각 항목을 감쌈 -->
+                            <a th:href="@{/(search_ship=${voyage.ship.callSign})}" class="tuple-link">
+                                <div class="tuple1" th:text="${voyage.ship.shipName}">선박명</div>
+                                <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
+                                <div class="tuple3" th:text="${voyage.departure}">출발지</div>
+                                <div th:if="${voyage.port != null}">
+                                    <span th:text="${voyage.port.portCode}">도착지</span>
+                                </div>
+                                <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
+                            </a>
+                            <input type="checkbox" name="favorite" th:id="'favorite' + ${voyage.vNumber}"
                                 th:checked="${favoriteList[iterStat.index] == 1}"
                                 th:onclick="changeFavorite([[${voyage.vNumber}]])">
                         </div>

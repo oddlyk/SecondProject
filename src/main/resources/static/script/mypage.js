@@ -1,15 +1,62 @@
 function changeFavorite(vNumber) {
-    // Checkbox를 체크한 경우 즐겨찾기로 등록/변경 요청 전송
+    // 기존에 다른 즐겨찾기가 설정되어 있는지 확인하기 위해 서버에 요청
+    fetch(`/user/favorite/status?vNumber=${vNumber}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // 서버로부터의 응답을 로그에 찍어서 확인
+            if (data.alreadyFavorite) {
+                if (confirm('이미 즐겨찾기로 등록된 항해가 있습니다. 변경하시겠습니까?')) {
+                    // 사용자가 확인을 누른 경우에만 즐겨찾기 변경 요청 전송
+                    updateFavorite(vNumber);
+                }
+            } else {
+                // 즐겨찾기가 설정되지 않은 경우 바로 즐겨찾기 변경 요청 전송
+                updateFavorite(vNumber);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+
+
+function updateFavorite(vNumber) {
+    // 즐겨찾기 변경 요청 전송
     fetch(`/user/favorite?vNumber=${vNumber}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        },
+        body: new URLSearchParams({
+            'vNumber': vNumber
+        })
     })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 alert('즐겨찾기가 변경되었습니다.');
+
+                // UI 업데이트: 기존 즐겨찾기 해제 및 새로운 즐겨찾기 설정
+                const allFavoriteCheckboxes = document.querySelectorAll('input[name="favorite"]');
+
+                // 기존의 topFavorite이 설정된 항목을 해제
+                allFavoriteCheckboxes.forEach(checkbox => {
+                    if (checkbox.value !== vNumber.toString() && checkbox.checked) {
+                        checkbox.checked = false;  // 기존 즐겨찾기 해제
+                    }
+                });
+
+                // 새로운 항목 체크
+                const currentCheckbox = document.querySelector(`input[name="favorite"][value="${vNumber}"]`);
+                if (currentCheckbox) {
+                    currentCheckbox.checked = true;  // 새로 선택한 항해를 즐겨찾기로 설정
+                }
+
+                // 변경 사항 반영을 위해 페이지 새로고침
+                window.location.reload();
             } else {
                 alert('즐겨찾기 변경에 실패하였습니다.');
             }
@@ -18,6 +65,8 @@ function changeFavorite(vNumber) {
             console.error('Error:', error);
         });
 }
+
+
 
 
 // 전체 선택

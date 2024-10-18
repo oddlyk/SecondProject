@@ -172,12 +172,22 @@ public class UserController {
 	}
 	
 	
-	
+
 	/**
-	 * 즐겨찾기 변경
+	 * 즐겨찾기 변경 - 즐겨찾기 상태 조회와 변경
 	 * @param vNumber
 	 * @return
 	 */
+
+    @GetMapping("favorite/status")
+    public Map<String, Object> getFavoriteStatus(@RequestParam("vNumber") Long vNumber) {
+        Map<String, Object> response = new HashMap<>();
+        // 즐겨찾기 상태 확인 로직 추가
+        boolean alreadyFavorite = favoriteVoyageService.isAlreadyFavorite(vNumber); // 서비스 메서드 작성 필요
+        response.put("alreadyFavorite", alreadyFavorite);
+        return response;
+    }
+	
 	@PostMapping("/favorite")
 	@ResponseBody
 	public Map<String, Object> changeFavorite(@RequestParam("vNumber") Long vNumber) {
