@@ -20,25 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	final UsersService userService;
-	/*		
-	@GetMapping("/user/login")
-	public String loginPage() {
-		System.out.println("로그인 화면 요청");
-		return "pages/login";
-	}
-	 */
-
-	//	@PostMapping("/user/loginProc")
-	//	public String login(@RequestParam(name="id") String userId,
-	//			@RequestParam(name="pwd") String userPwd,
-	//			Model model) {
-	//		System.out.println("knlkjnlnj"+ userId);
-	//		if (userService.login(userId, userPwd)) return "/";
-	//		else {
-	//			model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
-	//			return "pages/login";
-	//		}
-	//		return "";
 
 	/**
 	 * 로그인 실패 시 처리 화면
@@ -60,5 +41,10 @@ public class UserController {
 		model.addAttribute("errMessage", errMessage);
 
 		return "pages/login";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		
 	}
 }
