@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <script defer th:src="@{/script/mypage.js}"></script>
+
+</head>
+
+<body>
+    <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="background">
+        <div class="container">
+            <img loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                class="wave" alt="물결 배경">
+        </div>
+</body>
+
+</html>
