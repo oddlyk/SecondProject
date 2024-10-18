@@ -190,21 +190,44 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementById('userId').value === 'true') {
+                if (document.getElementById('controller_ship').value != "-1") {
+                	console.log(`\n 전해져온 선박: ${controller_ship}`);
+                    document.getElementById('gotoShip').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getship').click();
+                    });
+                    document.getElementById('gotoPort').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getPort').click();
+                    });
+                    document.getElementById('gotoCalc').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getCalc').click();
+                    });
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
+
     <header class="header">
-        <a th:href="@{/}" class="logo"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8dfec0d885d4ee67f98a3db6e0c794767fd7e9ee2c6714867ad04ed72d7bc14?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
-            alt="Company logo" class="logo" /></a>
+        <a th:href="@{/}" class="logo"><img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8dfec0d885d4ee67f98a3db6e0c794767fd7e9ee2c6714867ad04ed72d7bc14?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                alt="Company logo" class="logo" /></a>
         <nav class="nav-menu">
             <div class="nav-item">
-                <a href="#" class="nav-link">선박 정보</a>
+                <a th:href="@{/user/login}" class="nav-link" id="gotoShip">선박 정보</a>
             </div>
             <div class="nav-item-wide">
-                <a th:href="@{/port/portdetail}" class="nav-link-wide">목적지 정보</a>
+                <a th:href="@{/port/portdetail}" class="nav-link-wide" id="gotoPort">목적지 정보</a>
             </div>
             <div class="nav-item-tall">
-                <a th:href="@{/port/calcdetail}" class="nav-link-tall">항만 사용료 계산기</a>
+                <a th:href="@{/port/calcdetail}" class="nav-link-tall" id="gotoCalc">항만 사용료 계산기</a>
             </div>
             <div class="nav-item">
                 <a href="#" class="nav-link">About Us</a>
@@ -216,13 +239,13 @@
             <ul>
                 <!-- 비로그인 상태 -->
                 <li sec:authorize="isAnonymous()">
-                <a th:href="@{/user/login}">
-                    <button class="login-button">
-                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18d8a057f3538cb2faa0c0d8b1e221c4cd0124c6e0e5334f257fdc79dc7c7ce4?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
-                            alt="" class="login-icon" />
-                        <span class="login-text">로그인</span>
-                    </button>
-                </a>
+                    <a th:href="@{/user/login}">
+                        <button class="login-button">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18d8a057f3538cb2faa0c0d8b1e221c4cd0124c6e0e5334f257fdc79dc7c7ce4?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                                alt="" class="login-icon" />
+                            <span class="login-text">로그인</span>
+                        </button>
+                    </a>
                 </li>
 
                 <!-- 로그인 상태 -->
@@ -236,7 +259,7 @@
                         </button>
                     </div>
                     <form th:action="@{/user/logout}" method="POST">
-                    	<button type="submit" class="logout-btn">로그아웃</button>
+                        <button type="submit" class="logout-btn">로그아웃</button>
                     </form>
                 </li>
             </ul>

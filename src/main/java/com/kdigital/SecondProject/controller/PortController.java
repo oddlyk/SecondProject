@@ -40,8 +40,12 @@ public class PortController {
 	 * */
 	
 	@GetMapping("/port/portdetail")
-	public String headerPortDetail(@RequestParam(value = "port", defaultValue = "KRPUS") String portCode, Model model) {
+	public String headerPortDetail(@RequestParam(value = "port", defaultValue = "KRPUS") String portCode,
+			@RequestParam(name="search_ship", defaultValue="-1") String search_ship,
+			Model model) {
 		log.info("항구 코드 : {}", portCode);
+		log.info("검색 선박 코드 : {}", search_ship);
+		model.addAttribute("search_ship",search_ship); //선박명 부분
 		
 		// 항구 정보 가져오기
 		PortDTO portDTO = portService.selectPortByPortCode(portCode);

@@ -12,6 +12,16 @@
 </head>
 
 <body>
+<input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
+    <a th:href="@{user/login}" id="tologin"></a>
+    <th:block sec:authorize="isAuthenticated()">
+        <input type="hidden" th:value="${search_ship}" id="controller_ship">
+        
+        <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
+        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
+        <a th:href="@{port/portdetail(callSign=${search_ship})}" id="getPort"></a>
+        <a th:href="@{port/calcdetail/(callSign=${search_ship})}" id="getCalc"></a>
+    </th:block>
     <div class="header" th:fragment="header(title='헤더')"></div>
     <div class="container">
         <img loading="lazy"
