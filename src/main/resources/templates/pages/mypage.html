@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <script defer th:src="@{/script/mypage.js}"></script>
+
+</head>
+
+<body>
+    <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="background">
+        <div class="container">
+            <img loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                class="wave" alt="물결 배경">
+        </div>
+        <div class="mainbox">
+            <div class="userbox">
+                <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
+                <div class="user-type" th:text="${userType}"></div>
+                <div class="name" id="name" th:text="${userName}"></div>
+                <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
+            </div>
+            <div th:if="!${#lists.isEmpty(voyages)}">
+                <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
+                    <button type="button" onclick="confirmDelete()">삭제</button>
+                </form>
+            </div>
+            <div class="listbox">
+                <div class="list-columns">
+                    <input type="checkbox" name="choose-all" id="choose-all">
+                    <div class="column1">선박명</div>
+                    <div class="column2">Call Sign</div>
+                    <div class="column3">출발지</div>
+                    <div class="column4">도착지</div>
+                    <div class="column5">운행률(%)</div>
+                    <div class="column6">즐겨찾기</div>
+                </div>
+                <div th:if="!${#lists.isEmpty(voyages)}">
+                    <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
+                        <div class="list-tuple" th:each="voyage, iterStat : ${voyages}">
+                            <input type="checkbox" name="vNumbers" th:value="${voyage.vNumber}" class="choose-one">
+                            <!-- 링크로 각 항목을 감쌈 -->
+                            <a th:href="@{/(search_ship=${voyage.ship.callSign})}" class="tuple-link">
+                                <div class="tuple1" th:text="${voyage.ship.shipName}">선박명</div>
+                                <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
+                                <div class="tuple3" th:text="${voyage.departure}">출발지</div>
+                                <div th:if="${voyage.port != null}">
+                                    <span th:text="${voyage.port.portCode}">도착지</span>
+                                </div>
+                                <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
+                            </a>
+                            <input type="checkbox" name="favorite" th:id="'favorite' + ${voyage.vNumber}"
+                                th:checked="${favoriteList[iterStat.index] == 1}"
+                                th:onclick="changeFavorite([[${voyage.vNumber}]])">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -6,46 +6,71 @@
     <title>선박 정보</title>
     <link rel="stylesheet" th:href="@{/css/shipInfo.css}">
     <!-- Google Maps API 불러오기 -->
-    <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
-    <script defer src="/script/shipInfo.js"></script>
+	
+    <script defer th:src="@{/script/shipInfo.js}"></script>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 날씨 api용 
+    
+    
+    
+    --><!-- axios 라이브러리 외부 CDN으로 추가 -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=myMap"></script>
+    <script th:src="@{/script/voyage_map.js}"></script>
+    <script>
+    
+    </script>
+    
 </head>
 
 <body>
     <div class="header" th:replace="fragment/header(title='헤더')"></div>
-    <div id="map" style="height: 500px; width: 100%;"></div> <!-- 구글 지도 표시 -->
+    <input type="hidden" id="GetnowLoc" th:value="${nowLoc}">
+    <input type="hidden" id="Getvoyage" th:value="${voyage}">
+
+    <!-- 구글 지도 표시 -->
+    <div id="map" style="height: 500px; width: 100%;"></div>
+
+    <!-- 지도 위 좌표 팝업 -->
+    <div id="overTheMap">현재 날씨
+        <p class="weather"><img src="" alt="Weather Icon" id="weatherIcon"></p>
+        <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
+        <p class="speed"><span id="windSpeed">0.0</span>m/s</p><br>
+        <p>속도: <span id="shipSpeed" th:text="${nowSpeed}"></span></p>
+        <p>이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
+    </div>
+    <!-- 지도 우측 하단 팝업 -->
     <div class="box">
         <div class="pop-up">
             <div class="overlap-group">
                 <div id="shipInfo" class="shipInfo">
-                    <div class="shipName">선박명</div>
-                    <div class="callSign">콜사인</div>
+                    <div class="shipName" th:text="${voyage.ship.shipName}">선박명</div>
+                    <div class="callSign" th:text="${voyage.ship.callSign}">콜사인</div>
                 </div>
                 <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
-                <div class="depDay"> 출발일시:
-                    <div class="depTime">2024/10/15</div>
+                <div class="depDay"> 출발일:
+                    <div class="depTime" th:text="${voyage.departureDate}" id="depTime">2024/10/15</div>
                 </div>
                 <div class="d-day">
                     <div class="D-day">D</div>
                     <div class="sign">-</div>
-                    <div class="days">14</div>
+                    <div class="days">[[${leftDate}]]</div>
                 </div>
                 <div class="DepToArr">
-                    <div class="depPort">출발항</div>
-                    <img src="/static/images/ship.png" class="shipImg" alt="선박 모양">
-                    <div class="proceeding">n<span class="percent">%</span></div>
-                    <div class="arrPort">도착항</div>
+                    <div class="depPort">[[${voyage.departure}]]</div>
+                    <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
+                    <div class="proceeding">[[${voyagePer}]]<span class="percent">%</span></div>
+                    <div class="arrPort">[[${voyage.port.portCode}]]</div>
                 </div>
-                <div class="arrDay"> 도착일시:
-                    <div class="arrTime">2024/10/15</div>
+                <div class="arrDay"> 도착일:
+                    <div class="arrTime" th:text="${voyage.arrivalDate}" id="arrTime">2024/10/15</div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="zoom-control">
-        <button id="zoom-in">+</button>
-        <button id="zoom-out">-</button>
-    </div>
+    
+    
+    
 </body>
 
 </html>

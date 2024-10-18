@@ -8,20 +8,21 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script defer th:src="@{/script/main.js}"></script> <!-- th:src="@{/script/main.js}" -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <!-- 날씨 api용 --><!-- axios 라이브러리 외부 CDN으로 추가 -->
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 </head>
 
 <body>
+	<!-- 메인화면의 각 UI클릭 시 아래로 이동됨 -->
     <input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
     <a th:href="@{user/login}" id="tologin"></a>
-    <th:block sec:authorize="isAuthenticated()">
+    <th:block sec:authorize="isAuthenticated()" th:if="${voyage != null}">
         <input type="hidden" th:value="${search_ship}" id="controller_ship">
 
         <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
-        <a th:href="@{voyage/voyagedetail(port=${voyage.port.portCode},search_ship=${search_ship})}" id="getship"></a>
-        <a th:href="@{port/portdetail(port=${voyage.port.portCode},search_ship=${search_ship})}" id="getPort"></a>
-        <a th:href="@{port/calcdetail/(callSign=${search_ship})}" id="getCalc"></a>
+        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
+        <a th:href="@{port/portdetail(port=${voyage.port.portCode})}" id="getPort"></a>
+        <a th:href="@{calc/calcdetail(callSign=${search_ship})}" id="getCalc"></a>
     </th:block>
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
     <!-- <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div> -->

@@ -256,6 +256,32 @@ public class FavoriteVoyageService {
 	}
 	
 	
+	
+	/**
+	 * 특정 항해 즐겨찾기 등록 여부(상태) 확인
+	 */
+	@Transactional
+	public boolean isAlreadyFavorite(Long vNumber) {
+		  // 현재 사용자 정보 가져오기
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String userId = "null";
+
+	    if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+	        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	        userId = userDetails.getUsername();
+	    } else {
+	        // 사용자가 인증되지 않았을 때 false 반환
+	        System.out.println("인증되지 않은 사용자입니다.");
+	        return false;
+	    }
+	    
+	    // 사용자 정보를 이용해 해당 항해가 즐겨찾기인지 확인
+	    Optional<FavoriteVoyageEntity> favoriteVoyage = favoriteVoyageRepository.findByUserEntity_UserIdAndVoyageEntity_vNumber(userId, vNumber);
+	    
+	    return favoriteVoyage.isPresent() && "1".equals(favoriteVoyage.get().getTopFavorite());
+	}
+	
+	
 	/**
 	 * 사용자를 기준으로 전체 선호 항해 추출
 	 * */

@@ -36,6 +36,7 @@ if (isItSearch == 0) {
 // 검색 결과 존재
 if (isItSearch == 1) {
 	document.getElementById('search_ship').value = document.getElementById('searched_ship').value;
+
 	// 회원 여부에 따른 상세 페이지 이동 여부
 	let user = document.getElementById('userId').value;
 	// 회원이면 등록 버튼 활성화
@@ -43,7 +44,7 @@ if (isItSearch == 1) {
 		document.getElementById('saveBtn').disabled = false; // 버튼 활성화
 		// 저장버튼 클릭 시...
 		$('#saveBtn').on('click', function () {
-			let sendData = { "vNumber": $('#vNumber').val() }
+			let sendData = { "vNumber": $('#vNumber').val() };
 			$.ajax({
 				url: "save",
 				method: "POST",
@@ -57,7 +58,7 @@ if (isItSearch == 1) {
 				error: function (resp) {
 					alert("저장에 실패하였습니다.");
 				}
-			})
+			});
 		});
 	}
 

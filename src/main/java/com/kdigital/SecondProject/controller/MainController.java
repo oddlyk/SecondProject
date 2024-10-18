@@ -23,6 +23,7 @@ import com.kdigital.SecondProject.service.AccidentStatusService;
 import com.kdigital.SecondProject.service.FavoriteVoyageService;
 import com.kdigital.SecondProject.service.VoyageService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,7 +42,8 @@ public class MainController {
 	@GetMapping({"","/"})
 	public String main(
 			@AuthenticationPrincipal  LoginUserDetails loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
-			@RequestParam(name="search_ship", defaultValue="집갈래") String shipInfo, //검색버튼 클릭 시
+			@RequestParam(name="search_ship", defaultValue="-1") String shipInfo, //검색버튼 클릭 시
+			HttpSession session,
 			Model model
 			) {
 		String tempCallSign = "-1";
@@ -55,7 +57,7 @@ public class MainController {
 		
 		// 검색을 통해 접근했는지 여부 파악
 			// 검색하지 않은 접근시, 바로 메인
-		if(shipInfo.equals("집갈래")) {
+		if(shipInfo.equals("-1")) {
 			// 로그인된 사용자라면...
 			if(loginUser!=null) {
 				// 즐겨찾기 항해 정보 전달
@@ -63,17 +65,18 @@ public class MainController {
 				// 즐겨찾기 항해가 없는 경우 랜덤한 항해 1개 전달
 				if(fvDTO==null) {
 					List<FavoriteVoyageDTO> fvDTOs = fvService.findAll();
+					if(fvDTOs==null) {
+						log.info("저장된 항해 없음");
+						//저장된 항해가 하나도 없는 경우 그냥 초기화면으로.
+						model.addAttribute("search", 0); 
+						model.addAttribute("search_ship",tempCallSign);
+						return "main";
+					}
 					if(fvDTOs!=null) {
 						Random random = new Random();
 				        int randomIndex = random.nextInt(fvDTOs.size());
 				        fvDTO = fvDTOs.get(randomIndex);
 					}
-				}
-				//저장된 항해가 하나도 없는 경우 그냥 초기화면으로.
-				if(fvDTO==null) {
-					model.addAttribute("search", 0); 
-					model.addAttribute("search_ship",tempCallSign);
-					return "main";
 				}
 
 				VoyageDTO dto = VoyageDTO.toDTO(fvDTO.getVoyageEntity());
@@ -92,8 +95,14 @@ public class MainController {
 				int usingFee = dto.getAnchorageFee()+dto.getBerthingFee()+dto.getEntryExitFee()+dto.getEntryExitFee()+dto.getSecurityFee();
 				String portFee = String.format("%,d", usingFee);
 				model.addAttribute("portFee", portFee);
-				tempCallSign = dto.getShip().getCallSign();
-				model.addAttribute("search_ship",tempCallSign);
+				
+				//기존 세션이 있으면 덮어씌우지 않음
+				sessionSave(dto.getPort().getPortCode(),dto.getShip().getCallSign(), session);
+				//기존 세션 확인 및 값 전달
+				if(session.getAttributeNames().hasMoreElements()) {
+					model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+					model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+				}
 				return "main";
 			}
 			else {
@@ -144,9 +153,17 @@ public class MainController {
 		model.addAttribute("portFee", portFee);
 		tempCallSign = voyageDTO.getShip().getCallSign();
 		model.addAttribute("search_ship",tempCallSign);
+		sessionSave(voyageDTO.getPort().getPortCode(),voyageDTO.getShip().getCallSign(), session);
+		if(session.getAttributeNames().hasMoreElements()) {
+  			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+  			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+  		}
 		return "main";
 	}
 
+	/**
+	 * 항만 이용료 계산
+	 * */
 	private String getVoyagePer(Long vNumber) {
 		LocalDateTime arrivalDate = voyageService.selectOne(vNumber).getArrivalDate();
 		LocalDateTime departureDate = voyageService.selectOne(vNumber).getDepartureDate();
@@ -189,6 +206,26 @@ public class MainController {
 		}
 		return "fail";
 	}
+	
+	/**
+	 * 항해 세션 저장 
+	 * */
+	public void sessionSave(String port, String callSign, HttpSession session) {
+		//기존 세션 확인 및 초기화
+		if(session.getAttributeNames().hasMoreElements()) {
+			log.info("과거 저장한 항구: {}",(String) session.getAttribute("session_port"));
+			log.info("과거 저장한 항해: {}",(String) session.getAttribute("session_callSign"));
+		}
+		if(session!=null) {
+			session.removeAttribute("session_port");
+			session.removeAttribute("session_callSign");
+		}
+		session.setAttribute("session_port", port);
+		session.setAttribute("session_callSign", callSign);
+		log.info("새로 저장한 항구: {}",port);
+		log.info("새로 저장한 항해: {}",callSign);
+	}
+	
 	/*
 	 * @PostMapping("/")
 	public String predict(
