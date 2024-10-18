@@ -5,26 +5,31 @@
     <meta charset="UTF-8">
     <title>선박 정보</title>
     <link rel="stylesheet" th:href="@{/css/shipInfo.css}">
-    <!-- Google Maps API 불러오기 -->
+    <!-- Google Maps API 불러오기 
     <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
-    <script defer th:src="@{script/shipInfo.js}"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script> 
+    -->
+
+    <script defer th:src="@{/script/shipInfo.js}"></script>
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 </head>
 
 <body>
     <div class="header" th:replace="fragment/header(title='헤더')"></div>
+     <input type="hidden" id="GetformerLoc" th:value="${formerLoc}">
+    <input type="text" id="Getvoyage" th:value="${voyage}">
+    <input type="text" id="GetshipInfo" th:value="${shipInfo}">
     <div id="map" style="height: 500px; width: 100%;"></div> <!-- 구글 지도 표시 -->
     <div class="box">
         <div class="pop-up">
             <div class="overlap-group">
                 <div id="shipInfo" class="shipInfo">
-                    <div class="shipName">선박명</div>
-                    <div class="callSign">콜사인</div>
+                    <div class="shipName" th:text="${voyage.ship.shipName}">선박명</div>
+                    <div class="callSign" th:text="${voyage.ship.callSign}">콜사인</div>
                 </div>
                 <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
                 <div class="depDay"> 출발일시:
-                    <div class="depTime">2024/10/15</div>
+                    <div class="depTime" th:text="${voyage.departureDate}">2024/10/15</div>
                 </div>
                 <div class="d-day">
                     <div class="D-day">D</div>
@@ -33,12 +38,12 @@
                 </div>
                 <div class="DepToArr">
                     <div class="depPort">출발항</div>
-                    <img src="/static/images/ship.png" class="shipImg" alt="선박 모양">
+                    <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
                     <div class="proceeding">n<span class="percent">%</span></div>
                     <div class="arrPort">도착항</div>
                 </div>
                 <div class="arrDay"> 도착일시:
-                    <div class="arrTime">2024/10/15</div>
+                    <div class="arrTime" th:text="${voyage.arrivalDate}">2024/10/15</div>
                 </div>
             </div>
         </div>

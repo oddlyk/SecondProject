@@ -191,6 +191,7 @@
         }
     </style>
     <script>
+        /*
         document.addEventListener('DOMContentLoaded', function () {
             if (document.getElementById('userId').value === 'true') {
                 if (document.getElementById('controller_ship').value != "-1") {
@@ -210,6 +211,7 @@
                 }
             }
         });
+        */
     </script>
 </head>
 
@@ -253,10 +255,10 @@
                     <div class="user-info">
                         <span class="username">[[${#authentication.name}]]</span>
                         <span class="user-suffix">님</span>
-                        <button class="mypage">
+                        <a th:href="@{/user/mypage}" class="mypage" id="mypage">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ddf6288af139996e440e7a00c6a0b52c98c99eb4253301259661b81ed60c9ef6?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
                                 alt="User Profile" class="user-icon" />
-                        </button>
+                        </a>
                     </div>
                     <form th:action="@{/user/logout}" method="POST">
                         <button type="submit" class="logout-btn">로그아웃</button>

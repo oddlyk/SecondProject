@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <script defer th:src="@{/script/mypage.js}"></script>
+
+</head>
+
+<body>
+    <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="background">
+        <div class="container">
+            <img loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                class="wave" alt="물결 배경">
+        </div>
+        <div class="mainbox">
+            <div class="userbox">
+                <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
+                <div class="user-type">사용자 유형명</div>
+                <div class="name" id="name">이름</div>
+                <div class="Id" id="id">아이디 (<span class="userId" id="userId">userid00n</span>)</div>
+            </div>
+            <button class="delete-btn" id="delete-btn" name="delete-btn">
+                <div class="delete-text">삭제</div>
+            </button>
+            <div class="listbox">
+                <div class="list-columns">
+                    <input type="checkbox" name="choose-all" id="choose-all">
+                    <div class="column1">선박명</div>
+                    <div class="column2">Call Sign</div>
+                    <div class="column3">출발지</div>
+                    <div class="column4">도착지</div>
+                    <div class="column5">운행률(%)</div>
+                    <div class="column6">즐겨찾기</div>
+                </div>
+                <div class="list-tuple">
+                    <input type="checkbox" name="choose-one" id="choose-one">
+                    <div class="tuple1">선박명</div>
+                    <div class="tuple2">콜사인</div>
+                    <div class="tuple3">출발지</div>
+                    <div class="column4">도착지</div>
+                    <div class="column5">운행률(%)</div>
+                    <input type="checkbox" name="favorite" id="favorite">
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
