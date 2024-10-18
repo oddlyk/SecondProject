@@ -7,13 +7,21 @@
     <link rel="stylesheet" th:href="@{/css/destination.css}">
     <!-- Google Maps API 불러오기 --> 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA" async defer></script>
-    <script defer src="/script/destination.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
 </head>
 
 <body>
-    <div class="header" th:replace="fragment/header(title='헤더')"></div>
+<input type="hidden" th:value="${#authorization.expression('isAuthenticated()')}" id="userId">
+    <a th:href="@{user/login}" id="tologin"></a>
+    <th:block sec:authorize="isAuthenticated()">
+        <input type="hidden" th:value="${search_ship}" id="controller_ship">
+        
+        <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
+        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
+        <a th:href="@{port/portdetail(callSign=${search_ship})}" id="getPort"></a>
+        <a th:href="@{port/calcdetail/(callSign=${search_ship})}" id="getCalc"></a>
+    </th:block>
+    <div class="header" th:fragment="header(title='헤더')"></div>
     <div class="container">
         <img loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
@@ -23,8 +31,8 @@
     <div class="port-box">
         <div class="destination-port">
             <select name="port" id="portchoose">
-                <optgroup>
-                    <option value="KRPUS" checked>부산항</option> <!-- <input type="text" id="email1" class="email1"> -->
+                <optgroup label="항구 선택">
+                    <option value="KRPUS" checked>부산항</option>
                     <option value="KRBNP">부산신항</option>
                     <option value="KRICN">인천항</option>
                 </optgroup>
@@ -35,6 +43,7 @@
         <div class="portInfo">
             <div id="port-name" class="portName">도착항</div>
             <div class="weather">날씨</div>
+            <img src="" alt="Weather Icon" id="weatherIcon">
             <div id="phone-num" class="port-phone">항만공사: <span>전화번호</span></div>
             <button class="homepage" id="homepage-link">
                 <div class="page-box">

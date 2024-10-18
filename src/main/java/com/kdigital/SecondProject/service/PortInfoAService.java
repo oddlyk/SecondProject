@@ -56,6 +56,17 @@ public class PortInfoAService {
                 .collect(Collectors.toList());
     }
 	
+    public List<PortInfoADTO> getPortInfoByPortCodeAndLocType(String portCode, int locType) {
+        List<PortInfoAEntity> entities = portInfoARepository.findByPort_PortCodeAndLocType(portCode, locType);
+        if (entities.isEmpty()) {
+            log.info("항구 코드 {}와 loc_type {}에 해당하는 데이터가 없습니다.", portCode, locType);
+            return new ArrayList<>(); // 빈 리스트 반환
+        }
+        return entities.stream()
+                .map(PortInfoADTO::toDTO)
+                .collect(Collectors.toList());
+    }
+    
 
     /**
      * 모든 PortInfoA 데이터 조회
