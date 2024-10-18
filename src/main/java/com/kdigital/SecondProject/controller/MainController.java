@@ -41,7 +41,7 @@ public class MainController {
 	@GetMapping({"","/"})
 	public String main(
 			@AuthenticationPrincipal  LoginUserDetails loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
-			@RequestParam(name="search_ship", defaultValue="집갈래") String shipInfo, //검색버튼 클릭 시
+			@RequestParam(name="search_ship", defaultValue="-1") String shipInfo, //검색버튼 클릭 시
 			Model model
 			) {
 		String tempCallSign = "-1";
@@ -55,7 +55,7 @@ public class MainController {
 		
 		// 검색을 통해 접근했는지 여부 파악
 			// 검색하지 않은 접근시, 바로 메인
-		if(shipInfo.equals("집갈래")) {
+		if(shipInfo.equals("-1")) {
 			// 로그인된 사용자라면...
 			if(loginUser!=null) {
 				// 즐겨찾기 항해 정보 전달
@@ -63,17 +63,18 @@ public class MainController {
 				// 즐겨찾기 항해가 없는 경우 랜덤한 항해 1개 전달
 				if(fvDTO==null) {
 					List<FavoriteVoyageDTO> fvDTOs = fvService.findAll();
+					if(fvDTOs==null) {
+						log.info("저장된 항해 없음");
+						//저장된 항해가 하나도 없는 경우 그냥 초기화면으로.
+						model.addAttribute("search", 0); 
+						model.addAttribute("search_ship",tempCallSign);
+						return "main";
+					}
 					if(fvDTOs!=null) {
 						Random random = new Random();
 				        int randomIndex = random.nextInt(fvDTOs.size());
 				        fvDTO = fvDTOs.get(randomIndex);
 					}
-				}
-				//저장된 항해가 하나도 없는 경우 그냥 초기화면으로.
-				if(fvDTO==null) {
-					model.addAttribute("search", 0); 
-					model.addAttribute("search_ship",tempCallSign);
-					return "main";
 				}
 
 				VoyageDTO dto = VoyageDTO.toDTO(fvDTO.getVoyageEntity());
