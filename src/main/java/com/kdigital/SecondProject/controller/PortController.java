@@ -18,6 +18,7 @@ import com.kdigital.SecondProject.service.PortInfoAService;
 import com.kdigital.SecondProject.service.PortInfoBService;
 import com.kdigital.SecondProject.service.PortService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

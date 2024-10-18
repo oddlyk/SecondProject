@@ -17,6 +17,7 @@ import com.kdigital.SecondProject.service.PortService;
 import com.kdigital.SecondProject.service.ShipService;
 import com.kdigital.SecondProject.service.VoyageService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ final private PortService portService;
 	 * */
 	
 	@GetMapping("port/calcdetail")
-	public String hearderPortD(Model model) {
+	public String hearderPortD(HttpSession session,Model model) {
 		// 기본값 설정
 		model.addAttribute("portName", "국내항");
 		model.addAttribute("tonnage", 0);
@@ -68,6 +69,11 @@ final private PortService portService;
 		// 저장 버튼 상태 플래그 설정
 	    model.addAttribute("isSaveEnabled", false);
 		
+	  //기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
 		return "pages/calculator";
 	}
 	
@@ -80,7 +86,7 @@ final private PortService portService;
 	 */
 	@Transactional
 	@GetMapping("calc/calcdetail")
-	public String mainLink(@RequestParam("callSign") String callSign, Model model) {
+	public String mainLink(@RequestParam("callSign") String callSign, HttpSession session,Model model) {
 		// call sign 기준 항해, 선박 정보 조회
 		VoyageDTO voyage = voyageService.selectVoyageWithCallSign(callSign);
 		ShipDTO ship = shipService.selectOneShip(callSign);
@@ -135,7 +141,11 @@ final private PortService portService;
 	    // 저장 버튼 상태 플래그 설정
 	    model.addAttribute("isSaveEnabled", true);
 		
-		
+	  //기존 세션 확인 및 값 전달
+  		if(session.getAttributeNames().hasMoreElements()) {
+  			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+  			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+  		}
 		
 		return "pages/calculator";
 	}

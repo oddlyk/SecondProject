@@ -191,39 +191,49 @@
         }
     </style>
     <script>
-        /*
         document.addEventListener('DOMContentLoaded', function () {
-            if (document.getElementById('userId').value === 'true') {
-                if (document.getElementById('controller_ship').value != "-1") {
-                	console.log(`\n 전해져온 선박: ${controller_ship}`);
-                    document.getElementById('gotoShip').addEventListener('click', function (event) {
+            if (document.getElementById('usernameSession')!=null) {
+                if (document.getElementById('session_null_check_port').value != null) {
+                	console.log(`\n 전해져온 항구: ${document.getElementById('session_null_check_port').value}`);
+                	console.log(`\n 전해져온 선박: ${document.getElementById('session_null_check_callsign').value}`);
+                	document.getElementById('logo').addEventListener('click', function (event) {
                         event.preventDefault();
-                        document.getElementById('getship').click();
+                        document.getElementById('getvoyageSession').click();
+                    });
+                	document.getElementById('gotoShip').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getshipSession').click();
                     });
                     document.getElementById('gotoPort').addEventListener('click', function (event) {
                         event.preventDefault();
-                        document.getElementById('getPort').click();
+                        document.getElementById('getPortSession').click();
                     });
                     document.getElementById('gotoCalc').addEventListener('click', function (event) {
                         event.preventDefault();
-                        document.getElementById('getCalc').click();
+                        document.getElementById('getCalcSession').click();
                     });
                 }
             }
         });
-        */
     </script>
 </head>
 
 <body>
-
+<input type=text th:value="${session_port}" id="session_null_check_port">
+<input type=text th:value="${session_callsign}" id="session_null_check_callsign">
+<th:block sec:authorize="isAuthenticated()" th:if="${session_port != null}">
+	 <a th:href="@{/(search_ship=${session_callsign})}" id="getvoyageSession"></a>
+     <a th:href="@{voyage/voyagedetail(callSign=${session_callsign})}" id="getshipSession"></a>
+     <a th:href="@{port/portdetail(port=${session_port})}" id="getPortSession"></a>
+     <a th:href="@{calc/calcdetail(callSign=${session_callsign})}" id="getCalcSession"></a>
+</th:block>
     <header class="header">
         <a th:href="@{/}" class="logo"><img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8dfec0d885d4ee67f98a3db6e0c794767fd7e9ee2c6714867ad04ed72d7bc14?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
-                alt="Company logo" class="logo" /></a>
+                alt="Company logo" class="logo" id="logo" /></a>
         <nav class="nav-menu">
             <div class="nav-item">
-                <a th:href="@{/user/login}" class="nav-link" id="gotoShip">선박 정보</a>
+                <a th:href="@{/}" class="nav-link" id="gotoShip">선박 정보</a>
             </div>
             <div class="nav-item-wide">
                 <a th:href="@{/port/portdetail}" class="nav-link-wide" id="gotoPort">목적지 정보</a>
@@ -253,7 +263,7 @@
                 <!-- 로그인 상태 -->
                 <li sec:authorize="isAuthenticated()">
                     <div class="user-info">
-                        <span class="username">[[${#authentication.name}]]</span>
+                        <span class="username" id="usernameSession">[[${#authentication.name}]]</span>
                         <span class="user-suffix">님</span>
                         <a th:href="@{/user/mypage}" class="mypage" id="mypage">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ddf6288af139996e440e7a00c6a0b52c98c99eb4253301259661b81ed60c9ef6?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"

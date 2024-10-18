@@ -27,11 +27,11 @@ public class SecurityConfig {
 	        )
 	        .formLogin((form) -> form
 	            .loginPage("/user/login")  // 커스텀 로그인 페이지 경로
-	            //.successHandler(handler) // 로그인에 성공했을 때 처리할 핸들러, defaultSuccessUrl를 빼고 사용해야 함.
+	            .successHandler(handler) // 로그인에 성공했을 때 처리할 핸들러, defaultSuccessUrl를 빼고 사용해야 함.
 	            .usernameParameter("id")
 				.passwordParameter("pwd")
 				.loginProcessingUrl("/user/loginProc")
-	            .defaultSuccessUrl("/", true)  // 로그인 성공 시 리다이렉트 경로
+	            //.defaultSuccessUrl("/", true)  // 로그인 성공 시 리다이렉트 경로
 	            .permitAll()
 	        )
 	        .logout((logout) -> logout

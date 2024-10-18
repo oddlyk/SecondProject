@@ -17,6 +17,7 @@ import com.kdigital.SecondProject.dto.VoyageDTO;
 import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.VoyageService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +42,7 @@ public class VoyageController {
 	public String voyageDetail(
 			@AuthenticationPrincipal  LoginUserDetails loginUser, //인증받은 사용자가 있다면 그 정보를 담아옴
 			@RequestParam(name="callSign", defaultValue="-1") String callSign, //검색버튼 클릭 시
+			HttpSession session,
 			Model model
 			) {
 		//선박명, 콜사인, 출발일시, 항해 진행도, 출발항 , 도착항, 도착일시
@@ -97,9 +99,11 @@ public class VoyageController {
 		//System.out.println(formerLoc);
 		model.addAttribute("formerLoc", formerLoc);
 		 * */
-		
-		
-		
+		//기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
 		return "/pages/shipInfo";
 	}
 	
