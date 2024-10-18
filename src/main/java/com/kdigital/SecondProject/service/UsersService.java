@@ -2,6 +2,7 @@ package com.kdigital.SecondProject.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +91,14 @@ public class UsersService {
 	            return false;
 	        }
 	    }
+	}
+	
+	public UserDTO selectOne(String userId) {
+		UserEntity userEntity = userRepository.findById(userId)
+	            .orElseThrow(() -> new UsernameNotFoundException("User not found with userId: " + userId));
+		
+		return UserDTO.toDTO(userEntity);
+		
 	}
 
 }

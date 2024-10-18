@@ -20,13 +20,14 @@
         <div class="mainbox">
             <div class="userbox">
                 <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
-                <div class="user-type">사용자 유형명</div>
-                <div class="name" id="name">이름</div>
-                <div class="Id" id="id">아이디 (<span class="userId" id="userId">userid00n</span>)</div>
+                <div class="user-type" th:text="${userType}"></div>
+                <div class="name" id="name" th:text="${userName}"></div>
+                <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="user"></span>)</div>
             </div>
-            <button class="delete-btn" id="delete-btn" name="delete-btn">
-                <div class="delete-text">삭제</div>
-            </button>
+            <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
+                <input type="checkbox" name="vNumbers" th:value="${voyage.vNumber}" class="choose-one">
+                <button type="button" onclick="confirmDelete()">삭제</button>
+            </form>
             <div class="listbox">
                 <div class="list-columns">
                     <input type="checkbox" name="choose-all" id="choose-all">
@@ -37,14 +38,15 @@
                     <div class="column5">운행률(%)</div>
                     <div class="column6">즐겨찾기</div>
                 </div>
-                <div class="list-tuple">
+                <div class="list-tuple" th:each="voyage, iterStat : ${voyages}">
                     <input type="checkbox" name="choose-one" id="choose-one">
-                    <div class="tuple1">선박명</div>
-                    <div class="tuple2">콜사인</div>
-                    <div class="tuple3">출발지</div>
-                    <div class="column4">도착지</div>
-                    <div class="column5">운행률(%)</div>
-                    <input type="checkbox" name="favorite" id="favorite">
+                    <div class="tuple1" th:text="${voyage.ship.shipName}">선박명</div>
+                    <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
+                    <div class="tuple3" th:text="${voyage.departure}">출발지</div>
+                    <div class="column4" th:text="${voyage.port.destination}">도착지</div>
+                    <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
+                    <input type="checkbox" name="favorite" id="favorite" th:checked="${voyage.favorite == 1}"
+                        th:onclick="changeFavorite([[${voyage.vNumber}]])">
                 </div>
             </div>
         </div>
