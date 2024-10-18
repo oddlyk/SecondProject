@@ -1,3 +1,4 @@
+
 /*
 let map;
 
@@ -55,7 +56,40 @@ window.initMap = function () {
 
 }
 */
+/*
+function initMap() {
+            // 지도 중심 좌표 설정 (부산항 예시)
+            const center = { lat: 35.1028, lng: 129.0403 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: center,
+            });
 
+            // 마커 추가
+            const marker = new google.maps.Marker({
+                position: center,
+                map: map,
+                title: "부산항",
+            });
+
+            // 여러 좌표를 선으로 연결하기
+            const coordinates = [
+                { lat: 35.1028, lng: 129.0403 }, // 부산항
+                { lat: 35.0664, lng: 128.8358 }, // 부산신항
+                { lat: 37.4483, lng: 126.5975 }, // 인천항
+            ];
+
+            const flightPath = new google.maps.Polyline({
+                path: coordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            });
+
+            flightPath.setMap(map);
+        }
+ */
 
 // DOMContentLoaded를 통해 지도가 초기화되도록 보장
 document.addEventListener('DOMContentLoaded', function () {

@@ -5,15 +5,22 @@
     <meta charset="UTF-8">
     <title>선박 정보</title>
     <link rel="stylesheet" th:href="@{/css/shipInfo.css}">
-    <!-- Google Maps API 불러오기 
-    <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script> 
-    -->
-
+    <!-- Google Maps API 불러오기 -->
+	
     <script defer th:src="@{/script/shipInfo.js}"></script>
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 날씨 api용 --><!-- axios 라이브러리 외부 CDN으로 추가 -->
+    <!-- 날씨 api용 
+    
+    
+    
+    --><!-- axios 라이브러리 외부 CDN으로 추가 -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=myMap"></script>
+    <script th:src="@{/script/voyage_map.js}"></script>
+    <script>
+    
+    </script>
+    
 </head>
 
 <body>
@@ -63,10 +70,15 @@
             </div>
         </div>
     </div>
+    <!-- 
     <div id="zoom-control">
         <button id="zoom-in">+</button>
         <button id="zoom-out">-</button>
     </div>
+     -->
+    
+    
+    
 </body>
 
 </html>
