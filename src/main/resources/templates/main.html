@@ -19,10 +19,10 @@
     <th:block sec:authorize="isAuthenticated()" th:if="${voyage != null}">
         <input type="hidden" th:value="${search_ship}" id="controller_ship">
 
-        <a th:href="@{(search_ship=${search_ship})}" id="getvoyage"></a>
-        <a th:href="@{voyage/voyagedetail(callSign=${search_ship})}" id="getship"></a>
+        <a th:href="@{(search_ship=${voyage.ship.callSign})}" id="getvoyage"></a>
+        <a th:href="@{voyage/voyagedetail(callSign=${voyage.ship.callSign})}" id="getship"></a>
         <a th:href="@{port/portdetail(port=${voyage.port.portCode})}" id="getPort"></a>
-        <a th:href="@{calc/calcdetail(callSign=${search_ship})}" id="getCalc"></a>
+        <a th:href="@{calc/calcdetail(callSign=${voyage.ship.callSign})}" id="getCalc"></a>
     </th:block>
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
     <!-- <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div> -->
