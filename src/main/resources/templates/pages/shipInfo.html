@@ -8,7 +8,8 @@
     <!-- Google Maps API 불러오기 -->
     <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
-    <script defer src="/script/shipInfo.js"></script>
+    <script defer th:src="@{script/shipInfo.js}"></script>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 </head>
 
 <body>

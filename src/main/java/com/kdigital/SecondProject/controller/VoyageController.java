@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kdigital.SecondProject.dto.LoginUserDetails;
+import com.kdigital.SecondProject.dto.VoyageDTO;
 import com.kdigital.SecondProject.service.AISService;
 import com.kdigital.SecondProject.service.VoyageService;
 
@@ -36,6 +37,10 @@ public class VoyageController {
 			@RequestParam(name="callSign", defaultValue="-1") String callSign, //검색버튼 클릭 시
 			Model model
 			) {
+		//선박명, 콜사인, 출발일시, 항해 진행도, 출발항 , 도착항, 도착일시
+		VoyageDTO dto = voyageService.selectVoyageWithCallSign(callSign);
+		log.info("받아온 항해 정보: {}",dto.toString());
+		// 현좌표, 과거 좌표들 
 		return "/pages/shipInfo";
 	}
 	
