@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kdigital.SecondProject.dto.AISDTO;
 import com.kdigital.SecondProject.dto.FavoriteVoyageDTO;
@@ -87,6 +86,9 @@ public class UserController {
 	    
 	    // 2. 선호 선박으로 등록된 항해 정보 가져오기
 	    List<FavoriteVoyageDTO> favoriteVoyages = favoriteVoyageService.findAll();
+	    if (favoriteVoyages == null) {
+	    	favoriteVoyages = new ArrayList<>();
+	    }
 	    
 	    // TopFavorite 값 추가
 	    List<Integer> favoriteList = new ArrayList<>();
@@ -100,6 +102,10 @@ public class UserController {
 	    List<String> voyagePerList = new ArrayList<>();
 	    for (FavoriteVoyageDTO favoriteVoyage : favoriteVoyages) {
 	        VoyageEntity voyageEntity = favoriteVoyage.getVoyageEntity();
+	        
+	        if (voyageEntity == null) {
+	            continue;
+	        }
 	        
 	        // call-sign, 출발지, 도착지, 선박명 추출
 	        String callSign = voyageEntity.getShip().getCallSign();
@@ -132,7 +138,7 @@ public class UserController {
 	    }
 	    
 	    // 모델에 목록 추가
-	    model.addAttribute("userName", userId);
+	    model.addAttribute("userName", user.getUserName());
 	    model.addAttribute("user", user.getUserId());
 	    model.addAttribute("userType", userType);
 	    model.addAttribute("voyages", voyages);
@@ -158,6 +164,9 @@ public class UserController {
 		
 		//현재 항해일 수 / 총 항해일 수 * 100 = 항해 진행률
 		double voyageProgress = ((double) untilTodayMinutes / totalVoyageMinutes) * 100;
+		if(voyageProgress==0) {
+	         voyageProgress=100;
+	      }
 		log.info("현재 항해에 대한 항해 진행률: {}",voyageProgress);
 		return String.format("%.2f", voyageProgress);
 	}
