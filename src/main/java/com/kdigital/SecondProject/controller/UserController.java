@@ -66,79 +66,80 @@ public class UserController {
 	}
 
 	
-	/**
-	 * 마이페이지로 연결 + 정보 전달
-	 * @param model
-	 * @param principal
-	 * @return
-	 */
 	@GetMapping("/mypage")
 	public String mypage(Model model, Principal principal) {
-		// 1. 로그인한 유저의 정보 가져오기
-		String userId = principal.getName();
-		UserDTO user = userService.selectOne(userId);		// userId 가져오기
-		
-		// 1-1. 유저의 userType 가져오기
-		String userType = "";
-		switch(user.getUserType()) {
-			case 1: userType = "선박 운영자";
-					break;
-			case 2: userType = "화물 소유자";
-					break;
-			case 3: userType = "무역업 종사자";
-					break;
-			case 4: userType = "일반 사용자";
-					break;
-		}
-		
-		// 2. 선호 선박으로 등록된 항해 정보 가져오기
-		List<FavoriteVoyageDTO> favoriteVoyages = favoriteVoyageService.findAll();
-		
-		
-		// 3. 각 vNumber로 Voyage 및 ship 정보 조회
-		List<VoyageDTO> voyages = new ArrayList<>();
-		List<String> voyagePerList = new ArrayList<>();
-		List<Integer> favoriteList = new ArrayList<>();
-		for (FavoriteVoyageDTO favoriteVoyage : favoriteVoyages) {
-			VoyageEntity voyageEntity = favoriteVoyage.getVoyageEntity();
-			
-			// call-sign, 출발지, 도착지, 선박명 추출
-			String callSign = voyageEntity.getShip().getCallSign();
-			String departure = voyageEntity.getDeparture();
-			String destination = voyageEntity.getPort().getPortCode();
-			String shipName = voyageEntity.getShip().getShipName();
-			
-			Long vNumber = voyageEntity.getVNumber();
-			
-			// 운행률 계산
-			String voyagePer = getVoyagePer(vNumber);
-			voyagePerList.add(voyagePer);
-			
-			// TopFavorite 값 추가
-			int favorite = Integer.parseInt(favoriteVoyage.getTopFavorite());
-			favoriteList.add(favorite);
-			
-			// VoyageDTO 생성 후 리스트에 추가
-			ShipEntity shipEntity = voyageEntity.getShip();
-			PortEntity portEntity = voyageEntity.getPort();
-			
-			VoyageDTO voyageDTO = new VoyageDTO();
-			voyageDTO.setVNumber(vNumber);
-			voyageDTO.setShip(shipEntity);
-			voyageDTO.setDeparture(departure);
-			voyageDTO.setPort(portEntity);
-			
-			voyages.add(voyageDTO);
-		}
-		
-		// 모델에 목록 추가
-		model.addAttribute("userName", userId);
-		model.addAttribute("user", user.getUserId());
-		model.addAttribute("userType", userType);
-		model.addAttribute("voyages", voyages);
-		model.addAttribute("voyagePer", voyagePerList);
-		
-		return "pages/mypage";
+	    // 1. 로그인한 유저의 정보 가져오기
+	    String userId = principal.getName();
+	    UserDTO user = userService.selectOne(userId);  // userId 가져오기
+	    
+	    // 1-1. 유저의 userType 가져오기
+	    String userType = "";
+	    switch(user.getUserType()) {
+	        case 1: userType = "선박 운영자";
+	                break;
+	        case 2: userType = "화물 소유자";
+	                break;
+	        case 3: userType = "무역업 종사자";
+	                break;
+	        case 4: userType = "일반 사용자";
+	                break;
+	    }
+	    
+	    // 2. 선호 선박으로 등록된 항해 정보 가져오기
+	    List<FavoriteVoyageDTO> favoriteVoyages = favoriteVoyageService.findAll();
+	    
+	    // TopFavorite 값 추가
+	    List<Integer> favoriteList = new ArrayList<>();
+	    for (FavoriteVoyageDTO favoriteVoyage : favoriteVoyages) {
+	        int favorite = Integer.parseInt(favoriteVoyage.getTopFavorite());
+	        favoriteList.add(favorite);
+	    }
+	    
+	    // 3. 각 vNumber로 Voyage 및 ship 정보 조회
+	    List<VoyageDTO> voyages = new ArrayList<>();
+	    List<String> voyagePerList = new ArrayList<>();
+	    for (FavoriteVoyageDTO favoriteVoyage : favoriteVoyages) {
+	        VoyageEntity voyageEntity = favoriteVoyage.getVoyageEntity();
+	        
+	        // call-sign, 출발지, 도착지, 선박명 추출
+	        String callSign = voyageEntity.getShip().getCallSign();
+	        String departure = voyageEntity.getDeparture();
+	        String shipName = voyageEntity.getShip().getShipName();
+	        
+	        Long vNumber = voyageEntity.getVNumber();
+	        
+	        // 운행률 계산
+	        String voyagePer = getVoyagePer(vNumber);
+	        voyagePerList.add(voyagePer);
+	        
+	        // VoyageDTO 생성 후 리스트에 추가
+	        ShipEntity shipEntity = voyageEntity.getShip();
+	        PortEntity portEntity = voyageEntity.getPort();
+	        
+	        VoyageDTO voyageDTO = new VoyageDTO();
+	        voyageDTO.setVNumber(vNumber);
+	        voyageDTO.setShip(shipEntity);
+	        voyageDTO.setDeparture(departure);
+	        
+	        // PortEntity가 null이 아닌 경우에만 설정
+	        if (portEntity != null) {
+	            voyageDTO.setPort(portEntity);
+	        } else {
+	            log.warn("Voyage {} has no port information", voyageEntity.getVNumber());
+	        }
+	        
+	        voyages.add(voyageDTO);
+	    }
+	    
+	    // 모델에 목록 추가
+	    model.addAttribute("userName", userId);
+	    model.addAttribute("user", user.getUserId());
+	    model.addAttribute("userType", userType);
+	    model.addAttribute("voyages", voyages);
+	    model.addAttribute("voyagePer", voyagePerList);
+	    model.addAttribute("favoriteList", favoriteList);
+	    
+	    return "pages/mypage";
 	}
 
 	

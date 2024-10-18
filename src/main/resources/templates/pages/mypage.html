@@ -43,9 +43,12 @@
                     <div class="tuple1" th:text="${voyage.ship.shipName}">선박명</div>
                     <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
                     <div class="tuple3" th:text="${voyage.departure}">출발지</div>
-                    <div class="column4" th:text="${voyage.port.destination}">도착지</div>
+                    <div th:if="${voyage.port != null}">
+                        <span th:text="${voyage.port.portCode}">도착지</span>
+                    </div>
                     <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
-                    <input type="checkbox" name="favorite" id="favorite" th:checked="${voyage.favorite == 1}"
+                    <input type="checkbox" name="favorite" id="favorite"
+                        th:checked="${favoriteList[iterStat.index] == 1}"
                         th:onclick="changeFavorite([[${voyage.vNumber}]])">
                 </div>
             </div>
