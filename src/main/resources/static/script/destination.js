@@ -2,6 +2,7 @@ let map;
 let terminalMarker, congestionMarker;
 let waitingAreaPolygon;
 
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM이 완전히 로드되었습니다.");
 
@@ -16,12 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const { Map } = await google.maps.importLibrary("maps");
 
     map = new Map(document.getElementById("map"), {
-      center: { lat: 37.5665, lng: 126.9780 }, // 초기 중심 위치
+      center: { lat: 35.1028, lng: 129.0403 }, // 초기 중심 위치
       zoom: 12,
     });
 
-    console.log("initMap 함수 호출됨");
-    console.log("Google Maps API가 로드되었나요?", typeof google);
+    console.log("initMap 함수 호출됨~~~");
+    console.log("Google Maps API가 로드되었나요?~~~", typeof google);
     
     initializeToggleButtons(); // 토글 버튼 초기화
     portSelect.dispatchEvent(new Event('change')); // 기본 포트 선택으로 초기화
@@ -29,26 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Google Maps API 초기화
-async function initMap() {
-	if (!google || !google.maps) {
-	    console.error("Google Maps API가 로드되지 않았습니다.");
-	    return;
-	  }
-	  
-  	const { Map } = await google.maps.importLibrary("maps");
-
-  	map = new Map(document.getElementById("map"), {
-    	center: { lat: 37.5665, lng: 126.9780 }, // 초기 중심 위치
-    	zoom: 12,
-  	});
-
-  	console.log("initMap 함수 호출됨");
-  	console.log("Google Maps API가 로드되었나요?", typeof google);
-  
-  	initializeToggleButtons(); // 토글 버튼 초기화
-  	portSelect.dispatchEvent(new Event('change')); // 기본 포트 선택으로 초기화
-}
 
 // 마커 이미지 설정
 const terminalImage = {
@@ -108,9 +89,13 @@ const phoneNum = document.getElementById("phone-num");
 const homepageLink = document.getElementById("homepage-link");
 
 // 포트 좌표 가져오기
-async function fetchPortData(portCode) {
+function fetchPortData(portCode) {
+	
 	try {
-	    const response = await axios.get(`/api/ports/${portCode}`);
+	    const response = axios.get(`/api/ports/${portCode}`);
+		
+		alert("===================" + JSON.stringify(response))
+		
 	    if (!response.data) {
 	      console.error(`포트 데이터가 null 또는 undefined 입니다. PortCode: ${portCode}`);
 	      return null;
@@ -197,7 +182,9 @@ function displayAccidentStatus(accidentData) {
 
 // 포트 선택에 따른 데이터 업데이트 함수
 portSelect.addEventListener('change', async function () {
+
   const selectedPort = portSelect.value;
+
 
   // 선택된 항구 정보 가져오기 (기존 fetchPortCoordinates -> fetchPortData로 변경)
   const portData = await fetchPortData(selectedPort);
