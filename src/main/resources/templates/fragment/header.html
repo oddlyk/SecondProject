@@ -223,9 +223,9 @@
 <input type=text th:value="${session_callsign}" id="session_null_check_callsign">
 <th:block sec:authorize="isAuthenticated()" th:if="${session_port != null}">
 	 <a th:href="@{/(search_ship=${session_callsign})}" id="getvoyageSession"></a>
-     <a th:href="@{voyage/voyagedetail(callSign=${session_callsign})}" id="getshipSession"></a>
-     <a th:href="@{port/portdetail(port=${session_port})}" id="getPortSession"></a>
-     <a th:href="@{calc/calcdetail(callSign=${session_callsign})}" id="getCalcSession"></a>
+     <a th:href="@{/voyage/voyagedetail(callSign=${session_callsign})}" id="getshipSession"></a>
+     <a th:href="@{/port/portdetail(port=${session_port})}" id="getPortSession"></a>
+     <a th:href="@{/calc/calcdetail(callSign=${session_callsign})}" id="getCalcSession"></a>
 </th:block>
     <header class="header">
         <a th:href="@{/}" class="logo"><img

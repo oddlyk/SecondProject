@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kdigital.SecondProject.dto.AISDTO;
 import com.kdigital.SecondProject.dto.FavoriteVoyageDTO;
@@ -28,6 +29,7 @@ import com.kdigital.SecondProject.service.FavoriteVoyageService;
 import com.kdigital.SecondProject.service.UsersService;
 import com.kdigital.SecondProject.service.VoyageService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,20 +55,25 @@ public class UserController {
 	public String login(
 			@RequestParam(value="error", required=false) String error 
 			, @RequestParam(value="errMessage", required=false) String errMessage 
-			, Model model
+			, Model model,
+			HttpSession session
 			) {
 		System.out.println(error);
 		System.out.println(errMessage);
 
 		model.addAttribute("error", error);
 		model.addAttribute("errMessage", errMessage);
-
+		//기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
 		return "pages/login";
 	}
 
 	
 	@GetMapping("/mypage")
-	public String mypage(Model model, Principal principal) {
+	public String mypage(Model model, Principal principal,HttpSession session) {
 	    // 1. 로그인한 유저의 정보 가져오기
 	    String userId = principal.getName();
 	    UserDTO user = userService.selectOne(userId);  // userId 가져오기
@@ -145,6 +152,11 @@ public class UserController {
 	    model.addAttribute("voyagePer", voyagePerList);
 	    model.addAttribute("favoriteList", favoriteList);
 	    
+	  //기존 세션 확인 및 값 전달
+	    if(session.getAttributeNames().hasMoreElements()) {
+	    	model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+	    	model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+	    }
 	    return "pages/mypage";
 	}
 
@@ -180,6 +192,7 @@ public class UserController {
 	 */
 
     @GetMapping("favorite/status")
+    @ResponseBody
     public Map<String, Object> getFavoriteStatus(@RequestParam("vNumber") Long vNumber) {
         Map<String, Object> response = new HashMap<>();
         // 즐겨찾기 상태 확인 로직 추가
@@ -199,12 +212,20 @@ public class UserController {
 	
 	
 	@PostMapping("/deleteFavorite")
-	public String deleteFavorite(@RequestParam("vNumbers") List<Long> vNumbers) {
+	public String deleteFavorite(@RequestParam("vNumbers") List<Long> vNumbers,
+			HttpSession session,
+			RedirectAttributes rttr //redirect는 model을 받을 수 없기에 redirect attribute가 필요
+			) {
 
 		for (Long vNumber : vNumbers) {
 			favoriteVoyageService.deleteFev(vNumber);
 			}
 		
+		//기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+			rttr.addAttribute("session_port",(String) session.getAttribute("session_port"));
+			rttr.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
 		return "redirect:/user/mypage";
 		}
 		
