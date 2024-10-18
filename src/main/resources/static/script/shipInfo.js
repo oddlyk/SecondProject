@@ -60,52 +60,48 @@ window.initMap = function () {
 // DOMContentLoaded를 통해 지도가 초기화되도록 보장
 document.addEventListener('DOMContentLoaded', function () {
     console.log('페이지가 로드되었습니다.');
-    getWeather();
+    let weatherIcon = document.getElementById('weatherIcon');
+    weatherIcon.src = 'https://openweathermap.org/img/wn/01d@2x.png';
+
+    // 현위치 좌표
+    let GetnowLoc = document.getElementById('GetnowLoc').value;
+    if (GetnowLoc != "") {
+        getWeather(GetnowLoc);
+    }
 });
+//항해 출발일도착일의 시간을 버림
+document.getElementById('depTime').innerText = document.getElementById('depTime').textContent.split('T')[0];
+document.getElementById('arrTime').innerText = document.getElementById('arrTime').textContent.split('T')[0];
+
 
 // 날씨 데이터를 가져오는 비동기 함수
-async function getWeather() {
-	// 항구 이름
-	        let portName = document.getElementById('port').value;
-	        let latitude = null;
-	        let longitude = null;
+async function getWeather(GetnowLoc) {
+    let nowLoc = JSON.parse(GetnowLoc);
+    console.log(nowLoc);
+    // OpenWeather API 키
+    let API_KEY = '13c20983e47bfa6ec46e8491cea98b88'; // OpenWeather API 키
+    // OpenWeather API 요청 URL 생성
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${nowLoc.lat}&lon=${nowLoc.lng}&appid=${API_KEY}&units=metric`;
 
-	        // 선택된 항구의 좌표 설정
-	        if (portName === '인천항') {
-	            latitude = ports['인천항'].latitude;
-	            longitude = ports['인천항'].longitude;
-	        } else if (portName === '부산항') {
-	            latitude = ports['부산항'].latitude;
-	            longitude = ports['부산항'].longitude;
-	        } else if (portName === '부산신항') {
-	            latitude = ports['부산신항'].latitude;
-	            longitude = ports['부산신항'].longitude;
-	        }
+    // 날씨 정보를 요청하고 처리
+    try {
+        let response = await axios.get(url);  // CDN에서 불러온 axios 사용
+        let weatherData = response.data;
 
-	        // 좌표값 확인 (테스트 용도)
-	        console.log(`선택된 항구: ${portName}, 위도: ${latitude}, 경도: ${longitude}`);
-
-	        // OpenWeather API 요청 URL 생성
-	        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
-
-	        // 날씨 정보를 요청하고 처리
-	        try {
-	            let response = await axios.get(url);  // CDN에서 불러온 axios 사용
-	            let weatherData = response.data;
-
-	            // 날씨 정보 출력
-	            console.log(`\n${portName}의 현재 날씨:`);
-	            console.log(`온도: ${weatherData.main.temp}°C`);
-	            console.log(`날씨: ${weatherData.weather[0].main}`);
-	            console.log(`습도: ${weatherData.main.humidity}%`);
-	            console.log(`풍속: ${weatherData.wind.speed} m/s`);
-	            document.getElementById('tempa').innerText = weatherData.main.temp;
-	            let weatherIcon = document.getElementById('weatherIcon');
-	            weatherIcon.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
-	            weatherIcon.alt = `${weatherData.weather[0].main}`;
+        // 날씨 정보 출력
+        console.log(`\n${GetnowLoc}의 현재 날씨:`);
+        console.log(`온도: ${weatherData.main.temp}°C`);
+        console.log(`날씨: ${weatherData.weather[0].main}`);
+        console.log(`습도: ${weatherData.main.humidity}%`);
+        console.log(`풍속: ${weatherData.wind.speed} m/s`);
+        document.getElementById('tempa').innerText = weatherData.main.temp;
+        let weatherIcon = document.getElementById('weatherIcon');
+        weatherIcon.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+        weatherIcon.alt = `${weatherData.weather[0].main}`;
+        document.getElementById('windSpeed').innerText = weatherData.wind.speed;
 
 
-	        } catch (error) {
-	            console.error('날씨 정보를 가져오는 중 오류가 발생했습니다:', error);
-	        }
+    } catch (error) {
+        console.error('날씨 정보를 가져오는 중 오류가 발생했습니다:', error);
+    }
 }
