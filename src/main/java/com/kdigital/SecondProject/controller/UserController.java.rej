@@ -1,9 +1,0 @@
-diff a/src/main/java/com/kdigital/SecondProject/controller/UserController.java b/src/main/java/com/kdigital/SecondProject/controller/UserController.java	(rejected hunks)
-@@ -43,6 +43,7 @@
- 		return "pages/login";
- 	}
- 	
-+/*	@GetMapping("/mypage")
- 	public String mypage() {
- 		
- 	}
