@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -252,5 +253,19 @@ public class UserController {
 			return "OK";
 		}
 		return "not";
+	}
+	
+	/**
+	 * 회원 가입 요청
+	 * @return login or join
+	 * */
+	@PostMapping("/join")
+	public String joinin(@ModelAttribute UserDTO userDTO) {
+		log.info("가입 요청 도착: {}",userDTO.toString());
+		boolean result = userService.join(userDTO);
+		if(result) {
+			return "/pages/login";
+		}
+		return "/pages/join";
 	}
 }

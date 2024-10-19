@@ -179,6 +179,9 @@ public class MainController {
 		
 		//현재 항해일 수 / 총 항해일 수 * 100 = 항해 진행률
 		double voyageProgress = ((double) untilTodayMinutes / totalVoyageMinutes) * 100;
+		if(voyageProgress==0) {
+			voyageProgress=100;
+		}
 		log.info("현재 항해에 대한 항해 진행률: {}",voyageProgress);
 		return String.format("%.2f", voyageProgress);
 	}
