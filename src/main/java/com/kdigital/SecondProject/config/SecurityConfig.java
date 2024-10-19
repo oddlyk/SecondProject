@@ -22,7 +22,8 @@ public class SecurityConfig {
 		http.csrf((auth)->auth.disable())
 			.authorizeHttpRequests((authz) -> authz
 				.requestMatchers("/script/**", "/css/**", "/images/**").permitAll()  // 정적 리소스에 대한 접근 허용
-	            .requestMatchers("/","/user/login",  "/user/join","/port/portdetail","/port/calcdetail").permitAll() // 로그인, 회원가입, 리소스 접근 허용
+	            .requestMatchers("/","/user/login",  "/user/join","/port/portdetail","/port/calcdetail","/user/idCheck").permitAll() // 로그인, 회원가입, 리소스 접근 허용
+	            .requestMatchers("/user/idCheck").permitAll()
 	            .anyRequest().authenticated()  // 그 외의 요청은 인증 필요
 	        )
 	        .formLogin((form) -> form

@@ -1,6 +1,7 @@
 package com.kdigital.SecondProject.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,15 +58,9 @@ public class UsersService {
 	 */
 	public boolean existId(String userId) {
 		log.info("검색할 아이디 : {}",userId);
-		List<UserEntity> result = userRepository.findByUserId(userId);
-		UserDTO dto = UserDTO.toDTO(result.get(0));
-		log.info("아이디 검색 결과: {}",dto);
-		if (result.size()==1) { // userId가 존재하면 true
-			return true;
-		}
-		else{
-			return false;
-		}
+		boolean isExistUser = userRepository.existsById(userId);
+		log.info("id 사용중 여부: {}",isExistUser);
+		return isExistUser;
 	}
 	
 	/**
