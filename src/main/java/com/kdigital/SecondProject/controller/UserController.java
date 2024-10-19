@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -230,5 +231,26 @@ public class UserController {
 		}
 		
 	
+	/**
+	 * 회원가입을 위한 화면 요청
+	 * @return join.html
+	 * */
+	@GetMapping("/join")
+	public String join() {
+		return "/pages/join";
+	}
 	
+	/**
+	 * 아이디 중복 체크
+	 * */
+	@GetMapping("/idCheck")
+	@ResponseBody
+	public String idCheck(@RequestParam(name="userid") String id) {
+		log.info("아이디 중복을 체크합니다. 아이디: {}",id);
+		boolean exist = userService.existId(id);
+		if(!exist) {
+			return "OK";
+		}
+		return "not";
+	}
 }
