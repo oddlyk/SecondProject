@@ -142,7 +142,6 @@ function addPolygon(coords, color) {
 async function fetchPortCoordinates(portCode) {
     try {
         const response = await axios.get(`/api/ports/${portCode}`);
-        alert("===== response : " + JSON.stringify(response.data)); // response 객체를 문자열로 변환하여 출력
         return response.data; // { lat: ..., lng: ... } 형태의 데이터를 반환
     } catch (error) {
         console.error(`항구 좌표 정보를 가져오는 중 오류 발생: ${error}`);
