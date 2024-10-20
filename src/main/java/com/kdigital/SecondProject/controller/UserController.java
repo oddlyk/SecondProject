@@ -256,6 +256,21 @@ public class UserController {
 	}
 	
 	/**
+	 * 이메일 중복 체크
+	 * */
+	@GetMapping("/emailCheck")
+	@ResponseBody
+	public String emailCheck(@RequestParam(name="email")String email) {
+		log.info("이메일 중복을 체크합니다. 이메일: {}",email);
+		boolean exist = userService.existEmail(email);
+		if(!exist) {
+			return "OK";
+		}
+		return "not";
+	}
+	
+	
+	/**
 	 * 회원 가입 요청
 	 * @return login or join
 	 * */

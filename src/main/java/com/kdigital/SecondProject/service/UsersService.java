@@ -72,12 +72,12 @@ public class UsersService {
 	
 	public boolean login(String userId, String userPwd) {
 	    log.info("로그인 시도 - userId: {}", userId);
-	    List<UserEntity> userEntity = userRepository.findByUserId(userId);
+	    Optional<UserEntity> userEntity = userRepository.findById(userId);
 	    if (userEntity.isEmpty()) {
 	        log.info("로그인 실패 - 아이디 없음");
 	        return false;
 	    } else {
-	        UserEntity user = userEntity.get(0);
+	        UserEntity user = userEntity.get();
 	        if (bCryptPasswordEncoder.matches(userPwd, user.getUserPwd())) {
 	            log.info("로그인 성공");
 	            return true;
@@ -88,6 +88,9 @@ public class UsersService {
 	    }
 	}
 	
+	/**
+	 * 특정 아이디의 회원 반환
+	 * */
 	public UserDTO selectOne(String userId) {
 		UserEntity userEntity = userRepository.findById(userId)
 	            .orElseThrow(() -> new UsernameNotFoundException("User not found with userId: " + userId));
@@ -95,5 +98,18 @@ public class UsersService {
 		return UserDTO.toDTO(userEntity);
 		
 	}
-
+	
+	/**
+	 * 이메일 고유 여부
+	 * @return 사용중 true / 미사용 false
+	 * */
+	public boolean existEmail(String email) {
+		log.info("이메일 고유 여부 확인: {}",email);
+		Optional<UserEntity> userEntity = userRepository.findByEmail(email);
+		if(userEntity.isPresent()) {
+			log.info("존재하는 아이디 입니다.");
+			return true;
+		}
+		return false;
+	}
 }

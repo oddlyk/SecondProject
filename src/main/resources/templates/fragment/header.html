@@ -219,8 +219,8 @@
 </head>
 
 <body>
-<input type=text th:value="${session_port}" id="session_null_check_port">
-<input type=text th:value="${session_callsign}" id="session_null_check_callsign">
+<input type=hidden th:value="${session_port}" id="session_null_check_port">
+<input type=hidden th:value="${session_callsign}" id="session_null_check_callsign">
 <th:block sec:authorize="isAuthenticated()" th:if="${session_port != null}">
 	 <a th:href="@{/(search_ship=${session_callsign})}" id="getvoyageSession"></a>
      <a th:href="@{/voyage/voyagedetail(callSign=${session_callsign})}" id="getshipSession"></a>
