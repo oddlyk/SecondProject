@@ -69,6 +69,7 @@ function updateFavorite(vNumber) {
 
                 // 변경 사항 반영을 위해 페이지 새로고침
                 window.location.reload();
+
             } else {
                 alert('즐겨찾기 변경에 실패하였습니다.');
             }

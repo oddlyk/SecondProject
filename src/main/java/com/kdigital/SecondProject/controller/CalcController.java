@@ -96,17 +96,20 @@ final private PortService portService;
 		String portCode = portEntity.getPortCode();
 		PortDTO port = portService.selectPortByPortCode(portCode);
 		
-	
-		
-		// arrovalDate와 avgWaitingTime 더하기
-		LocalDateTime arrivalDate = voyage.getArrivalDate();
-		double avgWaitingTime = port.getAvgWaitingTime();
-		
-		long hours = (long) avgWaitingTime;		// 정수인 시간 부분
-		long minutes = (long) ((avgWaitingTime - hours) * 60); 		// 소수점 시간 부분을 분으로 변환
-		
-		LocalDateTime exportDate = arrivalDate.plusHours(hours).plusMinutes(minutes);
-		
+		// 입항 일시 (arrivalDate) 가져오기
+	    LocalDateTime arrivalDate = voyage.getArrivalDate();
+
+	    // 출항 예정 일시 (exportDate) 데이터가 있는지 확인
+	    LocalDateTime exportDate = voyage.getDepartureDate(); // 여기서 departureDate가 출항 예정 일시라고 가정합니다
+
+	    // 출항 예정 일시가 없을 경우, 입항 일시 + 대기 시간을 출항 일시로 설정
+	    if (exportDate == null) {
+	        double avgWaitingTime = port.getAvgWaitingTime();
+	        long hours = (long) avgWaitingTime; // 정수인 시간 부분
+	        long minutes = (long) ((avgWaitingTime - hours) * 60); // 소수점 시간 부분을 분으로 변환
+
+	        exportDate = arrivalDate.plusHours(hours).plusMinutes(minutes); // 대기 시간을 더한 출항 일시
+	    }		
 		
 		// LocalDateTime을 yyyy-MM-dd 형식의 문자열로 변환
 	    String arrivalDateStr = arrivalDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -120,6 +123,7 @@ final private PortService portService;
 		int minute = (int) ((time - hour) * 60);
 		
 		// 2. 대기 시간
+		double avgWaitingTime = port.getAvgWaitingTime();
 		int hour1 = (int) avgWaitingTime;
 		int minute1 = (int) ((avgWaitingTime - hour1) * 60);
 		
@@ -135,8 +139,6 @@ final private PortService portService;
 		model.addAttribute("shipName", ship.getShipName());
 		model.addAttribute("callSign", callSign);
 		
-		// exportDate를 수정할 수 없도록 설정
-	    model.addAttribute("isExportDateDisabled", true);
 	    
 	    // 저장 버튼 상태 플래그 설정
 	    model.addAttribute("isSaveEnabled", true);

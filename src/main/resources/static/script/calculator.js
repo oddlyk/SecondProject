@@ -221,7 +221,6 @@ function resetToDefault() {
 };
 
 
-
 // 3. 초기화 시 기본값을 적용
 document.getElementById('resetButton').addEventListener('click', resetToDefault);
 
