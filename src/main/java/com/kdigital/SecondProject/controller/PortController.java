@@ -1,12 +1,13 @@
 package com.kdigital.SecondProject.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -84,6 +85,47 @@ public class PortController {
 		}
 		
 		return "pages/destination";
+	}
+	
+	@GetMapping("/port/changePort")
+	@ResponseBody
+	public Map<String, Object> changePort(@RequestParam(value = "port") String portCode) {
+	    Map<String, Object> response = new HashMap<>();
+	    
+	    // 항구 정보 가져오기
+	    PortDTO portDTO = portService.selectPortByPortCode(portCode);
+	    log.info("항구정보 : {}", portDTO);
+	    response.put("port", portDTO);
+	    
+	    // 전년도 동일 월의 사고 정보 가져오기
+	    List<AccidentStatusDTO> accidentStatusList = accidentStatusService.getAccidentStatusByPortCode(portCode);
+	    log.info("사고정보: {}", accidentStatusList);
+	    response.put("accidentStatus", accidentStatusList);
+	    
+	    // 인근 대기지, 터미널 위치 데이터 가져오기
+	    List<PortInfoADTO> portInfoAList = portInfoAService.getPortInfoByPortCode(portCode);
+	    
+	    // loc_type = 1 : 인근 대기지
+	    List<PortInfoADTO> waitingAreas = portInfoAList.stream()
+	            .filter(info -> info.getLocType() == 1)
+	            .collect(Collectors.toList());
+	    log.info("대기지 정보: {}", waitingAreas);
+	    response.put("waitingAreas", waitingAreas);
+	    
+	    // loc_type = 3 : 컨테이너 터미널
+	    List<PortInfoADTO> containerTerminals = portInfoAList.stream()
+	            .filter(info -> info.getLocType() == 3)
+	            .collect(Collectors.toList());
+	    log.info("터미널 정보: {}", containerTerminals);
+	    response.put("containerTerminals", containerTerminals);
+	    
+	    // 혼잡 주의 지역 데이터 가져오기
+	    List<PortInfoBDTO> portInfoBList = portInfoBService.getPortInfoByPortCode(portCode);
+	    log.info("혼잡주의지역 정보 : {}", portInfoBList);
+	    response.put("congestionAreas", portInfoBList);
+	    
+	    // JSON 형태로 모든 데이터 반환
+	    return response;
 	}
 }
 
