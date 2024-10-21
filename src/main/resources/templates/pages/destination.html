@@ -8,7 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script defer src="/script/destination.js"></script>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap" ></script>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcTJ2Vc3GipTS3tfRuyvMAgMNyyTu45LA&callback=initMap"></script>
 </head>
 
 
@@ -21,14 +22,14 @@
             class="wave" alt="물결 배경">
     </div>
     <div id="map" style="height: 500px; width: 100%;"></div>
-    
+
     <div class="port-box">
         <div class="destination-port">
             <select name="port" id="portchoose">
                 <optgroup label="항구 선택">
                     <option value="KRPUS" th:selected="${port.portCode == 'KRPUS'}">부산항</option>
-        <option value="KRBNP" th:selected="${port.portCode == 'KRBNP'}">부산신항</option>
-        <option value="KRINC" th:selected="${port.portCode == 'KRINC'}">인천항</option>
+                    <option value="KRBNP" th:selected="${port.portCode == 'KRBNP'}">부산신항</option>
+                    <option value="KRINC" th:selected="${port.portCode == 'KRINC'}">인천항</option>
                 </optgroup>
             </select>
         </div>
@@ -54,26 +55,24 @@
             </button>
             <div class="accident-statics">전년도 당월 사고 통계</div>
             <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>
-            <div th:if="${accidentStats != null}">
+            <div>
                 <div class="accident_box1">
                     <div class="rank1">1위</div>
-                    <div class="reason1">[[${accidentStats[0].reason}]]</div>
-                    <div class="count">[[${accidentStats[0].count}]] 회</div>
+                    <div class="reason1" id="rank1">-</div>
+                    <div class="count" id="count1">- 회</div>
                 </div>
                 <div class="accident_box2">
                     <div class="rank2">2위</div>
-                    <div class="reason2">[[${accidentStats[1].reason}]]</div>
-                    <div class="count">[[${accidentStats[1].count}]] 회</div>
+                    <div class="reason2" id="rank2">-</div>
+                    <div class="count" id="count2">- 회</div>
                 </div>
                 <div class="accident_box3">
                     <div class="rank3">3위</div>
-                    <div class="reason3">[[${accidentStats[2].reason}]]</div>
-                    <div class="count">[[${accidentStats[2].count}]] 회</div>
+                    <div class="reason3" id="rank3">-</div>
+                    <div class="count" id="count3">- 회</div>
                 </div>
             </div>
-            <div th:if="${accidentStats == null}">
-                <p>사고 통계 데이터를 불러올 수 없습니다.</p>
-            </div>
+            <p id="no-data-message" style="display:none;">사고 통계 데이터를 불러올 수 없습니다.</p>
         </div>
     </div>
     <div class="toggle-box">
@@ -84,13 +83,8 @@
                 <input type="checkbox" id="toggleInfoWaiting" checked>
                 <span class="slider"></span>
             </label>
-
-            <ul th:if="${toggleInfoWaiting}">
-                <li th:each="area : ${waitingAreas}">
-                    [[${area.info}]] (위치: [[${area.location}]])
-                </li>
-            </ul>
         </div>
+
         <div class="terminal">
             <div class="toggle2">컨테이너 터미널</div>
             <div class="mark1"><img src="/images/terminal.png"></div>
@@ -99,12 +93,8 @@
                 <span class="slider"></span>
             </label>
 
-            <ul th:if="${toggleInfoTerminal}">
-                <li th:each="terminal : ${containerTerminals}">
-                    [[${terminal.info}]] (위치: [[${terminal.location}]])
-                </li>
-            </ul>
         </div>
+
         <div class="congestion-area">
             <div class="toggle3">혼잡 주의 지역</div>
             <div class="mark1"><img src="/images/warning.png"></div>
@@ -113,14 +103,9 @@
                 <span class="slider"></span>
             </label>
 
-            <ul th:if="${toggleInfoCongestion}">
-                <li th:each="congestion : ${congestionAreas}">
-                    [[${congestion.info}]] (위치: [[${congestion.location}]])
-                </li>
-            </ul>
         </div>
     </div>
-    
+
 </body>
 
 </html>
