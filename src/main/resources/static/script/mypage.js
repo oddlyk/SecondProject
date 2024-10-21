@@ -6,10 +6,22 @@ function changeFavorite(vNumber) {
         .then(response => response.json())
         .then(data => {
             console.log(data); // 서버로부터의 응답을 로그에 찍어서 확인
-            if (data.alreadyFavorite) {
+            const { alreadyFavorite, hasTopFavorite } = data;
+
+            if (alreadyFavorite) {
+                // 이미 현재 항해가 즐겨찾기로 등록되어 있으면 바로 변경 요청을 보내지 않음
+                alert('이 항해는 이미 즐겨찾기로 등록되어 있습니다.');
+                window.location.reload();
+                return;
+            }
+
+            if (hasTopFavorite) {
+                // 이미 다른 항해가 topFavorite으로 설정되어 있는 경우
                 if (confirm('이미 즐겨찾기로 등록된 항해가 있습니다. 변경하시겠습니까?')) {
                     // 사용자가 확인을 누른 경우에만 즐겨찾기 변경 요청 전송
                     updateFavorite(vNumber);
+                } else {
+                    window.location.reload();
                 }
             } else {
                 // 즐겨찾기가 설정되지 않은 경우 바로 즐겨찾기 변경 요청 전송
@@ -57,6 +69,7 @@ function updateFavorite(vNumber) {
 
                 // 변경 사항 반영을 위해 페이지 새로고침
                 window.location.reload();
+
             } else {
                 alert('즐겨찾기 변경에 실패하였습니다.');
             }

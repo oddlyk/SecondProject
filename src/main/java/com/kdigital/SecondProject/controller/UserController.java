@@ -197,9 +197,14 @@ public class UserController {
     @ResponseBody
     public Map<String, Object> getFavoriteStatus(@RequestParam("vNumber") Long vNumber) {
         Map<String, Object> response = new HashMap<>();
-        // 즐겨찾기 상태 확인 로직 추가
-        boolean alreadyFavorite = favoriteVoyageService.isAlreadyFavorite(vNumber); // 서비스 메서드 작성 필요
+        // 즐겨찾기 상태 확인
+        boolean alreadyFavorite = favoriteVoyageService.isAlreadyFavorite(vNumber); // 특정 항해가 즐겨찾기로 등록되었는지 확인
+        boolean hasTopFavorite = favoriteVoyageService.getTopFavoriteVoyage() != null; // 이미 다른 항해가 최상위로 등록되었는지 확인
+
+        // 결과를 response에 추가
         response.put("alreadyFavorite", alreadyFavorite);
+        response.put("hasTopFavorite", hasTopFavorite);
+
         return response;
     }
 	
