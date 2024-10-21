@@ -28,7 +28,6 @@
 
     <!-- 헤더 -->
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
-    <!-- <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div> -->
 
     <!-- 내용이 들어가는 부분 -->
     <div class="background">
@@ -37,31 +36,30 @@
 
         <div id="req1"></div>
         <div class="search_box">
-            <img src="../static/images/search.png" alt="" id="searchIcon">
-            <!-- <img th:src="@{/images/search.png}" alt="검색" id="searchIcon"> -->
+			<img th:src="@{/images/search.png}" alt="검색" id="searchIcon"> 
             <form th:action="@{/}" method="get" id="SearchVoyage">
                 <input type="text" id="search_ship" name="search_ship"
                     placeholder="선박을 입력하세요. (Call Sign / MMSI / IMO)">
                 <input class="search" id="search_icon" type="button" value="찾기">
             </form>
         </div>
-        <input type="button" id="saveBtn" value="등록">
+        <div id="saveBtnBox">
+        	<input type="button" id="saveBtn" value="등록">
+        </div>
 
         <!-- 검색에 실패했거나, 검색을 통한 접근이 아닐때 -->
         <div class="main_services" id="searchNo" th:unless="${voyage != null}">
-            <div class="service_box">
+            <div class="service_box service_box1">
                 <p class="infoTitleBox">
-                    <!-- <img th:src="@{/images/Vector.png}" id="vector"> -->
-                    <img src="../static/images/Vector.png" id="vector">
+                    <img th:src="@{/images/Vector.png}" id="vector">
                     <span class="shipName">선박명</span>
                     <span class="callSign shipName">(CallSign)</span>
                 </p>
                 <div class="Line1"></div>
                 <div class="shipFD">
                     <div class="dep_arr">
-                        <!-- <img class="whale" th:src="@{/images/ship.png}"> -->
                         <div class="text_wrapper">출발지</div>
-                        <img class="whale" src="../static/images/ship.png">
+                        <img class="whale" th:src="@{/images/ship.png}">
                         <div class="text_wrapper">도착지</div>
                     </div>
                     <div class="dep_arr">
@@ -75,7 +73,7 @@
             </div>
 
             <!-- 목적지 정보 -->
-            <div class="service_box">
+            <div class="service_box service_box2">
                 <!--항만 날씨 정보-->
                 <div class="headBox">
                     <div class="arr_info"><span class="port_name"></span>**항 현재
@@ -108,7 +106,7 @@
 
             </div>
             <!-- 항만사용료 -->
-            <div class="service_box">
+            <div class="service_box service_box3">
                 <div class="infoTitleBox">
                     <p class="fee_title">예상 항만 사용료</p>
                 </div>
@@ -121,19 +119,17 @@
         </div>
 
         <div class="main_services" id="searchNo" th:unless="${voyage != null}">
-            <div class="service_box">
+            <div class="service_box service_box1">
                 <p class="infoTitleBox">
-                    <!-- <img th:src="@{/images/Vector.png}" id="vector"> -->
-                    <img src="../static/images/Vector.png" id="vector">
+                    <img th:src="@{/images/Vector.png}" id="vector">
                     <span class="shipName">선박명</span>
                     <span class="callSign shipName">(CallSign)</span>
                 </p>
                 <div class="Line1"></div>
                 <div class="shipFD">
                     <div class="dep_arr">
-                        <!-- <img class="whale" th:src="@{/images/ship.png}"> -->
                         <div class="text_wrapper">출발지</div>
-                        <img class="whale" src="../static/images/ship.png">
+                        <img class="whale" th:src="@{/images/ship.png}">
                         <div class="text_wrapper">도착지</div>
                     </div>
                     <div class="dep_arr">
@@ -147,7 +143,7 @@
             </div>
 
             <!-- 목적지 정보 -->
-            <div class="service_box">
+            <div class="service_box service_box2">
                 <!--항만 날씨 정보-->
                 <div class="headBox">
                     <div class="arr_info"><span class="port_name"></span>**항 현재
@@ -180,7 +176,7 @@
 
             </div>
             <!-- 항만사용료 -->
-            <div class="service_box">
+            <div class="service_box service_box3">
                 <div class="infoTitleBox">
                     <p class="fee_title">예상 항만 사용료</p>
                 </div>
@@ -201,7 +197,7 @@
         <div class="main_services" id="searchYes" th:if="${voyage != null}">
             <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
             <input type="hidden" th:value="${voyage.vNumber}" id="vNumber">
-            <div class="service_box">
+            <div class="service_box service_box1">
                 <input type="hidden" th:value="${voyage.port.portName}" id="port">
                 <p class="infoTitleBox">
                     <img th:src="@{/images/Vector.png}" id="vector">
@@ -227,11 +223,10 @@
             </div>
 
             <!-- 목적지 정보 -->
-            <div class="service_box">
+            <div class="service_box service_box2">
                 <!--항만 날씨 정보-->
                 <div class="headBox">
-                    <div class="arr_info"><span class="port_name">[[${voyage.port.portName}]]</span> 현재
-                        날씨</div>
+                    <div class="arr_info"><span class="port_name">[[${voyage.port.portName}]]</span> 정보</div>
                     <div class="weather"><img src="" alt="Weather Icon" id="weatherIcon" class="weather">
                     </div>
                     <div class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></div>
@@ -263,7 +258,7 @@
 
 
             <!-- 항만사용료 -->
-            <div class="service_box">
+            <div class="service_box service_box3">
                 <div class="infoTitleBox">
                     <p class="fee_title">예상 항만 사용료</p>
                 </div>
@@ -278,6 +273,8 @@
 
     </div>
     </div>
+    
+    <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div>
 </body>
 
 </html>

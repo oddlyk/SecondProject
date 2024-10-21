@@ -9,8 +9,6 @@
     width: 100%;
     position: absolute;
     /* 혹은 fixed로 변경 가능 */
-    bottom: 0;
-    /* 하단에 고정 */
 }
 
 .footer-content {
