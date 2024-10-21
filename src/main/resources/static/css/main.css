@@ -1,5 +1,37 @@
 @charset "UTF-8";
-비회원
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
+}
 
 /* 메인 */
 .body {
@@ -16,6 +48,7 @@
 .background {
     position: absolute;
     width: 1440px;
+    /*100%;*/
     height: 734px;
     top: 90px;
     left: 0px;
@@ -60,15 +93,16 @@
 #search_ship {
     width: 770px;
     height: 52px;
+    background: transparent;
+    line-height: 25px;
+
+    color: #000;
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
     font-weight: 800;
     font-size: 30px;
-    color: #000;
-    line-height: 25px;
-    background: transparent;
-    /* Align text to the left */
     text-align: left;
+
     /* 테두리 제거 */
     border: none;
     /* 포커스 시 테두리 제거 */
@@ -76,13 +110,12 @@
 }
 
 
-
 /* 검색창 - 찾기 */
 .search {
     width: 87px;
     height: 45px;
-    background: transparent;
     /* 배경 투명화 */
+    background: transparent;
 
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
@@ -90,12 +123,17 @@
     font-size: 30px;
     line-height: 25px;
     color: #344C64;
+
     border: none;
+    transition: box-shadow 0.3s ease;
 
     cursor: pointer;
 }
 
-
+.search:focus {
+    /* 그림자 추가 */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 
 
 
@@ -105,287 +143,202 @@
     position: absolute;
     width: 1391px;
     height: 417px;
-    left: 24px;
-    top: 305px;
+    top: 255px;
+    text-align: center;
+
+    /* 수평 중앙 */
+    left: 50%;
+    /* 수평 중앙을 맞추기 위한 보정 */
+    transform: translateX(-50%);
+
+    /* 상자들을 가로로 배치 */
+    display: flex;
+    /* 상자 사이 간격 조정 */
+    justify-content: space-between;
+    /* 수직 중앙 정렬 */
+    align-items: center;
 }
 
-/* 선박 정보 */
-.service_box1 {
-    position: absolute;
+/*정보창*/
+.service_box {
+    position: relative;
     width: 433px;
     height: 417px;
-    left: 24px;
-    top: 305px;
 
     filter: drop-shadow(7px 6px 8.9px rgba(0, 0, 0, 0.32));
     background: #FFFFFF;
     border-radius: 50px;
+    padding: 20px;
+    /* padding을 포함한 크기 계산 */
+    box-sizing: border-box;
+    /* 다른 상자들과 겹치지 않도록 설정 */
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 
-/* 선박정보 - 선박기본 */
-.shipInfo {
-    position: absolute;
-    width: 368px;
-    height: 39px;
-    left: 60px;
-    top: 349px;
 
+/* 선박 정보 */
+/* 선박정보 - 선박기본 , 목적지 정보 상단 */
+.infoTitleBox {
+    display: flex;
+    height: 39px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* 선박명과 아이콘 사이의 간격 */
+    padding-top: 10px;
+    margin-top: 16px;
+    margin-bottom: 25px;
 }
 
 /* 선박 정보 - Vector 이미지 */
 #vector {
-    position: absolute;
-    left: 4.17%;
-    right: 92.92%;
-    top: 34.08%;
-    bottom: 62.11%;
+    width: 40px;
+    height: 40px;
 }
 
 /* 선박 정보 - 선박명 (Call Sign) */
 .shipName {
-    position: absolute;
-    width: 314px;
-    height: 33px;
-    left: 114px;
-    top: 349px;
-
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 38px;
-    line-height: 140%;
-    /* or 53px */
-
     color: #000000;
-    /*
-    background: #21272A;
-    */
 }
 
-/**/
+.callSign {
+    color: #7A7A7A;
+}
+
+/* 선박 정보 - 분리 선 */
 .Line1 {
-    position: absolute;
+    margin: 10px 0;
     width: 398px;
-    height: 0px;
-    left: 42px;
-    top: 425px;
-
-    border: 2px solid #B1AEAE;
+    border: 1.5px solid #B1AEAE;
+    margin-bottom: 20px;
 }
 
 
 
-/* 선박 정보 - ?% */
-.proceeding {
-    position: absolute;
-    width: 116px;
-    height: 65px;
-    left: 185px;
-    top: 602px;
-
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 47px;
-    line-height: 140%;
-    /* or 66px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-}
-
-
-
-
-/* 선박 정보 - 출도착 정보 전체 상자 */
+/* 선박 정보 - 출도착 정보 전체 상자 2개 */
 .shipFD {
-    position: absolute;
-    width: 398px;
-    height: 93px;
-    left: 45px;
-    top: 467px;
+    height: 90px;
+    width: 100%;
+    padding-top: 20px;
 }
-
 
 
 /* 선박 정보 - 출도착지 안내 */
 .dep_arr {
-    position: absolute;
-    width: 398px;
-    height: 66px;
-    left: 45px;
-    top: 467px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
 
 /* 선박정보 - oil_fill 이미지 */
 .whale {
-    position: absolute;
     width: 52px;
     height: 61px;
-    left: 270px;
-    top: 472px;
-
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    background: #185FCB;
-    border: 2px solid #185FCB;
 }
 
 
 
-/* 선박 정보 - 출발지 */
+/* 선박 정보 - 출발지와 도착지 텍스트 */
 .text_wrapper {
-    position: absolute;
     width: 145px;
-    height: 66px;
-    left: 45px;
-    top: 467px;
 
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 44px;
-    line-height: 140%;
-    /* or 62px */
     text-align: center;
-
+    align-items: center;
     color: #383E77;
 }
 
 
-/* 선박 정보 - 출발항명 */
+/* 선박 정보 - 출발항 도착항 명 */
 .text_wrap {
-    position: absolute;
     width: 103px;
-    height: 32px;
-    left: 66px;
-    top: 528px;
+    height: 30px;
+    margin: 0px 20px 0px 20px;
 
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 32px;
-    line-height: 140%;
-    /* or 45px */
     text-align: center;
 
     color: #959494;
+    margin-bottom: 20px;
 }
 
-
-/* 선박 정보 - 도착항명 */
-.text_wrap2 {
-    position: absolute;
-    width: 103px;
-    height: 32px;
-    left: 319px;
-    top: 527px;
-
+/* 선박 정보 - ?% */
+.proceeding {
+    height: 50px;
+    margin-top: 30px;
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
-    font-size: 32px;
-    line-height: 140%;
-    /* or 45px */
+    font-size: 47px;
     text-align: center;
-
-    color: #959494;
+    color: #000000;
 }
 
 
 
 /* 목적지 정보 */
-
-.service_box2 {
-    position: absolute;
-    width: 433px;
-    height: 417px;
-    left: 503px;
-    top: 305px;
-
-    filter: drop-shadow(7px 6px 8.9px rgba(0, 0, 0, 0.32));
-    background: #FFFFFF;
-    border-radius: 50px;
-}
-
 /* 목적지 정보 - 항만 날씨 */
 .headBox {
-    position: absolute;
-    width: 391px;
-    height: 79px;
-    left: 525px;
-    top: 335px;
+    margin-top: 5px;
+    width: 90%;
+    height: 60px;
+    padding: 10px 20px;
 
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 
     background: #FFFFFD;
     border: 2px solid #B1AEAE;
     box-shadow: 0px 4px 0px 2px rgba(0, 0, 0, 0.1);
-    /*border-radius: 25px;*/
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-
-
-/* 목적지 정보 - 날씨 이미지 */
-
-.weather {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 774px;
-    top: 348px;
-    border-radius: 3px;
-}
-
-
 
 /* 목적지 정보 - **항 현재 날씨 */
 .arr_info {
-    position: absolute;
-    width: 216px;
-    height: 65px;
-    left: 544px;
-    top: 342px;
-
+    padding: 5px;
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 30px;
-    line-height: 140%;
-
-    /* or 42px */
-    display: flex;
-    align-items: center;
-    text-align: center;
 
     color: #000000;
 }
 
-
+/* 목적지 정보 - 날씨 이미지 */
+.weather {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    gap: 10px;
+    padding: 5px;
+    /*padding-top: 10px;
+        margin-bottom: 25px;*/
+}
 
 
 /* 목적지 정보 - 온도 -º */
 .temparature {
-    position: absolute;
-    width: 72px;
-    height: 29px;
-    left: 820px;
-    top: 360px;
-
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
     font-weight: 800;
     font-size: 25px;
-    line-height: 140%;
-    /* or 35px */
-    display: flex;
-    align-items: center;
     text-align: center;
-
+    padding: 5px;
     color: #7A7A7A;
 }
 
@@ -394,13 +347,10 @@
 
 /* 목적지 정보 - 사고 */
 .accident {
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 391px;
-    height: 257.98px;
-    left: 525px;
-    top: 437px;
+    margin-top: 20px;
+    width: 90%;
+    height: 240px;
+    padding: 10px 20px;
 
     background: #FFFFFD;
     border: 1.5px solid #B1AEAE;
@@ -409,205 +359,76 @@
 }
 
 
+
 /*목적지 정보 - 사고 각 순위 상자*/
 .accident_box {
-    position: absolute;
     width: 312px;
     height: 44.34px;
-    left: 564px;
-    top: 522px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
 }
 
 /* 목적지 정보 - 전년도 당월 사고 현황 */
 .accident_title {
-    position: absolute;
-    width: 336px;
-    height: 65.5px;
-    left: 553px;
-    top: 446.09px;
-
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 34px;
-    line-height: 140%;
-    /* or 48px  */
-    display: flex;
-    align-items: center;
-    text-align: center;
-
     color: #344C64;
+    margin: 10px 0;
 }
 
 /* 목적지 정보 - Line 2 */
-.Line1 {
-    position: absolute;
+.Line2 {
     width: 347px;
-    height: 0px;
-    left: 547px;
-    top: 512px;
-
     border: 1.5px solid #B1AEAE;
 }
 
-/* 목적지 정보 - 위 */
-.rank {
-    position: absolute;
-    width: 64px;
-    height: 42.33px;
-    left: 564px;
-    bottom: 459.67px;
-
+/* 목적지 정보 - 위 사고내역 % */
+.accident_text {
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
     font-weight: 800;
     font-size: 30px;
-    line-height: 140%;
 
-    /* or 42px */
-    display: flex;
-    align-items: center;
-    text-align: center;
 
     color: #000000;
 }
-
-
-
-
-/* 목적지 정보 - 회 */
-.count {
-    position: absolute;
-    width: 64px;
-    height: 42.33px;
-    left: 812px;
-    bottom: 459.67px;
-    /*bottom: 404.67px;*/
-
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 30px;
-    line-height: 140%;
-    color: #000000;
-
-    /* or 42px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-
-
-
-/* 목적지 정보 - 사고 내역 */
-.reanson {
-    position: absolute;
-    width: 124px;
-    height: 42.33px;
-    left: 659px;
-    bottom: 457.66px;
-
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 30px;
-    line-height: 140%;
-    /* or 42px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-}
-
-
-
 
 
 
 
 
 /* 항만 사용료 */
-.service_box3 {
-    position: absolute;
-    width: 433px;
-    height: 417px;
-    left: 982px;
-    top: 305px;
-
-    filter: drop-shadow(7px 6px 8.9px rgba(0, 0, 0, 0.32));
-    background: #FFFFFF;
-    border-radius: 50px;
-}
-
-
-/* 항만사용료 - 안내문구 겉 */
-.fee_title_box {
-    position: absolute;
-    width: 398px;
-    height: 63px;
-    left: 1000px;
-    top: 362px;
-}
-
-
-
-/* 항만사용료 - 예상 항만 사용료 */
-fee_title {
-    position: absolute;
-    width: 314px;
-    height: 33px;
-    left: 1046px;
-    top: 362px;
-
+/* 항만사용료 - 안내문구 겉 예상 항만 사용료 */
+.fee_title {
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 38px;
-    line-height: 140%;
-    /* or 53px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-
     color: #000000;
 }
 
-
-
-/* Line 2 */
-.Line1 {
-    position: absolute;
-    width: 398px;
-    height: 0px;
-    left: 1000px;
-    top: 425px;
-
-    border: 2px solid #B1AEAE;
+/* 항만사용료 - 금액 wjscp */
+.label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: baseline;
+    max-width: 100%;
 }
-
 
 /* 항만사용료 - 금액 */
 .port_fee {
-    position: absolute;
-    width: 411px;
-    height: 71px;
-    left: 997px;
-    top: 482px;
-
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 70px;
-    line-height: 140%;
-    /* or 98px */
-    display: flex;
-    align-items: center;
-    text-align: center;
-
     color: #344C64;
-
+    /* 줄바꿈 없이 한 줄로 표시 */
+    white-space: nowrap;
+    /* 상자 너비에 맞게 조정 */
+    max-width: 100%;
     text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
 }
 
@@ -615,21 +436,9 @@ fee_title {
 /* 항만사용료 - 원 */
 
 .won {
-    position: absolute;
-    width: 56px;
-    height: 65px;
-    left: 1332px;
-    top: 567px;
-
     font-family: 'KoddiUD OnGothic';
-    font-style: normal;
     font-weight: 800;
     font-size: 45px;
-    line-height: 140%;
-    /* or 63px */
-    display: flex;
-    align-items: center;
-    text-align: center;
 
     color: #000000;
 }
