@@ -25,19 +25,19 @@
         <div class="destination-port">
             <select name="port" id="portchoose">
                 <optgroup label="항구 선택">
-                    <option value="KRPUS" checked>부산항</option>
-                    <option value="KRBNP">부산신항</option>
-                    <option value="KRICN">인천항</option>
+                    <option value="KRPUS" th:selected="${port.portCode == 'KRPUS'}">부산항</option>
+        <option value="KRBNP" th:selected="${port.portCode == 'KRBNP'}">부산신항</option>
+        <option value="KRICN" th:selected="${port.portCode == 'KRICN'}">인천항</option>
                 </optgroup>
             </select>
         </div>
     </div>
     <div class="portInfo-box">
         <div class="portInfo">
-            <div id="port-name" class="portName">도착항</div>
-            <div class="weather">날씨</div>
+            <div id="port-name" class="portName" th:text="${port.portName}">도착항</div>
+            <div class="weather" id="weather-text">날씨</div>
             <img src="" alt="Weather Icon" id="weatherIcon">
-            <div id="phone-num" class="port-phone">항만공사: <span>전화번호</span></div>
+            <div id="phone-num" class="port-phone">항만공사: <span th:text="${port.portContact}">전화번호</span></div>
             <button class="homepage" id="homepage-link">
                 <div class="page-box">
                     <p class="page-text">홈페이지</p>
