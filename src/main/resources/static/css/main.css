@@ -34,21 +34,12 @@
 }
 
 /* 메인 */
-.body {
-    position: relative;
-    width: 1440px;
-    height: 1024px;
-
-    background: #FFFFFF;
-}
-
 
 
 /* 메인 배경 */
 .background {
     position: absolute;
-    width: 1440px;
-    /*100%;*/
+    width: 100%;
     height: 734px;
     top: 90px;
     left: 0px;
@@ -415,21 +406,29 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    /* baseline을 맞춰서 "원"이 아래로 내려가지 않도록 설정 */
     align-items: baseline;
     max-width: 100%;
+
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+
 }
 
 /* 항만사용료 - 금액 */
 .port_fee {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 70px;
+    font-size: 5em;
     color: #344C64;
     /* 줄바꿈 없이 한 줄로 표시 */
     white-space: nowrap;
     /* 상자 너비에 맞게 조정 */
     max-width: 100%;
     text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
+    /* 글자 크기를 상자에 맞게 자동으로 줄어들도록 설정 */
+    text-overflow: ellipsis;
+    display: inline-block;
 }
 
 
@@ -438,7 +437,11 @@
 .won {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 45px;
+    font-size: 2em;
+    /* 글자 크기 설정 */
 
     color: #000000;
+    margin-left: 10px;
+    /* 숫자와 "원" 사이에 약간의 여백 추가 */
+    display: inline-block;
 }
