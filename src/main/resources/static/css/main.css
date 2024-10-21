@@ -412,14 +412,15 @@
 
     /* 줄바꿈 방지 */
     white-space: nowrap;
-
+    /* 넘칠 경우 숨기지 않도록 설정 */
+    overflow: hidden;
 }
 
 /* 항만사용료 - 금액 */
 .port_fee {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 5em;
+    font-size: 200%;
     color: #344C64;
     /* 줄바꿈 없이 한 줄로 표시 */
     white-space: nowrap;
@@ -427,8 +428,9 @@
     max-width: 100%;
     text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
     /* 글자 크기를 상자에 맞게 자동으로 줄어들도록 설정 */
-    text-overflow: ellipsis;
     display: inline-block;
+    /* 공간이 부족할 때 글자 크기를 줄이도록 설정 */
+    flex-shrink: 1;
 }
 
 
