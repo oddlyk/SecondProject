@@ -41,7 +41,7 @@ final private PortService portService;
 	 * */
 	
 	@GetMapping("port/calcdetail")
-	public String hearderPortD(HttpSession session,Model model) {
+	public String hearderPortD(Model model) {
 		// 기본값 설정
 		model.addAttribute("portName", "국내항");
 		model.addAttribute("tonnage", 0);
@@ -68,12 +68,7 @@ final private PortService portService;
 		
 		// 저장 버튼 상태 플래그 설정
 	    model.addAttribute("isSaveEnabled", false);
-		
-	  //기존 세션 확인 및 값 전달
-		if(session.getAttributeNames().hasMoreElements()) {
-			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
-			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
-		}
+
 		return "pages/calculator";
 	}
 	
@@ -86,7 +81,7 @@ final private PortService portService;
 	 */
 	@Transactional
 	@GetMapping("calc/calcdetail")
-	public String mainLink(@RequestParam("callSign") String callSign, HttpSession session,Model model) {
+	public String mainPortD(@RequestParam("callSign") String callSign, Model model) {
 		// call sign 기준 항해, 선박 정보 조회
 		VoyageDTO voyage = voyageService.selectVoyageWithCallSign(callSign);
 		ShipDTO ship = shipService.selectOneShip(callSign);
@@ -96,21 +91,37 @@ final private PortService portService;
 		String portCode = portEntity.getPortCode();
 		PortDTO port = portService.selectPortByPortCode(portCode);
 		
-	
+		// 입항 일시 (arrivalDate) 가져오기
+	    LocalDateTime arrivalDate = voyage.getArrivalDate();
+
+	    // 출항 예정 일시 (exportDate) 구하기
+	    LocalDateTime exportDate = voyage.getDepartureDate();
+	    
+	    // 대기 시간과 작업 시간 계산
+	    double avgWaitingTime = port.getAvgWaitingTime();
+	    double avgWorkingTime = port.getAvgWorkingTime();
+	    
+	    // 대기 시간과 작업 시간을 시간과 분으로 분리
+	    long waitingHours = (long) avgWaitingTime; // 정수 부분: 시간
+	    long waitingMinutes = (long) ((avgWaitingTime - waitingHours) * 60); // 소수점 부분: 분
+	    long workingHours = (long) avgWorkingTime;
+	    long workingMinutes = (long) ((avgWorkingTime - workingHours) * 60);
+	    
+	    // 입항 예정 일시에 대기 시간과 작업 시간을 더함
+	    exportDate = arrivalDate.plusHours(waitingHours + workingHours)
+	                           .plusMinutes(waitingMinutes + workingMinutes);
+	    
+	    arrivalDate = arrivalDate.plusYears(2);
+        exportDate = exportDate.plusYears(2);
+	    
 		
-		// arrovalDate와 avgWaitingTime 더하기
-		LocalDateTime arrivalDate = voyage.getArrivalDate();
-		double avgWaitingTime = port.getAvgWaitingTime();
-		
-		long hours = (long) avgWaitingTime;		// 정수인 시간 부분
-		long minutes = (long) ((avgWaitingTime - hours) * 60); 		// 소수점 시간 부분을 분으로 변환
-		
-		LocalDateTime exportDate = arrivalDate.plusHours(hours).plusMinutes(minutes);
-		
-		
-		// LocalDateTime을 yyyy-MM-dd 형식의 문자열로 변환
-	    String arrivalDateStr = arrivalDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-	    String exportDateStr = exportDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        // LocalDateTime을 yyyy-MM-dd 형식의 문자열로 변환 (표시용)
+        String arrivalDateDisplayStr = arrivalDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String exportDateDisplayStr = exportDate.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        // 실제 값을 위한 LocalDateTime 포맷 (서버에서 처리용으로 사용)
+        String arrivalDateFullStr = arrivalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        String exportDateFullStr = exportDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
 		
 		
 		// 대기 시간과 작업 시간 변환
@@ -126,8 +137,10 @@ final private PortService portService;
 		// 기본 값 설정
 		model.addAttribute("portName", port.getPortName());
 		model.addAttribute("tonnage", ship.getTonnage());
-		model.addAttribute("importDate", arrivalDateStr);
-		model.addAttribute("exportDate", exportDateStr);
+		model.addAttribute("importDateDisplay", arrivalDateDisplayStr);
+		model.addAttribute("exportDateDisplay", exportDateDisplayStr);
+		model.addAttribute("importDateFull", arrivalDateFullStr);
+		model.addAttribute("exportDateFull", exportDateFullStr);
 		model.addAttribute("workingHour", hour);
 	    model.addAttribute("workingMinute", minute);
 	    model.addAttribute("waitingHour", hour1);
@@ -135,19 +148,12 @@ final private PortService portService;
 		model.addAttribute("shipName", ship.getShipName());
 		model.addAttribute("callSign", callSign);
 		
-		// exportDate를 수정할 수 없도록 설정
-	    model.addAttribute("isExportDateDisabled", true);
 	    
 	    // 저장 버튼 상태 플래그 설정
 	    model.addAttribute("isSaveEnabled", true);
 		
-	  //기존 세션 확인 및 값 전달
-  		if(session.getAttributeNames().hasMoreElements()) {
-  			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
-  			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
-  		}
-		
 		return "pages/calculator";
-	}
-	
+	    }
 }
+
+	

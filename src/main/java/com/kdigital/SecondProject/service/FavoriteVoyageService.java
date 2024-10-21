@@ -99,51 +99,50 @@ public class FavoriteVoyageService {
 	 * @param vNumber
 	 * @return true/false
 	 * */
-	@Transactional
-	public boolean changeTopFavorite(Long vNumber) {
-		
+	 @Transactional
+	 public boolean changeTopFavorite(Long vNumber) {
 		// 현재 사용자 정보 가져오기
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String userId = "null";
-		
-		if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-			userId = userDetails.getUsername();  // 이 값이 로그인된 사용자의 userId
-		}
-		else {
-			log.info("로그인되지 않음");
-			return false;
-		}
-		
-		// 사용자 정보 찾기
-		Optional<UserEntity> userEntity1 = userRepository.findById(userId);
-		if (userEntity1.isEmpty()) {
-			log.warn("사용자 정보를 찾지 못함: {}", userId);
-			return false;
-		}
-		UserEntity userEntity = userEntity1.get();
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String userId = "null";
+			
+			if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+				UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+				userId = userDetails.getUsername();  // 이 값이 로그인된 사용자의 userId
+			}
+			else {
+				log.info("로그인되지 않음");
+				return false;
+			}
+			
+			// 사용자 정보 찾기
+			Optional<UserEntity> userEntity1 = userRepository.findById(userId);
+			if (userEntity1.isEmpty()) {
+				log.warn("사용자 정보를 찾지 못함: {}", userId);
+				return false;
+			}
+			UserEntity userEntity = userEntity1.get();
 
-		// 기존에 topFavorite이 1인 항해가 있다면, 0으로 업데이트
-		Optional<FavoriteVoyageEntity> existingFavorite = favoriteVoyageRepository.findByUserEntityAndTopFavorite(userEntity, "1");
-		if (existingFavorite.isPresent()) {
-		FavoriteVoyageEntity favoriteVoyageEntity = existingFavorite.get();
-		favoriteVoyageEntity.setTopFavorite("0");
-		FavoriteVoyageEntity temp = favoriteVoyageRepository.save(favoriteVoyageEntity);
-		log.info("즐겨찾기를 해제하였습니다. : {}",temp);
-		}
-		
-		// 방금 선택한 항해를 topFavorite으로 지정 (1로 업데이트)
-		Optional<FavoriteVoyageEntity> favVoyageEntity = favoriteVoyageRepository.findByUserEntity_UserIdAndVoyageEntity_vNumber(userId, vNumber);
-		if (favVoyageEntity.isPresent()) {
-			FavoriteVoyageEntity favoriteVoyageEntity = favVoyageEntity.get();
-			favoriteVoyageEntity.setTopFavorite("1");
-			FavoriteVoyageEntity temp = favoriteVoyageRepository.save(favoriteVoyageEntity);
-			log.info("즐겨찾기로 지정되었습니다.: {}",temp);
-			return true;
-		}
-		log.info("즐겨찾기 지정 실패");
-		return false;
-	}
+
+	     // 현재 사용자가 이미 top_favorite이 1인 항해가 있는지 확인
+	     Optional<FavoriteVoyageEntity> existingFavorite = favoriteVoyageRepository.findByUserEntityAndTopFavorite(userEntity, "1");
+
+	     if (existingFavorite.isPresent()) {
+	         // 이미 top_favorite이 1인 항해가 있으면 그 항해의 top_favorite을 0으로 변경
+	         FavoriteVoyageEntity currentTopFavorite = existingFavorite.get();
+	         currentTopFavorite.setTopFavorite("0");
+	         favoriteVoyageRepository.save(currentTopFavorite); // 변경된 값 저장
+	     }
+
+	     // 새로 지정할 항해를 찾고 top_favorite을 1로 변경
+	     Optional<FavoriteVoyageEntity> favoriteVoyageOpt = favoriteVoyageRepository.findByUserEntity_UserIdAndVoyageEntity_vNumber(userId, vNumber);
+	     if (favoriteVoyageOpt.isPresent()) {
+	         FavoriteVoyageEntity favoriteVoyage = favoriteVoyageOpt.get();
+	         favoriteVoyage.setTopFavorite("1");
+	         favoriteVoyageRepository.save(favoriteVoyage); // 변경된 값 저장
+	         return true;
+	     }
+	     return false;
+	 }
 
 	
 	/**
