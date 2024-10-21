@@ -1,3 +1,4 @@
+
 // 페이지 로드 시 초기 값 설정
 document.addEventListener('DOMContentLoaded', function () {
     const currentPath = window.location.pathname;
@@ -153,12 +154,13 @@ function calculation() {
 
 // 1. 초기화
 function resetToDefault() {
+
     // 초기 값 저장
     const defaultValues = {
         portName: '[[${ portName }]]',
         tonnage: '[[${ tonnage }]]',
-        importDate: '[[${ importDate }]]',
-        exportDate: '[[${ exportDate }]]',
+        importDate: document.getElementById('importDate').value,
+        exportDate: document.getElementById('exportDate').value,
         workingHour: parseInt(calcForm.getAttribute('data-working-hour'), 10),
         workingMinute: parseInt(calcForm.getAttribute('data-working-minute'), 10),
         waitingHour: parseInt(calcForm.getAttribute('data-waiting-hour'), 10),
@@ -182,6 +184,7 @@ function resetToDefault() {
 
     if (defaultValues.exportDate && !isNaN(new Date(defaultValues.exportDate))) {
         document.getElementById('exportDate').value = defaultValues.exportDate;
+        userEnteredExportDate = new Date(defaultValues.exportDate);
     } else {
         document.getElementById('exportDate').value = ''; // 기본값 설정
     }
@@ -221,17 +224,81 @@ function resetToDefault() {
 };
 
 
+
+
+// 작업 시간 또는 대기 시간 변경 시 제한 조건 확인
+document.getElementById('workingHour').addEventListener('input', checkTimeConstraint);
+document.getElementById('workingMinute').addEventListener('input', checkTimeConstraint);
+document.getElementById('waitingHour').addEventListener('input', checkTimeConstraint);
+document.getElementById('waitingMinute').addEventListener('input', checkTimeConstraint);
+
+// 출항 일시를 저장하는 변수 (초기에는 기본 출항 일시로 설정)
+let userEnteredExportDate = new Date(document.getElementById('exportDate').value);
+
+// 사용자가 출항 일시를 수정할 때마다 userEnteredExportDate를 업데이트
+document.getElementById('exportDateDisplay').addEventListener('input', function () {
+    const updatedDate = new Date(document.getElementById('exportDateDisplay').value);
+    if (!isNaN(updatedDate)) {
+        userEnteredExportDate = updatedDate; // 수정된 값이 유효한 날짜일 경우만 업데이트
+    }
+});
+
+// 작업 시간, 대기 시간 수정 시 출항 일시와 입항 일시 사이의 값을 넘지 않도록 하는 함수
+function checkTimeConstraint() {
+    const importDate = new Date(document.getElementById('importDate').value); // 입항 일시 (hidden 필드)
+
+    const workingHour = parseFloat(document.getElementById('workingHour').value) || 0;
+    const workingMinute = parseFloat(document.getElementById('workingMinute').value) || 0;
+    const waitingHour = parseFloat(document.getElementById('waitingHour').value) || 0;
+    const waitingMinute = parseFloat(document.getElementById('waitingMinute').value) || 0;
+
+    // 작업 시간과 대기 시간의 총합 (분 단위)
+    const totalRequiredMinutes = (workingHour * 60 + workingMinute) + (waitingHour * 60 + waitingMinute);
+
+    // 입항 일시와 사용자가 수정한 출항 일시 간의 차이를 분 단위로 계산
+    const totalAvailableMinutes = (userEnteredExportDate - importDate) / (1000 * 60); // 밀리초를 분으로 변환
+
+    // 값 출력해 보기 (디버깅용)
+    console.log('총 필요한 시간 (분):', totalRequiredMinutes);
+    console.log('총 가능한 시간 (분):', totalAvailableMinutes);
+    console.log('입항 일시:', importDate);
+    console.log('사용자 입력 출항 일시:', userEnteredExportDate);
+
+    // 조건 체크
+    if (totalRequiredMinutes > totalAvailableMinutes) {
+        alert('작업 시간과 대기 시간의 합이 입항 일시와 출항 예정 일시 사이의 시간을 초과합니다. 출항 예정 일시를 바꿔 주세요.');
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
 // 3. 초기화 시 기본값을 적용
 document.getElementById('resetButton').addEventListener('click', resetToDefault);
+
 
 // 4. 요금 계산
 document.getElementById('calcButton').addEventListener('click', function (event) {
     event.preventDefault();
-    calculation();
+    if (checkTimeConstraint()) {
+        calculation();
+    } else {
+        // 오류 처리
+        alert('계산에 실패했습니다. 시간을 확인해주세요.');
+    }
 });
+
 
 // 저장 버튼
 document.getElementById('saveButton').addEventListener('click', function (event) {
     event.preventDefault(); // 기본 폼 제출 방지
-    alert("저장하시겠습니까?");
+    if (checkTimeConstraint()) {
+        alert('저장하였습니다.');
+    } else {
+        // 오류 처리
+        alert('저장에 실패했습니다. 시간을 확인해주세요.');
+    }
 });

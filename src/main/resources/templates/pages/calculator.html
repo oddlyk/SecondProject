@@ -38,11 +38,15 @@
                     </div>
                     <div class="import">
                         <div class="import-text">입항 예정 일시</div>
-                        <input type="date" name="importDate" id="importDate" th:value="${importDate}">
+                        <input type="date" name="importDate" id="importDateDisplay" th:value="${importDateDisplay}">
+                        <!-- 실제 값은 datetime-local로 서버에 전송 -->
+                        <input type="hidden" name="importDate" id="importDate" th:value="${importDateFull}">
                     </div>
                     <div class="export">
                         <div class="export-text">출항 예정 일시</div>
-                        <input type="date" name="exportDate" id="exportDate" th:value="${exportDate}">
+                        <input type="date" name="exportDate" id="exportDateDisplay" th:value="${exportDateDisplay}">
+                        <!-- 실제 값은 datetime-local로 서버에 전송 -->
+                        <input type="hidden" name="exportDate" id="exportDate" th:value="${exportDateFull}">
                     </div>
                     <div class="working">
                         <div class="working-text">작업 시간</div>
