@@ -17,99 +17,106 @@
 
     <div class="header" th:replace="fragment/header(title='헤더')"></div>
     <div class="container">
-        <img loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
-            class="wave" alt="물결 배경">
-    </div>
-    <div id="map" style="height: 500px; width: 100%;"></div>
-
-    <div class="port-box">
-        <div class="destination-port">
-            <select name="port" id="portchoose">
-                <optgroup label="항구 선택">
-                    <option value="KRPUS" th:selected="${port.portCode == 'KRPUS'}">부산항</option>
-                    <option value="KRBNP" th:selected="${port.portCode == 'KRBNP'}">부산신항</option>
-                    <option value="KRINC" th:selected="${port.portCode == 'KRINC'}">인천항</option>
-                </optgroup>
-            </select>
-        </div>
-    </div>
-    <div class="portInfo-box">
-        <div class="portInfo">
-        <input type="hidden" th:value="${port.portCode}" id="portcode">
-        <input type="hidden" th:value="${port.portLat}" id="portLat">
-        <input type="hidden" th:value="${port.portLon}" id="portLon">
-        <input type="hidden" th:value="${port.portUrl}" id="pageUrl">
-            <div id="port-name" class="portName" th:text="${port.portName}">도착항</div>
-            <div class="weather" id="weather-text">날씨</div>
-            <img src="" alt="Weather Icon" id="weatherIcon">
-            <div id="phone-num" class="port-phone">항만공사: <span th:text="${port.portContact}" id="contact">전화번호</span></div>
-            <button class="homepage" id="homepage-link">
-                <div class="page-box">
-                    <div class="page-text" >홈페이지</div>
-                </div>
-            </button>
-            <div class="processing">항만 선석 이용 현황:</div>
-            <button class="berthInfo">
-                <div class="berth-box">
-                    <div class="berth-working">0</div>
-                    <div class="berth-slash">/</div>
-                    <div class="berth-total">0</div>
-                </div>
-            </button>
-            <div class="accident-statics">전년도 당월 사고 통계</div>
-            <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>
-            <div>
-                <div class="accident_box1">
-                    <div class="rank1">1위</div>
-                    <div class="reason1" id="rank1">-</div>
-                    <div class="count" id="count1">- 회</div>
-                </div>
-                <div class="accident_box2">
-                    <div class="rank2">2위</div>
-                    <div class="reason2" id="rank2">-</div>
-                    <div class="count" id="count2">- 회</div>
-                </div>
-                <div class="accident_box3">
-                    <div class="rank3">3위</div>
-                    <div class="reason3" id="rank3">-</div>
-                    <div class="count" id="count3">- 회</div>
+        <div class="wave" alt="물결 배경">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="762" viewBox="0 0 1440 762" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M-5 0L55.2083 15.875C115.417 31.75 235.833 63.5 356.25 174.625C476.667 285.75 597.083 476.25 717.5 428.625C837.917 381 958.333 95.25 1078.75 95.25C1199.17 95.25 1319.58 381 1379.79 523.875L1440 666.75V762H1379.79C1319.58 762 1199.17 762 1078.75 762C958.333 762 837.917 762 717.5 762C597.083 762 476.667 762 356.25 762C235.833 762 115.417 762 55.2083 762H-5V0Z"
+                    fill="#8DADFF" />
+            </svg>
+            <div id="map"></div>
+            <div class="port-box">
+                <div class="destination-port">
+                    <select name="port" id="portchoose">
+                        <optgroup label="항구 선택">
+                            <option value="KRPUS" th:selected="${port.portCode == 'KRPUS'}">부산항</option>
+                            <option value="KRBNP" th:selected="${port.portCode == 'KRBNP'}">부산신항</option>
+                            <option value="KRINC" th:selected="${port.portCode == 'KRINC'}">인천항</option>
+                        </optgroup>
+                    </select>
                 </div>
             </div>
-            <p id="no-data-message" style="display:none;">사고 통계 데이터를 불러올 수 없습니다.</p>
+            <div class="portInfo-box">
+                <div class="portInfo">
+                    <input type="hidden" th:value="${port.portCode}" id="portcode">
+                    <input type="hidden" th:value="${port.portLat}" id="portLat">
+                    <input type="hidden" th:value="${port.portLon}" id="portLon">
+                    <input type="hidden" th:value="${port.portUrl}" id="pageUrl">
+                    <div class="port-name-weather">
+                        <div id="port-name" class="portName" th:text="${port.portName}">도착항</div>
+                        <div class="weather-info">
+                            <img src="" alt="Weather Icon" id="weatherIcon">
+                            <div class="weather" id="weather-text">날씨</div>
+                        </div>
+                    </div>
+                    <div class="port-contact-wrapper">
+                        <div id="phone-num" class="port-phone">항만공사: <span th:text="${port.portContact}"
+                                id="contact">전화번호</span></div>
+                        <button class="homepage" id="homepage-link">
+                            <div class="page-box">
+                                <div class="page-text">홈페이지</div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="processing-wrapper">
+                        <div class="processing">항만 선석 이용 현황 :</div>
+                        <button class="berthInfo">
+                            <div class="berth-box">
+                                <div class="berth-working">0</div>
+                                <div class="berth-slash">/</div>
+                                <div class="berth-total">0</div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="accident-statics">전년도 당월 사고 통계</div>
+                    <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>
+                    <div class="accident-statics-wrapper">
+                        <div class="accident_box1">
+                            <div class="rank1">1위</div>
+                            <div class="reason1" id="rank1">-</div>
+                            <div class="count" id="count1">- 회</div>
+                        </div>
+                        <div class="accident_box2">
+                            <div class="rank2">2위</div>
+                            <div class="reason2" id="rank2">-</div>
+                            <div class="count" id="count2">- 회</div>
+                        </div>
+                        <div class="accident_box3">
+                            <div class="rank3">3위</div>
+                            <div class="reason3" id="rank3">-</div>
+                            <div class="count" id="count3">- 회</div>
+                        </div>
+                    </div>
+                    <p id="no-data-message" style="display:none;">사고 통계 데이터를 불러올 수 없습니다.</p>
+                </div>
+            </div>
+            <div class="toggle-box">
+                <div class="waiting-area">
+                    <div class="toggle1">인근 대기지</div>
+                    <div class="mark1"><img src="/images/waiting.png"></div>
+                    <label class="switch1">
+                        <input type="checkbox" id="toggleInfoWaiting" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="terminal">
+                    <div class="toggle2">컨테이너 터미널</div>
+                    <div class="mark2"><img src="/images/terminal.png"></div>
+                    <label class="switch2">
+                        <input type="checkbox" id="toggleInfoTerminal" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="congestion-area">
+                    <div class="toggle3">혼잡 주의 지역</div>
+                    <div class="mark3"><img src="/images/warning.png"></div>
+                    <label class="switch3">
+                        <input type="checkbox" id="toggleInfoCongestion" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="toggle-box">
-        <div class="waiting-area">
-            <div class="toggle1">인근 대기지</div>
-            <div class="mark1"><img src="/images/waiting.png"></div>
-            <label class="switch1">
-                <input type="checkbox" id="toggleInfoWaiting" checked>
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="terminal">
-            <div class="toggle2">컨테이너 터미널</div>
-            <div class="mark1"><img src="/images/terminal.png"></div>
-            <label class="switch2">
-                <input type="checkbox" id="toggleInfoTerminal" checked>
-                <span class="slider"></span>
-            </label>
-
-        </div>
-
-        <div class="congestion-area">
-            <div class="toggle3">혼잡 주의 지역</div>
-            <div class="mark1"><img src="/images/warning.png"></div>
-            <label class="switch3">
-                <input type="checkbox" id="toggleInfoCongestion" checked>
-                <span class="slider"></span>
-            </label>
-
-        </div>
-    </div>
-
 </body>
 
 </html>
