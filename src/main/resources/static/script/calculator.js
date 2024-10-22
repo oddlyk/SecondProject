@@ -137,12 +137,12 @@ function calculation() {
     let total_fee = berthing_fee + anchorage_fee + mooring_fee + entryExitFee + securityFee;
 
     // 각각의 금액 표시
-    document.getElementById('berthing').innerText = Number(berthing_fee.toFixed(1)).toLocaleString();
-    document.getElementById('anchorage').innerText = Number(anchorage_fee.toFixed(1)).toLocaleString();
-    document.getElementById('mooring').innerText = Number(mooring_fee.toFixed(1)).toLocaleString();
-    document.getElementById('entryExit').innerText = Number(entryExitFee.toFixed(1)).toLocaleString();
-    document.getElementById('security').innerText = Number(securityFee.toFixed(1)).toLocaleString();
-    document.getElementById('totalResult').innerText = Number(total_fee.toFixed(1)).toLocaleString();
+    document.getElementById('berthing').innerText = Number(anchorage_fee.toFixed(0)).toLocaleString();
+    document.getElementById('anchorage').innerText = Number(anchorage_fee.toFixed(0)).toLocaleString();
+    document.getElementById('mooring').innerText = Number(mooring_fee.toFixed(0)).toLocaleString();
+    document.getElementById('entryExit').innerText = Number(entryExitFee.toFixed(0)).toLocaleString();
+    document.getElementById('security').innerText = Number(securityFee.toFixed(0)).toLocaleString();
+    document.getElementById('totalResult').innerText = Number(total_fee.toFixed(0)).toLocaleString();
 
     // 각각의 비율 표시
     document.getElementById('berthingRatio').innerText = (berthing_fee / total_fee * 100).toFixed(1);

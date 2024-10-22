@@ -238,11 +238,18 @@ body {
 }
 
 .weight input {
-    width: 172px;
+    width: 160px;
     height: 31px;
     left: 380px;
     top: 421px;
     background: #FFFEFE;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    align-items: center;
+    text-align: center;
     border: 1px solid #808080;
     border-radius: 5px;
 }
