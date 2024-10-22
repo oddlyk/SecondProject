@@ -287,153 +287,81 @@
 }
 
 
-/* Column Example 1 */
+.list-tuple {
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 28px;
+    color: #000000;
 
-position: absolute;
-width: 1285.02px;
-height: 79.79px;
-left: 76px;
-top: 460.79px;
+    display: flex;
+    gap: 2%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
 
+.choose-one {
+    box-sizing: border-box;
+    width: 2.253%;
+    height: 34.2px;
+    margin-left: 3.1%;
+    margin-top: 1%;
+    border: 1.5px solid #CECBCB;
+    border-radius: 3px;
+}
 
+.tuple-link {
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    justify-content: space-between;
+    line-height: 28px;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+}
 
-/* CMA CGM VON HUMBOLDT */
+.tuple-link>.tuple1 {
+    width: 40%;
+}
 
-position: absolute;
-width: 318.53px;
-height: 26.6px;
-left: 185.81px;
-top: 473.14px;
+.tuple-link>.tuple2 {
+    width: 15%;
+}
 
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 23px;
-line-height: 28px;
-text-align: center;
+.tuple-link>.tuple3 {
+    width: 15%;
+}
 
-color: #000000;
+.tuple-link>.tuple4 {
+    width: 15%;
+}
 
+.tuple-link>.tuple5 {
+    width: 15%;
+}
 
+.favorite {
+    display: none;
+}
 
-/* 9HA5017 */
-
-position: absolute;
-width: 107.83px;
-height: 23.75px;
-left: 550.83px;
-top: 473.14px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 23px;
-line-height: 28px;
-text-align: center;
-
-color: #000000;
-
-
-
-/* AEJEA */
-
-position: absolute;
-width: 107.83px;
-height: 23.75px;
-left: 719.01px;
-top: 473.14px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 23px;
-line-height: 28px;
-text-align: center;
-
-color: #000000;
-
-
-
-/* KRPUS */
-
-position: absolute;
-width: 107.83px;
-height: 23.75px;
-left: 886.19px;
-top: 473.14px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 23px;
-line-height: 28px;
-text-align: center;
-
-color: #000000;
+.favorite-custom {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url("../images/star.png");
+    background-size: cover;
+    cursor: pointer;
+    padding-bottom: 1%;
+}
 
 
-
-/* 72% */
-
-position: absolute;
-width: 107.83px;
-height: 23.75px;
-left: 1063.26px;
-top: 472.19px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 25px;
-line-height: 30px;
-text-align: center;
-
-color: #000000;
-
-
-
-/* 선택 */
-
-box-sizing: border-box;
-
-position: absolute;
-width: 35.61px;
-height: 34.2px;
-left: 110.62px;
-top: 467.44px;
-
-border: 1.5px solid #CECBCB;
-border-radius: 3px;
-
-
-/* Line 2 */
-
-position: absolute;
-width: 1285.02px;
-height: 0px;
-left: 76px;
-top: 540.58px;
-
-border: 1px solid #D4D2D2;
-
-
-/* Star_fill */
-
-position: absolute;
-width: 49.46px;
-height: 47.5px;
-left: 1240.33px;
-top: 460.79px;
-
-
-
-/* Star 1 */
-
-position: absolute;
-left: 18.18%;
-right: 18.18%;
-top: 19.53%;
-bottom: 19.14%;
-
-background: #344C64;
-border: 2px solid #344C64;
+.favorite:checked+.favorite-custom {
+    background-image: url("../images/darkStar.png");
+}
