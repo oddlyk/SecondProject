@@ -33,13 +33,61 @@
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
 }
 
+
+
+.container {
+    width: 1440px;
+    height: 934px;
+    background: #5D7ED3;
+}
+
+.wave {
+    width: 1440px;
+    height: 703px;
+    flex-shrink: 0;
+    fill: #8DADFF;
+}
+
+.background {
+    position: absolute;
+    top: 300px;
+    left: 250px;
+    width: 939px;
+    height: 574px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    background: #FFF;
+}
+
+.left-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 334px;
+    height: 574px;
+    flex-shrink: 0;
+    border-radius: 25px 0px 0px 25px;
+    background: #22335F;
+}
+
+.logo {
+    width: 199px;
+    height: 233px;
+    flex-shrink: 0;
+}
+
 .top-joinbox {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 251px;
     height: 103px;
+    z-index: 2;
 }
 
 .top-joinbox .top-join {
-    position: fixed;
+    position: relative;
     width: 253px;
     height: 103px;
     top: 0;
@@ -51,7 +99,7 @@
     width: 251px;
     height: 103px;
     background-color: #3d86ce;
-    border-radius: 0px 25px 5px 100px;
+    border-radius: 0px 21px 5px 100px;
 }
 
 .top-joinbox .top-join-text {
@@ -69,84 +117,253 @@
     line-height: normal;
 }
 
-.container {
+#joinForm {
     position: absolute;
-    margin: 0 auto;
-    width: 90%;
-    height: 950px;
-    background: #5D7ED3;
-    overflow: hidden;
-    left: 80px
+    top: 32px;
+    right: 32px;
+    width: 532px;
+    height: 511px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 3px 7.7px 0.5px rgba(0, 0, 0, 0.13);
+    z-index: 1;
 }
 
-.wave {
-    position: absolute;
-    margin: 0 auto;
-    width: 180%;
-    height: 900px;
-    top: 250px;
-    left: -80px;
-}
-
-.background {
-    position: absolute;
-    left: 17.36%;
-    right: 17.43%;
-    top: 26.37%;
-    bottom: 17.58%;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-
+.joinlist {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    margin: 5px;
+}
+
+.namebox {
+    width: 171.96px;
+    height: 49px;
+    flex-shrink: 0;
+}
+
+.namebox>.label {
+    width: 42.99px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 3px;
+}
+
+.namebox>.username {
+    width: 171.96px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
+
+.idbox {
+    display: block;
+    width: 100%;
+    height: 46px;
+    flex-shrink: 0;
+}
+
+.idbox>.label {
+    width: 64.485px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 3px;
+}
+
+.idbox_inline {
+    display: flex;
+    /* input과 버튼만 가로 정렬 */
+    gap: 10px;
+    /* input 필드와 버튼 사이 간격 */
     align-items: center;
+    /* 수직 정렬 */
 }
 
-.joinbox {
-    width: 500px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 0px 25px 25px 0px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+.userId {
+    width: 212.263px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
 }
 
-.joinbox input {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.joinbox .submitBtn {
-    width: 100%;
-    padding: 10px;
-    background-color: #5D7ED3;
-    color: white;
+.idCheck {
+    width: 80px;
+    height: 29px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    background-color: #3E87CE;
+    color: #FFF;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+
+    /* 폰트 스타일 */
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    padding: 0;
+    /* 텍스트 중심 정렬을 위해 여백 제거 */
 }
 
-.joinbox .submitBtn:hover {
-    background-color: #4a6cb3;
+.pwdbox {
+    width: 300.929px;
+    height: 46px;
+    flex-shrink: 0;
 }
 
-.left-box {
-    width: 334px;
-    height: 574px;
-    background-color: #22335F;
-    border-radius: 25px 0px 0px 25px;
+.pwdbox>.label {
+    width: 83.293px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 3px;
+}
+
+.userPwd {
+    width: 300.929px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
+
+.pwdCheckBox {
+    width: 408.01px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.pwdCheck {
+    width: 300.929px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
+
+.phone {
+    width: 300.929px;
+    height: 47px;
+    flex-shrink: 0;
+}
+
+.phone>.label {
+    width: 124.939px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.phonenum {
+    width: 300.929px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
+
+.email>.label {
+    width: 108.818px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+
+
+.userType>.label {
+    width: 108.818px;
+    color: #808080;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.typeSelect {
+    display: flex;
+    color: black;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    justify-content: center;
+    margin: 3px;
+}
+
+.typeSelect input {
+    margin: 0 4px 0 15px;
+}
+
+.bottom-box {
+    position: absolute;
+    top: 490px;
+    right: 59px;
+    width: 478.263px;
+    height: 41.182px;
+    flex-shrink: 0;
+}
+
+.bottom-join {
+    width: 478.263px;
+    height: 41.182px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: #3E87CE;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    margin-right: -4px;
 }
 
-.left-box img {
-    width: 500px;
-    margin-bottom: 20px;
+#submitBtn {
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    background: transparent;
+    text-align: center;
+    font-family: "KoddiUD OnGothic";
+    font-size: 21px;
+    font-weight: 800;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
 }
