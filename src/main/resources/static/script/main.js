@@ -4,8 +4,6 @@
  */
 // 화면 시작 시...
 
-document.getElementById('saveBtn').disabled = true; // 버튼 비활성화
-
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
 let searchForm = document.getElementById('SearchVoyage');
@@ -52,7 +50,7 @@ if (isItSearch == 1) {
 				data: sendData,
 				success: function (resp) {
 					if (resp === "OK") alert("저장되었습니다.");
-					if(resp === "over") alert("저장된 항해가 10개가 넘어 저장하지 못했습니다. 마이페이지에서 다른 항해를 제거 후 저장을 시도해 주세요.");
+					if (resp === "over") alert("저장된 항해가 10개가 넘어 저장하지 못했습니다. 마이페이지에서 다른 항해를 제거 후 저장을 시도해 주세요.");
 					if (resp === "exist") alert("이미 저장된 항해입니다.");
 				},
 				error: function (resp) {

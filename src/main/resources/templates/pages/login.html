@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
+    <!-- <link rel="stylesheet" th:href="@{/css/login.css}"> -->
     <link rel="stylesheet" th:href="@{/css/login.css}">
-    <script defer th:src=" @{/script/jquery-3.7.1.min.js}">
-    </script>
+    <script defer th:src="@{/script/jquery-3.7.1.min.js}"></script>
+
 </head>
 
 <body>
@@ -29,13 +30,16 @@
             <div class="content">
                 <form th:action="@{/user/loginProc}" method="POST">
                     <div class="id-box">
+                        <!--  -->
                         <img th:src="@{/images/user.png}" class="user" alt="아이디">
                         <input type="text" name="id" id="id" placeholder="아이디">
                     </div>
                     <div class="pwd-box">
+                        <!--  -->
                         <img th:src="@{/images/password.png}" class="password" alt="비밀번호">
                         <input type="text" name="pwd" id="pwd" placeholder="비밀번호">
                     </div>
+
                     <div class="bottom-box">
                         <input type="submit" id="submitBtn" value="로그인">
                     </div>

@@ -102,15 +102,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (GetnowLoc != "") {
         getWeather(GetnowLoc);
     }
-	
-	let voyagePer = document.getElementById('voyagePer').textContent;
-	if(voyagePer==0){
-		alert("아직 시작하지 않은 항해입니다.");
-	}
-	if(voyagePer==100){
-		alert("목적항에 도착하여 종료된 항해입니다.");
-	}
-	
+
+    let voyagePer = document.getElementById('voyagePer').textContent;
+    if (voyagePer == 0) {
+        alert("아직 시작하지 않은 항해입니다.");
+    }
+    if (voyagePer == 100) {
+        alert("목적항에 도착하여 종료된 항해입니다.");
+    }
+
 });
 //항해 출발일도착일의 시간을 버림
 document.getElementById('depTime').innerText = document.getElementById('depTime').textContent.split('T')[0];

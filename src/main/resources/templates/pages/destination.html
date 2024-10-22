@@ -36,17 +36,18 @@
     </div>
     <div class="portInfo-box">
         <div class="portInfo">
-        <input type="hidden" th:value="${port.portCode}" id="portcode">
-        <input type="hidden" th:value="${port.portLat}" id="portLat">
-        <input type="hidden" th:value="${port.portLon}" id="portLon">
-        <input type="hidden" th:value="${port.portUrl}" id="pageUrl">
+            <input type="hidden" th:value="${port.portCode}" id="portcode">
+            <input type="hidden" th:value="${port.portLat}" id="portLat">
+            <input type="hidden" th:value="${port.portLon}" id="portLon">
+            <input type="hidden" th:value="${port.portUrl}" id="pageUrl">
             <div id="port-name" class="portName" th:text="${port.portName}">도착항</div>
             <div class="weather" id="weather-text">날씨</div>
             <img src="" alt="Weather Icon" id="weatherIcon">
-            <div id="phone-num" class="port-phone">항만공사: <span th:text="${port.portContact}" id="contact">전화번호</span></div>
+            <div id="phone-num" class="port-phone">항만공사: <span th:text="${port.portContact}" id="contact">전화번호</span>
+            </div>
             <button class="homepage" id="homepage-link">
                 <div class="page-box">
-                    <div class="page-text" >홈페이지</div>
+                    <div class="page-text">홈페이지</div>
                 </div>
             </button>
             <div class="processing">항만 선석 이용 현황:</div>

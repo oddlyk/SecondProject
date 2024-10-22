@@ -34,16 +34,29 @@
 }
 
 /* 메인 */
+.body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
 
+.back {
+    width: 100%;
+    height: 740px;
+    background: rgba(113, 141, 213);
+}
 
-/* 메인 배경 */
 .background {
     position: relative;
-    width: 100%;
-    height: 734px;
-    left: 0px;
+    width: 1500px;
+    height: 740px;
+    margin: 0;
+    padding: 0;
+    background: rgba(113, 141, 213);
     text-align: center;
-    background: rgba(113, 141, 213, 0.93);
+    
+    margin: 0 auto;  /* 중앙 정렬 */
 }
 
 /* 검색창 */
@@ -119,38 +132,41 @@
     cursor: pointer;
 }
 
-.search:active, #saveBtn:active {
-	
-	background: #e2e2e2;
+.search:active,
+#saveBtn:active {
+
+    background: #e2e2e2;
     cursor: pointer;
 }
-.search:hover, #saveBtn:hover{
+
+.search:hover,
+#saveBtn:hover {
     /* 그림자 추가 */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#saveBtnBox{
-	position: absolute;
+#saveBtnBox {
+    position: absolute;
     width: 1391px;
     top: 170px;
-    text-align:right;
-    
-        left: 50%;
+    text-align: right;
+
+    left: 50%;
     transform: translateX(-50%);
     padding: 0 0 10px 0;
 }
 
 
-#saveBtn{
-	font-family: 'KoddiUD OnGothic';
+#saveBtn {
+    font-family: 'KoddiUD OnGothic';
     width: 87px;
     height: 45px;
     font-weight: 800;
     font-size: 30px;
     line-height: 25px;
-    color: #344C64;
-    background: white;
-    border:0;
+    color: white;
+    background: #344C64;
+    border: 0;
     border-radius: 10px;
 }
 
@@ -180,7 +196,6 @@
 
 /*정보창*/
 .service_box {
-    position: relative;
     width: 433px;
     height: 417px;
 
@@ -198,8 +213,8 @@
     text-align: center;
 }
 
-.service_box:hover{
-	background: #e2e2e2;
+.service_box:hover {
+    background: #e2e2e2;
     cursor: pointer;
 }
 
@@ -368,23 +383,24 @@
     width: 90%;
     height: 240px;
     padding: 10px 20px;
-
+    text-align: center;
     background: #FFFFFD;
     border: 1.5px solid #B1AEAE;
     box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
+    align-items: center;
 }
 
 
 
 /*목적지 정보 - 사고 각 순위 상자*/
 .accident_box {
-    width: 312px;
+    width: 100%;
     height: 44.34px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    margin-top: 10px;
 }
 
 /* 목적지 정보 - 전년도 당월 사고 현황 */
@@ -430,24 +446,28 @@
 .label {
     width: 100%;
     display: flex;
-    padding:0;
-    margin:0;
-    align-items: flex-end;
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
     text-align: center;
-    overflow:visible;
+    overflow: visible;
+
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    /* 중앙 정렬 */
+    align-items: center;
 }
 
 /* 항만사용료 - 금액 */
 .port_fee {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 4.3vw;
+    font-size: 1.2em;
     color: #344C64;
-   text-align:center;
-   margin:30px 0;
-   text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    margin: 40px 0 5px 0;
+    text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
+
 }
 
 
@@ -457,9 +477,14 @@
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
     font-size: 40px;
-    margin:0;
+    margin: 0;
     /* 글자 크기 설정 */
 
     text-align: center;
     color: #000000;
+
+    align-self: flex-end;
+    /* 우측 정렬 */
+    margin-right: 10px;
+    /* 우측 여백 추가 */
 }

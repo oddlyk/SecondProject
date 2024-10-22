@@ -27,253 +27,253 @@
     </th:block>
 
     <!-- 헤더 -->
-    <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
+        <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
 
     <!-- 내용이 들어가는 부분 -->
-    <div class="background">
-        <!-- 검색된 결과가 존재하는지 여부 출력. 존재하지 않는다면 alert 출력할 것. -->
-        <input type="hidden" th:value="${search}" id="isItsearch">
+    <div class="back">
+        <div class="background">
+            <!-- 검색된 결과가 존재하는지 여부 출력. 존재하지 않는다면 alert 출력할 것. -->
+            <input type="hidden" th:value="${search}" id="isItsearch">
 
-        <div id="req1"></div>
-        <div class="search_box">
-			<img th:src="@{/images/search.png}" alt="검색" id="searchIcon"> 
-            <form th:action="@{/}" method="get" id="SearchVoyage">
-                <input type="text" id="search_ship" name="search_ship"
-                    placeholder="선박을 입력하세요. (Call Sign / MMSI / IMO)">
-                <input class="search" id="search_icon" type="button" value="찾기">
-            </form>
+            <div id="req1"></div>
+            <div class="search_box">
+                <img th:src="@{/images/search.png}" alt="검색" id="searchIcon">
+                <form th:action="@{/}" method="get" id="SearchVoyage">
+                    <input type="text" id="search_ship" name="search_ship"
+                        placeholder="선박을 입력하세요. (Call Sign / MMSI / IMO)">
+                    <input class="search" id="search_icon" type="button" value="찾기">
+                </form>
+            </div>
+            <div id="saveBtnBox">
+                <input type="button" id="saveBtn" value="등록" th:if="${voyage != null}">
+            </div>
+
+            <!-- 검색에 실패했거나, 검색을 통한 접근이 아닐때 -->
+            <div class="main_services" id="searchNo" th:unless="${voyage != null}">
+                <div class="service_box service_box1">
+                    <p class="infoTitleBox">
+                        <img th:src="@{/images/Vector.png}" id="vector">
+                        <span class="shipName">선박명</span>
+                        <span class="callSign shipName">(CallSign)</span>
+                    </p>
+                    <div class="Line1"></div>
+                    <div class="shipFD">
+                        <div class="dep_arr">
+                            <div class="text_wrapper">출발지</div>
+                            <img class="whale" th:src="@{/images/ship.png}">
+                            <div class="text_wrapper">도착지</div>
+                        </div>
+                        <div class="dep_arr">
+                            <div class="text_wrap">NONE</div>
+                            <div class="text_wrap">NONE</div>
+                        </div>
+                        <div class="proceeding">
+                            <span class="percent">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 목적지 정보 -->
+                <div class="service_box service_box2">
+                    <!--항만 날씨 정보-->
+                    <div class="headBox">
+                        <div class="arr_info"><span class="port_name"></span>**항 현재
+                            날씨</div>
+                        <div class="weather">날씨 png</div>
+                        <div class="temparature">0<span class="celsius">°C</span></div>
+                    </div>
+
+                    <!-- 사고 정보 -->
+                    <div class="accident">
+                        <p class="accident_title">전년도 당월 사고 현황</p>
+                        <div class="Line2"></div>
+                        <div class="accident_box">
+                            <div class="accident_text">1위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">2위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">3위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- 항만사용료 -->
+                <div class="service_box service_box3">
+                    <div class="infoTitleBox">
+                        <p class="fee_title">예상 항만 사용료</p>
+                    </div>
+                    <div class="Line1"></div>
+                    <div class="label">
+                        <p class="port_fee">000,000,000</p>
+                        <p class="won">원</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_services" id="searchNo" th:unless="${voyage != null}">
+                <div class="service_box service_box1">
+                    <p class="infoTitleBox">
+                        <img th:src="@{/images/Vector.png}" id="vector">
+                        <span class="shipName">선박명</span>
+                        <span class="callSign shipName">(CallSign)</span>
+                    </p>
+                    <div class="Line1"></div>
+                    <div class="shipFD">
+                        <div class="dep_arr">
+                            <div class="text_wrapper">출발지</div>
+                            <img class="whale" th:src="@{/images/ship.png}">
+                            <div class="text_wrapper">도착지</div>
+                        </div>
+                        <div class="dep_arr">
+                            <div class="text_wrap">NONE</div>
+                            <div class="text_wrap">NONE</div>
+                        </div>
+                        <div class="proceeding">
+                            <span class="percent">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 목적지 정보 -->
+                <div class="service_box service_box2">
+                    <!--항만 날씨 정보-->
+                    <div class="headBox">
+                        <div class="arr_info"><span class="port_name"></span>**항 현재
+                            날씨</div>
+                        <div class="weather"><img src="https://openweathermap.org/img/wn/01d@2x.png" alt="날씨" style="width: 80px; height: 80px;">
+</div>
+                        <div class="temparature">0<span class="celsius">°C</span></div>
+                    </div>
+
+                    <!-- 사고 정보 -->
+                    <div class="accident">
+                        <p class="accident_title">전년도 당월 사고 현황</p>
+                        <div class="Line2"></div>
+                        <div class="accident_box">
+                            <div class="accident_text">1위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">2위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">3위</div>
+                            <div class="accident_text">-</div>
+                            <div class="accident_text">0.00%</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- 항만사용료 -->
+                <div class="service_box service_box3">
+                    <div class="infoTitleBox">
+                        <p class="fee_title">예상 항만 사용료</p>
+                    </div>
+                    <div class="Line1"></div>
+                    <div class="label">
+                        <p class="port_fee">000,000,000</p>
+                        <p class="won">원</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- 검색 결과가 존재할 때 -->
+            <div class="main_services" id="searchYes" th:if="${voyage != null}">
+                <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
+                <input type="hidden" th:value="${voyage.vNumber}" id="vNumber">
+                <div class="service_box service_box1">
+                    <input type="hidden" th:value="${voyage.port.portName}" id="port">
+                    <p class="infoTitleBox">
+                        <img th:src="@{/images/Vector.png}" id="vector">
+                        <span class="shipName" th:text="${voyage.ship.shipName}">선박명</span>
+                        <span class="callSign shipName" th:text="'(' + ${voyage.ship.callSign}+ ')'">(CallSign)</span>
+                    </p>
+                    <div class="Line1"></div>
+                    <div class="shipFD">
+                        <div class="dep_arr">
+                            <div class="text_wrapper">출발지</div>
+                            <img class="whale" th:src="@{/images/ship.png}">
+                            <div class="text_wrapper">도착지</div>
+                        </div>
+                        <div class="dep_arr">
+                            <div class="text_wrap" th:text="${voyage.departure}">출발항명</div>
+                            <div class="text_wrap" th:text="${voyage.port.portCode}">도착항명</div>
+
+                        </div>
+                        <div class="proceeding">
+                            <span class="percent" th:text="${voyagePer}+'%'">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 목적지 정보 -->
+                <div class="service_box service_box2">
+                    <!--항만 날씨 정보-->
+                    <div class="headBox">
+                        <div class="arr_info"><span class="port_name">[[${voyage.port.portName}]]</span> 정보</div>
+                        <div class="weather"><img src="" alt="Weather Icon" id="weatherIcon" class="weather">
+                        </div>
+                        <div class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></div>
+                    </div>
+
+                    <!-- 사고 정보 -->
+                    <div class="accident">
+                        <p class="accident_title">전년도 당월 사고 현황</p>
+                        <div class="Line2"></div>
+                        <div class="accident_box">
+                            <div class="accident_text">1위</div>
+                            <div class="accident_text" th:text="${accidentStatus.firstRank}">사고내역</div>
+
+                            <div class="accident_text" th:text="${accidentStatus.firstPer}+'%'">0.00%</div>
+
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">2위</div>
+                            <div class="accident_text" th:text="${accidentStatus.secondRank}">사고내역</div>
+                            <div class="accident_text" th:text="${accidentStatus.secondPer}+'%'">0.00%</div>
+                        </div>
+                        <div class="accident_box">
+                            <div class="accident_text">3위</div>
+                            <div class="accident_text" th:text="${accidentStatus.thirdRank}">사고내역</div>
+                            <div class="accident_text" th:text="${accidentStatus.thirdPer}+'%'">0.00%</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 항만사용료 -->
+                <div class="service_box service_box3">
+                    <div class="infoTitleBox">
+                        <p class="fee_title">예상 항만 사용료</p>
+                    </div>
+                    <div class="Line1"></div>
+                    <div class="label">
+                        <p class="port_fee" th:text="${portFee}">000,000,000</p>
+                        <p class="won">원</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="saveBtnBox">
-        	<input type="button" id="saveBtn" value="등록">
-        </div>
 
-        <!-- 검색에 실패했거나, 검색을 통한 접근이 아닐때 -->
-        <div class="main_services" id="searchNo" th:unless="${voyage != null}">
-            <div class="service_box service_box1">
-                <p class="infoTitleBox">
-                    <img th:src="@{/images/Vector.png}" id="vector">
-                    <span class="shipName">선박명</span>
-                    <span class="callSign shipName">(CallSign)</span>
-                </p>
-                <div class="Line1"></div>
-                <div class="shipFD">
-                    <div class="dep_arr">
-                        <div class="text_wrapper">출발지</div>
-                        <img class="whale" th:src="@{/images/ship.png}">
-                        <div class="text_wrapper">도착지</div>
-                    </div>
-                    <div class="dep_arr">
-                        <div class="text_wrap">NONE</div>
-                        <div class="text_wrap">NONE</div>
-                    </div>
-                    <div class="proceeding">
-                        <span class="percent">%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 목적지 정보 -->
-            <div class="service_box service_box2">
-                <!--항만 날씨 정보-->
-                <div class="headBox">
-                    <div class="arr_info"><span class="port_name"></span>**항 현재
-                        날씨</div>
-                    <div class="weather">날씨 png</div>
-                    <div class="temparature">0<span class="celsius">°C</span></div>
-                </div>
-
-                <!-- 사고 정보 -->
-                <div class="accident">
-                    <p class="accident_title">전년도 당월 사고 현황</p>
-                    <div class="Line2"></div>
-                    <div class="accident_box">
-                        <div class="accident_text">1위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">2위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">3위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                </div>
-
-
-            </div>
-            <!-- 항만사용료 -->
-            <div class="service_box service_box3">
-                <div class="infoTitleBox">
-                    <p class="fee_title">예상 항만 사용료</p>
-                </div>
-                <div class="Line1"></div>
-                <div class="label">
-                    <p class="port_fee">000,000,000</p>
-                    <p class="won">원</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="main_services" id="searchNo" th:unless="${voyage != null}">
-            <div class="service_box service_box1">
-                <p class="infoTitleBox">
-                    <img th:src="@{/images/Vector.png}" id="vector">
-                    <span class="shipName">선박명</span>
-                    <span class="callSign shipName">(CallSign)</span>
-                </p>
-                <div class="Line1"></div>
-                <div class="shipFD">
-                    <div class="dep_arr">
-                        <div class="text_wrapper">출발지</div>
-                        <img class="whale" th:src="@{/images/ship.png}">
-                        <div class="text_wrapper">도착지</div>
-                    </div>
-                    <div class="dep_arr">
-                        <div class="text_wrap">NONE</div>
-                        <div class="text_wrap">NONE</div>
-                    </div>
-                    <div class="proceeding">
-                        <span class="percent">%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 목적지 정보 -->
-            <div class="service_box service_box2">
-                <!--항만 날씨 정보-->
-                <div class="headBox">
-                    <div class="arr_info"><span class="port_name"></span>**항 현재
-                        날씨</div>
-                    <div class="weather">날씨 png</div>
-                    <div class="temparature">0<span class="celsius">°C</span></div>
-                </div>
-
-                <!-- 사고 정보 -->
-                <div class="accident">
-                    <p class="accident_title">전년도 당월 사고 현황</p>
-                    <div class="Line2"></div>
-                    <div class="accident_box">
-                        <div class="accident_text">1위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">2위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">3위</div>
-                        <div class="accident_text">-</div>
-                        <div class="accident_text">0.00%</div>
-                    </div>
-                </div>
-
-
-            </div>
-            <!-- 항만사용료 -->
-            <div class="service_box service_box3">
-                <div class="infoTitleBox">
-                    <p class="fee_title">예상 항만 사용료</p>
-                </div>
-                <div class="Line1"></div>
-                <div class="label">
-                    <p class="port_fee">000,000,000</p>
-                    <p class="won">원</p>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <!-- 검색 결과가 존재할 때 -->
-        <div class="main_services" id="searchYes" th:if="${voyage != null}">
-            <input type="hidden" th:value="${voyage.ship.callSign}" id="searched_ship">
-            <input type="hidden" th:value="${voyage.vNumber}" id="vNumber">
-            <div class="service_box service_box1">
-                <input type="hidden" th:value="${voyage.port.portName}" id="port">
-                <p class="infoTitleBox">
-                    <img th:src="@{/images/Vector.png}" id="vector">
-                    <span class="shipName" th:text="${voyage.ship.shipName}">선박명</span>
-                    <span class="callSign shipName" th:text="'(' + ${voyage.ship.callSign}+ ')'">(CallSign)</span>
-                </p>
-                <div class="Line1"></div>
-                <div class="shipFD">
-                    <div class="dep_arr">
-                        <div class="text_wrapper">출발지</div>
-                        <img class="whale" th:src="@{/images/ship.png}">
-                        <div class="text_wrapper">도착지</div>
-                    </div>
-                    <div class="dep_arr">
-                        <div class="text_wrap" th:text="${voyage.departure}">출발항명</div>
-                        <div class="text_wrap" th:text="${voyage.port.portCode}">도착항명</div>
-
-                    </div>
-                    <div class="proceeding">
-                        <span class="percent" th:text="${voyagePer}+'%'">%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 목적지 정보 -->
-            <div class="service_box service_box2">
-                <!--항만 날씨 정보-->
-                <div class="headBox">
-                    <div class="arr_info"><span class="port_name">[[${voyage.port.portName}]]</span> 정보</div>
-                    <div class="weather"><img src="" alt="Weather Icon" id="weatherIcon" class="weather">
-                    </div>
-                    <div class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></div>
-                </div>
-
-                <!-- 사고 정보 -->
-                <div class="accident">
-                    <p class="accident_title">전년도 당월 사고 현황</p>
-                    <div class="Line2"></div>
-                    <div class="accident_box">
-                        <div class="accident_text">1위</div>
-                        <div class="accident_text" th:text="${accidentStatus.firstRank}">사고내역</div>
-
-                        <div class="accident_text" th:text="${accidentStatus.firstPer}+'%'">0.00%</div>
-
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">2위</div>
-                        <div class="accident_text" th:text="${accidentStatus.secondRank}">사고내역</div>
-                        <div class="accident_text" th:text="${accidentStatus.secondPer}+'%'">0.00%</div>
-                    </div>
-                    <div class="accident_box">
-                        <div class="accident_text">3위</div>
-                        <div class="accident_text" th:text="${accidentStatus.thirdRank}">사고내역</div>
-                        <div class="accident_text" th:text="${accidentStatus.thirdPer}+'%'">0.00%</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- 항만사용료 -->
-            <div class="service_box service_box3">
-                <div class="infoTitleBox">
-                    <p class="fee_title">예상 항만 사용료</p>
-                </div>
-                <div class="Line1"></div>
-                <div class="label">
-                    <p class="port_fee" th:text="${portFee}">000,000,000</p>
-                    <p class="won">원</p>
-                </div>
-            </div>
-        </div>
     </div>
-
-    </div>
-    </div>
-    
     <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div>
 </body>
 
