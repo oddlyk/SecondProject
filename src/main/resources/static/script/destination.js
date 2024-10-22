@@ -35,7 +35,7 @@ async function updateWeather(lat, lng) {
 		const weatherData = response.data;
 
 		// 날씨 정보를 HTML에 반영
-		document.getElementById('weather-text').textContent = `${weatherData.main.temp}°C, ${weatherData.weather[0].description}`;
+		document.getElementById('weather-text').textContent = `${weatherData.main.temp}°C`;
 		document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 
 		console.log("날씨 정보:", weatherData);
