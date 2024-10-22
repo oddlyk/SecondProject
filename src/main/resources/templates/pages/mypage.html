@@ -4,22 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
-    <!-- <link rel="stylesheet" th:href="@{/css/mypage.css}"> -->
-    <link rel="stylesheet" href="../../static/css/mypage.css">
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
     <script defer th:src="@{/script/mypage.js}"></script>
 
 </head>
 
 <body>
-    <div class="header">
-        <iframe src="../fragment/header.html" frameborder="0" style="width: 100%; height: 100px;"></iframe>
-    </div>
-    <!-- <div class="header" th:replace="~{fragment/header(title='헤더')}"></div> -->
+    <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
     <div class="background">
         <div class="mainbox">
             <div class="userbox">
-                <!-- <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘"> -->
-                <img src="../../static/images/user1.png" class="user-icon" alt="사용자 유형 아이콘">
+                <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
                 <div class="user-type" th:text="${userType}">사용자 유형</div>
                 <div class="name" id="name" th:text="${userName}">이름</div>
                 <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
@@ -40,7 +35,7 @@
                     <div class="column6">즐겨찾기</div>
                 </div>
                 <hr class="line">
-                <div th:if="!${#lists.isEmpty(voyages)}">
+                <div th:if="!${#lists.isEmpty(voyages)}" class="tuple-box">
                     <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
                         <div class="list-tuple" th:each="voyage, iterStat : ${voyages}">
                             <input type="checkbox" name="vNumbers" th:value="${voyage.vNumber}" class="choose-one">
@@ -50,13 +45,14 @@
                                 <div class="tuple2" th:text="${voyage.ship.callSign}">콜사인</div>
                                 <div class="tuple3" th:text="${voyage.departure}">출발지</div>
                                 <div th:if="${voyage.port != null}">
-                                    <span th:text="${voyage.port.portCode}">도착지</span>
+                                    <span class="tuple4" th:text="${voyage.port.portCode}">도착지</span>
                                 </div>
-                                <div class="column5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
+                                <div class="tuple5" th:text="${voyagePer[iterStat.index]} + '%'">운행률(%)</div>
                             </a>
-                            <input type="checkbox" name="favorite" th:id="'favorite' + ${voyage.vNumber}"
-                                th:checked="${favoriteList[iterStat.index] == 1}"
+                            <input type="checkbox" class="favorite" name="favorite"
+                                th:id="'favorite' + ${voyage.vNumber}" th:checked="${favoriteList[iterStat.index] == 1}"
                                 th:onclick="changeFavorite([[${voyage.vNumber}]])">
+                            <label th:for="'favorite' + ${voyage.vNumber}" class="favorite-custom"></label>
                         </div>
                     </form>
                 </div>
