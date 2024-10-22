@@ -1,0 +1,439 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
+}
+
+.background {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    width: 100%;
+    height: 911px;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background: #5D7ED3;
+    text-align: center;
+}
+
+.mainbox {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    width: 92.3%;
+    height: 911px;
+    left: 4%;
+    top: 5%;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 60px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.userbox {
+    box-sizing: border-box;
+    position: absolute;
+    width: 35.82%;
+    height: 140px;
+    left: 5%;
+    top: 4%;
+    background: #F9F9F9;
+    border: 1px solid #828181;
+    border-radius: 25px;
+    aspect-ratio: 16 / 9;
+}
+
+.userbox img {
+    position: absolute;
+    width: 15.81%;
+    height: 91.78px;
+    left: 6%;
+    top: 6%;
+}
+
+.userbox>.user-type {
+    position: absolute;
+    width: 15.46%;
+    height: 20px;
+    left: 6%;
+    top: 74%;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 18px;
+    text-align: center;
+    z-index: 2;
+    color: #959494;
+}
+
+.userbox>.name {
+    position: absolute;
+    width: 12.66%;
+    height: 32.34px;
+    left: 27%;
+    top: 21%;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 29px;
+    line-height: 37px;
+    color: #000000;
+}
+
+.userbox>.Id {
+    position: absolute;
+    width: 34.08%;
+    height: 20.98px;
+    left: 19.2%;
+    top: 55%;
+
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 24px;
+
+    color: #959494;
+}
+
+.listbox {
+    box-sizing: border-box;
+    position: relative;
+    width: 90%;
+    height: 645px;
+    left: 5%;
+    top: 26.5%;
+    background: #FFFFFF;
+    border: 1px solid #959494;
+    border-radius: 15px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.listbox>.list-columns {
+    position: absolute;
+    width: 100%;
+    height: 63.65px;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    overflow-y: auto;
+    padding: 0 15px;
+
+    color: #828181;
+}
+
+.list-columns input {
+    box-sizing: border-box;
+    position: absolute;
+    width: 2.253%;
+    height: 34.2px;
+    margin-left: 3%;
+    margin-top: 1%;
+    border: 1.5px solid #CECBCB;
+    border-radius: 3px;
+}
+
+.list-columns>.column1 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    left: 19%;
+    margin-top: 0.7%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23.5px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.list-columns>.column2 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    margin-top: 0.7%;
+    left: 36%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23.5px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.list-columns>.column3 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    margin-top: 0.7%;
+    left: 49%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.list-columns>.column4 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    margin-top: 0.7%;
+    left: 62%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.list-columns>.column5 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    margin-top: 0.7%;
+    left: 75%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.list-columns>.column6 {
+    position: absolute;
+    width: 7.323%;
+    height: 29.45px;
+    margin-top: 0.7%;
+    left: 88%;
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #828181;
+}
+
+.listbox hr {
+    border-top: 1px solid #D4D2D2;
+    width: 100%;
+    margin-top: 3.6%;
+}
+
+.delete-btn {
+    position: absolute;
+    width: 5%;
+    height: 50px;
+    z-index: 999;
+    right: 2.5%;
+    top: 21.5%;
+    margin-top: 0%;
+    background: #DC5555;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+}
+
+
+/* Column Example 1 */
+
+position: absolute;
+width: 1285.02px;
+height: 79.79px;
+left: 76px;
+top: 460.79px;
+
+
+
+/* CMA CGM VON HUMBOLDT */
+
+position: absolute;
+width: 318.53px;
+height: 26.6px;
+left: 185.81px;
+top: 473.14px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 28px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* 9HA5017 */
+
+position: absolute;
+width: 107.83px;
+height: 23.75px;
+left: 550.83px;
+top: 473.14px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 28px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* AEJEA */
+
+position: absolute;
+width: 107.83px;
+height: 23.75px;
+left: 719.01px;
+top: 473.14px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 28px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* KRPUS */
+
+position: absolute;
+width: 107.83px;
+height: 23.75px;
+left: 886.19px;
+top: 473.14px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 28px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* 72% */
+
+position: absolute;
+width: 107.83px;
+height: 23.75px;
+left: 1063.26px;
+top: 472.19px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* 선택 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 35.61px;
+height: 34.2px;
+left: 110.62px;
+top: 467.44px;
+
+border: 1.5px solid #CECBCB;
+border-radius: 3px;
+
+
+/* Line 2 */
+
+position: absolute;
+width: 1285.02px;
+height: 0px;
+left: 76px;
+top: 540.58px;
+
+border: 1px solid #D4D2D2;
+
+
+/* Star_fill */
+
+position: absolute;
+width: 49.46px;
+height: 47.5px;
+left: 1240.33px;
+top: 460.79px;
+
+
+
+/* Star 1 */
+
+position: absolute;
+left: 18.18%;
+right: 18.18%;
+top: 19.53%;
+bottom: 19.14%;
+
+background: #344C64;
+border: 2px solid #344C64;

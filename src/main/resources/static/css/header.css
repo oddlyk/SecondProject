@@ -10,7 +10,6 @@
     font-weight: 800;
     text-align: center;
     flex-wrap: wrap;
-    padding: 11px 49px 0;
 }
 
 .logo {
@@ -168,18 +167,4 @@
     color: #072a63;
     font-size: 18px;
     align-self: flex-end;
-}
-
-@media (max-width: 991px) {
-    .header {
-        padding: 0 20px;
-    }
-
-    .nav-menu {
-        max-width: 100%;
-    }
-
-    .user-info {
-        white-space: initial;
-    }
 }
