@@ -36,18 +36,23 @@
 .body {
     width: 100%;
     background-color: white;
+    
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    text-align: center;
 }
 
 .header {
-    width: 1490px;
+    width: 1500px;
     height: 100px;
 
     position: relative;
     
+    padding-top: 0;
     margin: 0 auto;  /* 중앙 정렬 */
     background-color: white;
-
-    margin: auto 0;
+	
     padding-top: 20px;
 
     font-family: 'KoddiUD OnGothic', sans-serif;
@@ -58,13 +63,13 @@
 }
 
 .all_con {
-    position: absolute;
-
-    /* 수평 중앙 */
-    left: 50%;
-    /* 수평 중앙을 맞추기 위한 보정 */
-    transform: translateX(-50%);
-
+    
+    position: relative;
+    width: 1400px;
+    
+    height: 100px;
+    margin: 0 auto;  /* 중앙 정렬 */
+    padding: 0;
     display: flex;
     gap: 40px;
     font-family: 'KoddiUD OnGothic', sans-serif;
@@ -74,7 +79,6 @@
     justify-content: space-between;
 
 
-    width: 1400px;
 }
 
 .logo {

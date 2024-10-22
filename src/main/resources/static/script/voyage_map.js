@@ -31,7 +31,7 @@ return map;
 }
  */
 
-async function myMap() {
+function myMap() {
 	let nowLoc = JSON.parse('{ "lat": 36.5, "lng": 127.5 }'); //현위치 좌표가 없을 때
 	// 현위치 좌표
 	let GetnowLoc = document.getElementById('GetnowLoc');

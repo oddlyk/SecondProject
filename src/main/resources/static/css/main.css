@@ -39,6 +39,8 @@
     margin: 0;
     padding: 0;
     overflow-x: auto;
+    
+    text-align: center;
 }
 
 .back {
@@ -51,7 +53,6 @@
     position: relative;
     width: 1500px;
     height: 740px;
-    margin: 0;
     padding: 0;
     background: rgba(113, 141, 213);
     text-align: center;
