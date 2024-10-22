@@ -60,8 +60,8 @@ final private PortService portService;
 	    model.addAttribute("waitingHour", defaultHour);
 	    model.addAttribute("waitingMinute", defaultMinute);
 				
-		model.addAttribute("shipName", "선박명");
-		model.addAttribute("callSign", "(Call Sign)");
+		model.addAttribute("shipName", "-");
+		model.addAttribute("callSign", "-");
 		model.addAttribute("result", 0);
 		model.addAttribute("fee", "-");
 		model.addAttribute("portion", "-");

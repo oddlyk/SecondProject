@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title>항만 사용료 계산기</title>
     <link rel="stylesheet" th:href="@{/css/calculator.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer th:src="@{/script/calculator.js}"></script>
+
 </head>
 
 <body>
@@ -101,7 +103,9 @@
                             <div class="result-num" th:text="${result}" id="totalResult">123,000,111</div>
                         </div>
                         <div class="statistic">
-                            <div class="bar-chart"></div>
+                            <div class="bar-chart">
+                                <canvas id="bar" class="bar"></canvas>
+                            </div>
                             <div class="group">
                                 <div class="group1">
                                     <div class="column1">
