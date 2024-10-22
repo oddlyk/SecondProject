@@ -30,6 +30,7 @@
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
 
     <!-- 내용이 들어가는 부분 -->
+    <div class="back">
     <div class="background">
         <!-- 검색된 결과가 존재하는지 여부 출력. 존재하지 않는다면 alert 출력할 것. -->
         <input type="hidden" th:value="${search}" id="isItsearch">
@@ -273,7 +274,7 @@
 
     </div>
     </div>
-    
+    </div>
     <div class="container" th:replace="~{fragment/footer(title='푸터')}"></div>
 </body>
 
