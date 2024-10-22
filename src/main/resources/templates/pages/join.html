@@ -16,7 +16,7 @@
     <div class="background">
         <div class="container">
             <div class="wave">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1162" viewBox="0 0 1440 706" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1155" viewBox="0 0 1440 706" fill="none">
                     <g filter="url(#filter0_f_67_2140)">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M0 505.143L42.5 473.5C102.5 440.024 147.5 348.5 267.5 348.5C387.5 348.5 600 438.19 720 387.976C840 337.762 960 170.381 1080 86.6905C1200 3 1320 3 1380 3H1440V706H1380C1320 706 1200 706 1080 706C960 706 840 706 720 706C600 706 480 706 360 706C240 706 120 706 60 706H0V505.143Z"
@@ -31,7 +31,7 @@
                         </filter>
                     </defs>
                 </svg>
-                <div class="background">
+                <div class="innerbackground">
                     <div class="joinbox">
                         <div class="left-box">
                             <img src="/images/login_logo.png" class="logo" alt="로고">
@@ -76,19 +76,21 @@
                                 </div>
                                 <div class="email">
                                     <div class="label">이메일</div>
-                                    <input type="text" id="emailF" class="emailF">
-                                    <div class="at">@</div>
-                                    <select id="emailchoose">
-                                        <optgroup>
-                                            <option value="직접 입력">직접 입력</option>
-                                            <!-- <input type="text" id="email1" class="email1"> -->
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                            <option value="daum.net">daum.net</option>
-                                        </optgroup>
-                                    </select>
-                                    <input type="text" id="emailB" class="email1">
-                                    <input type="hidden" name="email" id="email">
+                                    <div class="emailinline">
+                                        <input type="text" id="emailF" class="emailF">
+                                        <div class="at">@</div>
+                                        <select id="emailchoose">
+                                            <optgroup>
+                                                <option value="직접 입력">직접 입력</option>
+                                                <!-- <input type="text" id="email1" class="email1"> -->
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="daum.net">daum.net</option>
+                                            </optgroup>
+                                        </select>
+                                        <input type="text" id="emailB" class="email1">
+                                        <input type="hidden" name="email" id="email">
+                                    </div>
                                 </div>
                                 <div class="userType">
                                     <div class="label">사용자 유형</div>
@@ -110,7 +112,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 
