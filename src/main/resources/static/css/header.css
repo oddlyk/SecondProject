@@ -57,7 +57,7 @@
 
 .all_con {
     position: absolute;
-
+	height:86px;
     /* 수평 중앙 */
     left: 50%;
     /* 수평 중앙을 맞추기 위한 보정 */
@@ -80,6 +80,7 @@
     object-fit: contain;
     object-position: center;
     width: 262px;
+    height:50px;
     margin: auto 0;
 }
 
