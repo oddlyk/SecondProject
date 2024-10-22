@@ -53,6 +53,8 @@
     font-family: 'KoddiUD OnGothic', sans-serif;
     font-weight: 800;
     text-align: center;
+    
+    
 }
 
 .all_con {
@@ -92,11 +94,6 @@
     color: #344c64;
     justify-content: space-around;
 }
-
-.header {
-    color: #344c64;
-}
-
 
 
 .nav-item {

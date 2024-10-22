@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>선박 정보</title>
     <link rel="stylesheet" th:href="@{/css/shipInfo.css}">
-    <!-- Google Maps API 불러오기 -->
+    <link rel="stylesheet" href="../../static/css/shipInfo.css">
 
     <script defer th:src="@{/script/shipInfo.js}"></script>
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
@@ -24,54 +24,59 @@
 
 </head>
 
-<body>
-    <div class="header" th:replace="fragment/header(title='헤더')"></div>
+<body class="body">
+    <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
     <input type="hidden" id="GetnowLoc" th:value="${nowLoc}">
     <input type="hidden" id="Getvoyage" th:value="${voyage}">
+    <div class="allTag">
+        <!-- 구글 지도 표시 -->
+        <div class="background">
+            <div id="map"></div>
+        </div>
 
-    <!-- 구글 지도 표시 -->
-    <div id="map" style="height: 500px; width: 100%;"></div>
-
-    <!-- 지도 위 좌표 팝업 -->
-    <div id="overTheMap">현재 날씨
-        <p class="weather"><img src="" alt="Weather Icon" id="weatherIcon"></p>
-        <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
-        <p class="speed"><span id="windSpeed">0.0</span>m/s</p><br>
-        <p>속도: <span id="shipSpeed" th:text="${nowSpeed}"></span></p>
-        <p>이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
-    </div>
-    <!-- 지도 우측 하단 팝업 -->
-    <div class="box">
-        <div class="pop-up">
-            <div class="overlap-group">
-                <div id="shipInfo" class="shipInfo">
-                    <div class="shipName" th:text="${voyage.ship.shipName}">선박명</div>
-                    <div class="callSign" th:text="${voyage.ship.callSign}">콜사인</div>
-                </div>
-                <div class="Line1" style="width: 398px; height: 0px; border: 2px #B1AEAE solid"></div>
-                <div class="depDay"> 출발일:
-                    <div class="depTime" th:text="${voyage.departureDate}" id="depTime">2024/10/15</div>
-                </div>
-                <div class="d-day">
-                    <div class="D-day">D</div>
-                    <div class="sign">-</div>
-                    <div class="days">[[${leftDate}]]</div>
-                </div>
-                <div class="DepToArr">
-                    <div class="depPort">[[${voyage.departure}]]</div>
-                    <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
-                    <div class="proceeding"><span id="voyagePer">[[${voyagePer}]]</span><span class="percent">%</span>
+        <!-- 지도 위 좌표 팝업 -->
+        <div id="overTheMap">현재 날씨
+            <p class="weather"><img src="" alt="Weather Icon" id="weatherIcon"></p>
+            <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
+            <p class="speed"><span id="windSpeed">0.0</span>m/s</p><br>
+            <p>속도: <span id="shipSpeed" th:text="${nowSpeed}"></span></p>
+            <p>이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
+        </div>
+        <!-- 지도 우측 하단 팝업 -->
+        <div class="box">
+            <div class="pop-up">
+                <div class="overlap-group">
+                    <div id="shipInfo" class="shipInfo">
+                        <div class="shipName" th:text="${voyage.ship.shipName}">선박명</div>
+                        <div class="callSign" th:text="${voyage.ship.callSign}">콜사인</div>
                     </div>
-                    <div class="arrPort">[[${voyage.port.portCode}]]</div>
-                </div>
-                <div class="arrDay"> 도착일:
-                    <div class="arrTime" th:text="${voyage.arrivalDate}" id="arrTime">2024/10/15</div>
+                    <div class="Line1"></div>
+                    <div class="dateInfo">
+                        <div class="depDay Day"> 출발일 :&nbsp;
+                            <div class="depTime" th:text="${voyage.departureDate}" id="depTime">2024/10/15</div>
+                        </div>
+                        <div class="d-day">
+                            <div class="D-day">D</div>
+                            <!-- <div class="sign">-</div> -->
+                            <div class="days">[[${leftDate}]]</div>
+                        </div>
+                    </div>
+                    <div class="DepToArr">
+                        <div class="depPort">[[${voyage.departure}]]</div>
+                        <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
+                        <div class="arrPort">[[${voyage.port.portCode}]]</div>
+                    </div>
+                    <div class="proceeding">
+                        <span id="voyagePer">[[${voyagePer}]]</span><span class="percent">%</span>
+                    </div>
+                    <div class="arrDay Day"> 도착일 :&nbsp;
+                        <div class="arrTime" th:text="${voyage.arrivalDate}" id="arrTime">2024/10/15</div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-
-
 
 </body>
 
