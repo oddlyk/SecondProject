@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.shipInfo {
+.overlap-group {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -11,22 +11,1313 @@
     /* 지도보다 위에 표시되도록 설정 */
 }
 
-#zoom-controls {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 5;
+.map {
+    position: relative;
+    width: 100%;
+    height: 90%;
+    left: 0px;
+
+    background: #CBCBCB;
 }
 
-#zoom-controls button {
-    background-color: #fff;
-    border: 2px solid #000;
-    padding: 5px 10px;
-    margin: 5px;
-    font-size: 18px;
-    cursor: pointer;
-}
 
-#zoom-controls button:hover {
-    background-color: #ddd;
-}
+
+/* 목적지 근처 */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #FFFFFF;
+
+
+/* 지도 api */
+
+
+
+
+/* 지도 API */
+
+position: absolute;
+width: 381px;
+height: 61px;
+left: -40px;
+top: 149px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 50px;
+line-height: 61px;
+/* identical to box height */
+text-align: center;
+
+color: #000000;
+
+
+
+/* ｈｅａｄｅｒ */
+
+position: absolute;
+width: 1440px;
+height: 90px;
+left: 0px;
+top: 0px;
+
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.19);
+
+
+/* Line Rounded/Password */
+
+position: absolute;
+visibility: hidden;
+width: 20px;
+height: 20px;
+left: 670px;
+top: 32px;
+
+
+
+/* Master Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 6px;
+
+position: absolute;
+height: 18px;
+left: 36.74%;
+right: 56.53%;
+top: calc(50% - 18px/2 + 36px);
+
+
+
+/* Line Rounded/Password */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Line Rounded/Chevron Down */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Line Rounded/Chevron Down */
+
+position: absolute;
+visibility: hidden;
+width: 20px;
+height: 20px;
+left: 1110px;
+top: 32px;
+
+
+
+/* 메뉴바 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 100px;
+
+position: absolute;
+width: 796px;
+height: 74px;
+left: 376px;
+top: 11px;
+
+
+
+/* Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 108px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Master Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 6px;
+
+width: 108px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Line Rounded/Password */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 선박 정보 */
+
+width: 108px;
+height: 18px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 26px;
+line-height: 18px;
+/* identical to box height, or 69% */
+text-align: center;
+
+color: #344C64;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Line Rounded/Chevron Down */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 133px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Master Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 6px;
+
+width: 133px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Line Rounded/Password */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 목적지 정보 */
+
+width: 133px;
+height: 18px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 26px;
+line-height: 18px;
+/* identical to box height, or 69% */
+text-align: center;
+
+color: #344C64;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Line Rounded/Chevron Down */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 109px;
+height: 74px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Frame 39517 */
+
+width: 137px;
+height: 74px;
+
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* 항만 사용료계산기 */
+
+position: absolute;
+width: 134px;
+height: 50px;
+left: -18.5px;
+top: 12px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 26px;
+line-height: 25px;
+/* or 96% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #344C64;
+
+
+
+/* Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 120px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Master Link */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 6px;
+
+width: 120px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Line Rounded/Password */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* About Us */
+
+width: 120px;
+height: 18px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 26px;
+line-height: 18px;
+/* identical to box height, or 69% */
+text-align: center;
+
+color: #344C64;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Line Rounded/Chevron Down */
+
+display: none;
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* 타이포 로고 */
+
+position: absolute;
+width: 262px;
+height: 50px;
+left: 48px;
+top: 19px;
+
+
+
+/* 바다이음 */
+
+position: absolute;
+left: 25.57%;
+right: 0%;
+top: 20%;
+bottom: 4%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 79.15%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #4C7299;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.38%;
+right: 25.48%;
+top: 0.61%;
+bottom: 0.12%;
+
+background: #4C7299;
+
+
+/* Vector */
+
+position: absolute;
+left: 26.77%;
+right: 50.71%;
+top: 0.73%;
+bottom: 0.12%;
+
+background: #344C64;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 77.49%;
+top: 0.73%;
+bottom: 0.12%;
+
+background: #344C64;
+
+
+/* 파도 */
+
+position: absolute;
+left: 0%;
+right: 80.92%;
+top: 100%;
+bottom: -100%;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 8.45%;
+right: 0%;
+top: 60.81%;
+bottom: -21.62%;
+
+background: #C2DDEE;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 49.84%;
+right: 1.01%;
+top: 100%;
+bottom: -81.26%;
+
+background: #072A63;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 21.01%;
+right: 28.53%;
+top: 94.99%;
+bottom: -49.81%;
+
+background: #789BBF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 41.03%;
+top: 100%;
+bottom: -41.92%;
+
+background: #3D6389;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* 회원명 */
+
+position: absolute;
+width: 119px;
+height: 23px;
+left: 1238px;
+top: 33px;
+
+
+
+/* 바닷길 */
+
+position: absolute;
+width: 85px;
+height: 23px;
+left: 1238px;
+top: 33px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 26px;
+line-height: 25px;
+/* or 96% */
+text-align: center;
+
+color: #344C64;
+
+
+
+/* 님 */
+
+position: absolute;
+width: 34px;
+height: 23px;
+left: 1323px;
+top: 33px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 800;
+font-size: 27px;
+line-height: 25px;
+/* or 93% */
+text-align: center;
+
+color: #000000;
+
+
+
+/* 마이페이지 */
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 1361px;
+top: 30px;
+
+
+
+/* Subtract */
+
+position: absolute;
+width: 25px;
+height: 25px;
+left: 2.5px;
+top: 2.5px;
+
+background: #344C64;
+
+
+/* Ellipse 47 */
+
+position: absolute;
+left: 91.67%;
+right: -75%;
+top: 8.33%;
+bottom: 8.33%;
+
+/* Line_icon */
+background: #33363F;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Vector 133 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 50%;
+right: 50%;
+top: 50%;
+bottom: 25%;
+
+/* Line_icon */
+border: 2px solid #33363F;
+
+
+/* Vector 134 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 50%;
+right: 50%;
+top: 29.17%;
+bottom: 66.67%;
+
+/* Line_icon */
+border: 2px solid #33363F;
+transform: rotate(-180deg);
+
+
+/* 선박 */
+
+position: absolute;
+width: 70px;
+height: 70px;
+left: 761px;
+top: 580px;
+
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* ship */
+
+position: absolute;
+left: 100%;
+right: -100%;
+top: 0%;
+bottom: 0%;
+
+background: url(ship.png);
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Pop Up 1 */
+
+position: absolute;
+width: 345px;
+height: 405px;
+left: 1055px;
+top: 580px;
+
+
+
+/* PopUp Square */
+
+position: absolute;
+width: 345px;
+height: 405px;
+left: 1055px;
+top: 580px;
+
+background: rgba(14, 14, 14, 0.43);
+border-radius: 15px;
+
+
+/* Ship */
+
+position: absolute;
+width: 334px;
+height: 66px;
+left: 1055px;
+top: 610px;
+
+
+
+/* 선박명 */
+
+position: absolute;
+width: 323px;
+height: 28px;
+left: 1066px;
+top: 610px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 28px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Call Sign */
+
+position: absolute;
+width: 118px;
+height: 26px;
+left: 1055px;
+top: 650px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 21px;
+line-height: 26px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #CDC7C7;
+
+
+
+/* Line 1 */
+
+position: absolute;
+width: 317px;
+height: 0px;
+left: 1069px;
+top: 707px;
+
+border: 2px solid #FFFFFF;
+
+
+/* 출발일시 */
+
+position: absolute;
+width: 205px;
+height: 28px;
+left: 1070px;
+top: 729px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* 도착 예정일시 */
+
+position: absolute;
+width: 256px;
+height: 28px;
+left: 1070px;
+top: 927px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* 출발-도착 */
+
+position: absolute;
+width: 300px;
+height: 108px;
+left: 1078px;
+top: 788px;
+
+
+
+/* oil_fill */
+
+position: absolute;
+width: 49.7px;
+height: 67px;
+left: 1247.7px;
+top: 788px;
+
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Vector 99 */
+
+position: absolute;
+left: 87.5%;
+right: -62.5%;
+top: 16.67%;
+bottom: 37.5%;
+
+background: #000000;
+border: 2px solid #000000;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Vector 112 */
+
+position: absolute;
+left: 87.5%;
+right: -58.33%;
+top: 75%;
+bottom: 12.5%;
+
+border: 2px solid #000000;
+border-radius: 2px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* 운행률 */
+
+position: absolute;
+width: 87px;
+height: 33px;
+left: 1185px;
+top: 863px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* AEJEA */
+
+position: absolute;
+width: 102.83px;
+height: 38.98px;
+left: 1078px;
+top: 802.62px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 26px;
+line-height: 32px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* KRPUS */
+
+position: absolute;
+width: 102.83px;
+height: 38.98px;
+left: 1275.17px;
+top: 802.62px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 26px;
+line-height: 32px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* 디데이 */
+
+position: absolute;
+width: 75px;
+height: 27px;
+left: 1314px;
+top: 727px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+display: flex;
+align-items: center;
+text-align: center;
+text-decoration-line: underline;
+
+color: #FFFFFF;
+
+
+
+/* Union */
+
+position: absolute;
+width: 390px;
+height: 252px;
+left: 602px;
+top: 358px;
+
+
+
+/* 말풍선 */
+
+position: absolute;
+width: 396px;
+height: 124.48px;
+left: 0px;
+top: 116px;
+
+background: rgba(14, 14, 14, 0.43);
+
+
+/* Rectangle 1 */
+
+position: absolute;
+left: 0%;
+right: -1.54%;
+top: 46.03%;
+bottom: 15.08%;
+
+background: #D9D9D9;
+border-radius: 10px;
+
+
+/* Polygon 1 */
+
+position: absolute;
+left: 39.74%;
+right: 53.08%;
+top: 95.43%;
+bottom: -16.71%;
+
+background: #D9D9D9;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* 속도 */
+
+position: absolute;
+left: 2.31%;
+right: 58.21%;
+top: 67.86%;
+bottom: 21.01%;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 27px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* 이동 방향 */
+
+position: absolute;
+left: 57.18%;
+right: 2.82%;
+top: 67.86%;
+bottom: 21.03%;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 27px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* 현재 날씨 */
+
+position: absolute;
+width: 108px;
+height: 38px;
+left: 19px;
+top: 126px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Rain_fill */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 133px;
+top: 119px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 33.75px;
+height: 18.75px;
+left: 5.62px;
+top: 7.5px;
+
+background: #F5F5F5;
+border-radius: 3px;
+
+
+/* Ellipse 91 */
+
+position: absolute;
+left: 12.5%;
+right: 62.5%;
+top: 33.33%;
+bottom: 41.67%;
+
+background: #C4C4C4;
+
+
+/* Ellipse 92 */
+
+position: absolute;
+left: 29.17%;
+right: 29.17%;
+top: 16.67%;
+bottom: 41.67%;
+
+background: #C4C4C4;
+
+
+/* Rectangle 3953 */
+
+position: absolute;
+left: 25%;
+right: 12.5%;
+top: 33.33%;
+bottom: 41.67%;
+
+background: #C4C4C4;
+border-radius: 0px 4px 4px 0px;
+
+
+/* Vector 167 */
+
+position: absolute;
+left: 50%;
+right: 50%;
+top: 70.83%;
+bottom: 20.83%;
+
+border: 4px solid #ABB1FF;
+border-radius: 3px;
+
+
+/* Vector 169 */
+
+position: absolute;
+left: 70.83%;
+right: 29.17%;
+top: 70.83%;
+bottom: 16.67%;
+
+border: 4px solid #ABB1FF;
+border-radius: 3px;
+
+
+/* Vector 168 */
+
+position: absolute;
+left: 29.17%;
+right: 70.83%;
+top: 70.83%;
+bottom: 12.5%;
+
+border: 4px solid #ABB1FF;
+border-radius: 3px;
+
+
+/* 온도 */
+
+position: absolute;
+width: 59px;
+height: 30px;
+left: 193px;
+top: 130px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* 풍속 */
+
+position: absolute;
+width: 74px;
+height: 30px;
+left: 267px;
+top: 130px;
+
+font-family: 'KoddiUD OnGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Line 2 */
+
+position: absolute;
+width: 27px;
+height: 0px;
+left: 193px;
+top: 171px;
+
+border: 2px solid #FFFFFF;
+transform: rotate(90deg);
+
+
+/* 확대/축소 */
+
+position: absolute;
+width: 80px;
+height: 142px;
+left: 1346px;
+top: 108px;
+
+
+
+/* 확대/축소 */
+
+position: absolute;
+width: 80px;
+height: 142px;
+left: 1346px;
+top: 108px;
+
+background: rgba(14, 14, 14, 0.43);
+border-radius: 15px;
+
+
+/* 확대 */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 1356.5px;
+top: 115px;
+
+
+
+/* Vector 52 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 50%;
+right: 50%;
+top: 25%;
+bottom: 25%;
+
+border: 2px solid #FFFFFF;
+border-radius: 2px;
+
+
+/* Vector 53 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 75%;
+right: 25%;
+top: 50%;
+bottom: 0%;
+
+border: 2px solid #FFFFFF;
+border-radius: 2px;
+transform: rotate(90deg);
+
+
+/* 중앙선 */
+
+position: absolute;
+width: 64px;
+height: 0px;
+left: 1354.5px;
+top: 179px;
+
+border: 2px solid #FFFFFF;
+
+
+/* 축소 */
+
+position: absolute;
+width: 31px;
+height: 0px;
+left: 1370.5px;
+top: 215px;
+
+border: 2px solid #FFFFFF;

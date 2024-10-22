@@ -4,8 +4,6 @@
  */
 // 화면 시작 시...
 
-document.getElementById('saveBtn').disabled = true; // 버튼 비활성화
-
 // 검색 연관 이벤트
 let searchBtn = document.getElementById('search_icon');
 let searchForm = document.getElementById('SearchVoyage');
