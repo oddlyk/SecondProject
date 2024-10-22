@@ -1,73 +1,291 @@
 @charset "UTF-8";
 
-.top-loginbox {
-    width: 251px;
-    height: 103px;
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.ttf') format('truetype');
 }
 
-.top-loginbox .top-login {
-    position: fixed;
-    width: 253px;
-    height: 103px;
-    top: 0;
-    left: 0;
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.ttf') format('truetype');
 }
 
-.top-loginbox .overlap-group {
-    position: relative;
-    width: 251px;
-    height: 103px;
-    background-color: #3d86ce;
-    border-radius: 0px 25px 5px 100px;
-}
-
-.top-loginbox .top-login-text {
-    position: absolute;
-    width: 188px;
-    height: 50px;
-    top: 19px;
-    left: 43px;
-    font-family: "KoddiUD OnGothic-ExtraBold", Helvetica;
+@font-face {
+    font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    color: #ffffff;
-    font-size: 30px;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    height: 911px;
+    left: 0px;
+    top: 0px;
+    border: none;
+    outline: none;
+    background: #5D7ED3;
     text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
 }
 
-/* .bottom-box {
-    width: 380px;
-    height: 68px;
-}
-
-.bottom-box .bottom-login {
-    position: fixed;
-    width: 382px;
-    height: 68px;
-    top: 0;
-    left: 0;
-}
-
-.bottom-box .overlap-group1 {
-    position: relative;
-    width: 380px;
-    height: 68px;
-    background-color: #3d86ce;
-    border-radius: 25px;
-}
-
-.bottom-box .btm-login-text {
+.background>.container {
     position: absolute;
-    width: 168px;
-    height: 60px;
-    top: 4px;
-    left: 96px;
-    font-family: "KoddUD OnGothic-ExtraBold", Helvetica;
+    bottom: 0;
+    outline: none;
+    width: 100%;
+}
+
+.container>.wave {
+    width: 100%;
+    height: auto;
+}
+
+
+.loginbox {
+    position: absolute;
+    left: 17.36%;
+    right: 17.43%;
+    top: 15%;
+    bottom: 15%;
+    border: none;
+    background: #FFFFFF;
+    border-radius: 20px;
+    z-index: 1;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.loginbox>.left-box {
+    position: absolute;
+    width: 450px;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background: #22335F;
+    border-radius: 20px 0px 0px 20px;
+    z-index: 2;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+
+.top-loginbox>.top-login {
+    position: absolute;
+    ;
+    width: 255px;
+    height: 110px;
+    right: 0;
+    top: 0;
+
+
+    outline: none;
+    border: none;
+    background: #3E87CE;
+    border-radius: 0px 17px 3px 100px;
+}
+
+.top-login-text {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 45%;
+    left: 57.5%;
+    transform: translate(-50%, -50%);
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
     font-weight: 800;
-    color: #ffffff;
+    font-size: 32px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 4;
+    color: #FFFFFF;
+}
+
+.left-box>.logo {
+    position: absolute;
+    left: 50px;
+    top: 20%;
+    width: 350px;
+    height: 350px;
+}
+
+.id-box {
+    position: absolute;
+    width: 430px;
+    height: 53px;
+    left: 51.5%;
+    top: 28%;
+
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4.5px rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    display: flex;
+    border: none;
+    outline: none;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.id-box img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding-left: 14px;
+}
+
+.id-box input {
+    width: 100%;
+    height: 95%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-weight: 700;
     font-size: 21px;
+    border-radius: 30px;
+    color: 606060;
+}
+
+.id-box input::placeholder {
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-size: 21px;
+    color: #606060;
+    font-weight: 800;
+}
+
+.pwd-box {
+    position: absolute;
+    width: 430px;
+    height: 53px;
+    left: 51.5%;
+    top: 46%;
+
+    background: #FFFFFF;
+    box-shadow: 1px 2px 4.5px rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    display: flex;
+    outline: none;
+    border: none;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.pwd-box img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding-left: 14px;
+}
+
+.pwd-box input {
+    width: 100%;
+    height: 95%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-weight: 700;
+    color: #606060;
+    font-size: 21px;
+    border-radius: 30px;
+}
+
+.pwd-box input::placeholder {
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-size: 21px;
+    color: #606060;
+    font-weight: 800;
+}
+
+.bottom-box {
+    position: absolute;
+    width: 445px;
+    height: 80px;
+    left: 51.5%;
+    top: 66%;
+    border: none;
+    outline: none;
+    background: #3E87CE;
+    border-radius: 30px;
+}
+
+.bottom-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 550;
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 26px;
     text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-} */ 
+    border-radius: 30px;
+    background-color: transparent;
+}
+
+.notyet {
+    position: absolute;
+    width: 152px;
+    height: 16px;
+    left: 60%;
+    top: 81.1%;
+
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 13.5px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #3C3C3C;
+}
+
+.join-btn {
+    position: absolute;
+    width: 80px;
+    height: 16px;
+    left: 76.2%;
+    top: 83.1%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.join-btn a {
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14.5px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+
+    color: #2128b8;
+}

@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
+    <!-- <link rel="stylesheet" th:href="@{/css/login.css}"> -->
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <script defer th:src="@{/script/jquery-3.7.1.min.js}"></script>
+
 </head>
 
 <body>
-
     <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
     <div class="background">
         <div class="container">
@@ -19,7 +20,7 @@
         </div>
         <div class="loginbox">
             <div class="left-box">
-                <img src="/static/images/로고.png" class="logo" alt="로고">
+                <img th:src="@{/images/login_logo.png}" class="logo" alt="로고">
             </div>
             <div class="top-loginbox">
                 <div class="top-login">
@@ -27,21 +28,20 @@
                 </div>
             </div>
             <div class="content">
-                <form th:action="@{/user/loginProc}" method="POST" >
+                <form th:action="@{/user/loginProc}" method="POST">
                     <div class="id-box">
-                    
-                        <img src="/static/images/user.png" class="user" alt="아이디">
+                        <!--  -->
+                        <img th:src="@{/images/user.png}" class="user" alt="아이디">
                         <input type="text" name="id" id="id" placeholder="아이디">
                     </div>
                     <div class="pwd-box">
-                        <img src="/static/images/password.png" class="password" alt="비밀번호">
+                        <!--  -->
+                        <img th:src="@{/images/password.png}" class="password" alt="비밀번호">
                         <input type="text" name="pwd" id="pwd" placeholder="비밀번호">
                     </div>
-         
+
                     <div class="bottom-box">
-                        <div class="bottom-login">
-                            <input type="submit" id="submitBtn" value="로그인">
-                        </div>
+                        <input type="submit" id="submitBtn" value="로그인">
                     </div>
                 </form>
                 <div class="btm-text-box">

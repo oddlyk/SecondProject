@@ -4,29 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
-    <link rel="stylesheet" th:href="@{/css/mypage.css}">
+    <!-- <link rel="stylesheet" th:href="@{/css/mypage.css}"> -->
+    <link rel="stylesheet" href="../../static/css/mypage.css">
     <script defer th:src="@{/script/mypage.js}"></script>
 
 </head>
 
 <body>
-    <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
+    <div class="header">
+        <iframe src="../fragment/header.html" frameborder="0" style="width: 100%; height: 100px;"></iframe>
+    </div>
+    <!-- <div class="header" th:replace="~{fragment/header(title='헤더')}"></div> -->
     <div class="background">
-        <div class="container">
-            <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
-                class="wave" alt="물결 배경">
-        </div>
         <div class="mainbox">
             <div class="userbox">
-                <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
-                <div class="user-type" th:text="${userType}"></div>
-                <div class="name" id="name" th:text="${userName}"></div>
+                <!-- <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘"> -->
+                <img src="../../static/images/user1.png" class="user-icon" alt="사용자 유형 아이콘">
+                <div class="user-type" th:text="${userType}">사용자 유형</div>
+                <div class="name" id="name" th:text="${userName}">이름</div>
                 <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
             </div>
             <div th:if="!${#lists.isEmpty(voyages)}">
                 <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
-                    <button type="button" onclick="confirmDelete()">삭제</button>
+                    <button class="delete-btn" type="button" onclick="confirmDelete()">삭제</button>
                 </form>
             </div>
             <div class="listbox">
@@ -39,6 +39,7 @@
                     <div class="column5">운행률(%)</div>
                     <div class="column6">즐겨찾기</div>
                 </div>
+                <hr class="line">
                 <div th:if="!${#lists.isEmpty(voyages)}">
                     <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
                         <div class="list-tuple" th:each="voyage, iterStat : ${voyages}">

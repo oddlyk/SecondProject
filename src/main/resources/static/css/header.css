@@ -1,16 +1,78 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
+        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
+}
+
+.body {
+    width: 100%;
+    background-color: white;
+}
+
 .header {
-    background-color: #fff;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.19);
-    display: flex;
-    align-items: center;
-    gap: 40px 68px;
-    font-family: KoddiUD OnGothic, sans-serif;
+    width: 1490px;
+    height: 100px;
+
+    position: relative;
+    
+    margin: 0 auto;  /* 중앙 정렬 */
+    background-color: white;
+
+    margin: auto 0;
+    padding-top: 20px;
+
+    font-family: 'KoddiUD OnGothic', sans-serif;
     font-weight: 800;
     text-align: center;
-    flex-wrap: wrap;
-    padding: 11px 49px 0;
+}
+
+.all_con {
+    position: absolute;
+
+    /* 수평 중앙 */
+    left: 50%;
+    /* 수평 중앙을 맞추기 위한 보정 */
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 40px;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+
+
+    width: 1400px;
 }
 
 .logo {
@@ -18,168 +80,98 @@
     object-fit: contain;
     object-position: center;
     width: 262px;
-    align-self: stretch;
-    max-width: 100%;
     margin: auto 0;
 }
 
 .nav-menu {
-    align-self: stretch;
     display: flex;
+    width: 800px;
     align-items: center;
-    gap: 40px 100px;
+    gap: 20px;
     font-size: 26px;
     color: #344c64;
-    line-height: 1;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.nav-link,
-.nav-link-wide,
-.username,
-.login-button {
+.header {
     color: #344c64;
-    /* 색상을 원하는 색상으로 설정 */
 }
+
+
 
 .nav-item {
-    align-self: stretch;
-    display: flex;
-    align-items: start;
-    justify-content: start;
     margin: auto 0;
-    text-decoration: none;
 }
 
 .nav-link {
-    align-self: stretch;
-    min-height: 38px;
-    gap: 6px;
-    overflow: hidden;
     text-decoration: none;
+    color: #344c64;
+    width: 100%;
 }
 
-.nav-item-wide {
-    align-self: stretch;
-    display: flex;
-    min-height: 38px;
-    align-items: start;
-    justify-content: start;
-    flex-grow: 1;
-    width: 111px;
-    margin: auto 0;
-    text-decoration: none;
-}
-
-.nav-link-wide {
-    align-self: stretch;
-    width: 150px;
-    min-height: 38px;
-    gap: 6px;
-    text-decoration: none;
-    white-space: nowrap;
-    /* 이 속성이 줄 바꿈을 방지합니다 */
-}
-
-.nav-link-tall {
-    .nav-link-tall {
-        width: 137px;
-        background-color: #fff;
-        padding: 12px 0;
-        text-decoration: none;
-        white-space: normal;
-        /* 줄바꿈 허용 */
-        line-height: 1.2;
-        /* 줄 사이 간격 조정 */
-        text-align: center;
-        /* 텍스트를 가운데 정렬 */
-    }
+.nav-item-tall {
+    width: 135px;
+    line-height: 1.2;
+    text-align: center;
 }
 
 
-.nav-item-calculator {
-    align-self: stretch;
-    display: flex;
-    min-height: 74px;
-    line-height: 25px;
-    justify-content: start;
-    flex-grow: 1;
-    width: 87px;
-    margin: auto 0;
-    text-decoration: none;
+
+#user-ul {
+    /*머리그림 제거*/
+    list-style: none;
+    text-align: center;
+    padding: 0;
 }
 
-
-.calculator-link {
-    background-color: #fff;
-    width: 137px;
-    padding: 12px 0;
-    text-decoration: none;
-}
-
-.user-info {
-    align-self: stretch;
+.log-button {
+    background: #344C64;
+    border-radius: 30px;
+    width: 110px;
+    height: 54px;
+    font-size: 18px;
+    color: white;
+    border: none;
     display: flex;
     align-items: center;
-    gap: 13px;
-    white-space: nowrap;
-    margin: auto 0;
-}
+    justify-content: center;
 
-.username {
-    color: #344c64;
-    font-size: 26px;
-    line-height: 1;
-    align-self: stretch;
-    flex-grow: 1;
-    margin: auto 0;
-}
-
-.user-suffix {
-    color: #000;
-    font-size: 27px;
-    line-height: 1;
-    align-self: stretch;
-    margin: auto 0;
-}
-
-.user-icon {
-    aspect-ratio: 1;
-    object-fit: contain;
-    object-position: center;
-    width: 30px;
-    align-self: stretch;
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    cursor: pointer;
 }
 
 .logout-btn {
-    color: #072a63;
+    color: #344C64;
+    background-color: transparent;
+    border: none;
     font-size: 18px;
-    align-self: flex-end;
+    font-family: 'KoddiUD OnGothic', sans-serif;
+    font-weight: 800;
+
+    cursor: pointer;
 }
 
-@media (max-width: 991px) {
-    .header {
-        padding: 0 20px;
-    }
+.log-button:active,
+.logout-btn:active {
 
-    .nav-menu {
-        max-width: 100%;
-    }
+    background: #5a5a5a;
+    cursor: pointer;
+}
 
-    .user-info {
-        white-space: initial;
-    }
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: auto 0;
+
+    color: #344c64;
+    font-size: 26px;
+}
+
+
+.user-icon {
+    width: 30px;
+}
+
+.user-suffix {
+    color: black;
 }

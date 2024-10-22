@@ -34,17 +34,29 @@
 }
 
 /* 메인 */
-
-
-/* 메인 배경 */
-.background {
-    position: absolute;
+.body {
     width: 100%;
-    height: 734px;
-    top: 90px;
-    left: 0px;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.back {
+    width: 100%;
+    height: 740px;
+    background: rgba(113, 141, 213);
+}
+
+.background {
+    position: relative;
+    width: 1500px;
+    height: 740px;
+    margin: 0;
+    padding: 0;
+    background: rgba(113, 141, 213);
     text-align: center;
-    background: rgba(113, 141, 213, 0.93);
+    
+    margin: 0 auto;  /* 중앙 정렬 */
 }
 
 /* 검색창 */
@@ -52,7 +64,7 @@
     position: absolute;
     width: 966px;
     height: 84px;
-    top: 100px;
+    top: 70px;
     text-align: center;
 
     /* 수평 중앙 */
@@ -68,7 +80,6 @@
 
     display: flex;
 }
-
 
 
 /* 검색창 - 검색 아이콘 */
@@ -121,9 +132,42 @@
     cursor: pointer;
 }
 
-.search:focus {
+.search:active,
+#saveBtn:active {
+
+    background: #e2e2e2;
+    cursor: pointer;
+}
+
+.search:hover,
+#saveBtn:hover {
     /* 그림자 추가 */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#saveBtnBox {
+    position: absolute;
+    width: 1391px;
+    top: 170px;
+    text-align: right;
+
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 0 10px 0;
+}
+
+
+#saveBtn {
+    font-family: 'KoddiUD OnGothic';
+    width: 87px;
+    height: 45px;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 25px;
+    color: white;
+    background: #344C64;
+    border: 0;
+    border-radius: 10px;
 }
 
 
@@ -134,7 +178,7 @@
     position: absolute;
     width: 1391px;
     height: 417px;
-    top: 255px;
+    top: 225px;
     text-align: center;
 
     /* 수평 중앙 */
@@ -152,7 +196,6 @@
 
 /*정보창*/
 .service_box {
-    position: relative;
     width: 433px;
     height: 417px;
 
@@ -170,6 +213,10 @@
     text-align: center;
 }
 
+.service_box:hover {
+    background: #e2e2e2;
+    cursor: pointer;
+}
 
 
 /* 선박 정보 */
@@ -196,7 +243,7 @@
 .shipName {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 38px;
+    font-size: 35px;
     color: #000000;
 }
 
@@ -302,7 +349,6 @@
 
 /* 목적지 정보 - **항 현재 날씨 */
 .arr_info {
-    padding: 5px;
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
     font-size: 30px;
@@ -312,13 +358,9 @@
 
 /* 목적지 정보 - 날씨 이미지 */
 .weather {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     border-radius: 3px;
-    gap: 10px;
-    padding: 5px;
-    /*padding-top: 10px;
-        margin-bottom: 25px;*/
 }
 
 
@@ -329,7 +371,6 @@
     font-weight: 800;
     font-size: 25px;
     text-align: center;
-    padding: 5px;
     color: #7A7A7A;
 }
 
@@ -342,23 +383,24 @@
     width: 90%;
     height: 240px;
     padding: 10px 20px;
-
+    text-align: center;
     background: #FFFFFD;
     border: 1.5px solid #B1AEAE;
     box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
+    align-items: center;
 }
 
 
 
 /*목적지 정보 - 사고 각 순위 상자*/
 .accident_box {
-    width: 312px;
+    width: 100%;
     height: 44.34px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    margin-top: 10px;
 }
 
 /* 목적지 정보 - 전년도 당월 사고 현황 */
@@ -404,33 +446,28 @@
 .label {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /* baseline을 맞춰서 "원"이 아래로 내려가지 않도록 설정 */
-    align-items: baseline;
-    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+    overflow: visible;
 
-    /* 줄바꿈 방지 */
-    white-space: nowrap;
-    /* 넘칠 경우 숨기지 않도록 설정 */
-    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    /* 중앙 정렬 */
+    align-items: center;
 }
 
 /* 항만사용료 - 금액 */
 .port_fee {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 200%;
+    font-size: 1.2em;
     color: #344C64;
-    /* 줄바꿈 없이 한 줄로 표시 */
-    white-space: nowrap;
-    /* 상자 너비에 맞게 조정 */
-    max-width: 100%;
+    text-align: center;
+    margin: 40px 0 5px 0;
     text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.25);
-    /* 글자 크기를 상자에 맞게 자동으로 줄어들도록 설정 */
-    display: inline-block;
-    /* 공간이 부족할 때 글자 크기를 줄이도록 설정 */
-    flex-shrink: 1;
+
 }
 
 
@@ -439,11 +476,15 @@
 .won {
     font-family: 'KoddiUD OnGothic';
     font-weight: 800;
-    font-size: 2em;
+    font-size: 40px;
+    margin: 0;
     /* 글자 크기 설정 */
 
+    text-align: center;
     color: #000000;
-    margin-left: 10px;
-    /* 숫자와 "원" 사이에 약간의 여백 추가 */
-    display: inline-block;
+
+    align-self: flex-end;
+    /* 우측 정렬 */
+    margin-right: 10px;
+    /* 우측 여백 추가 */
 }
