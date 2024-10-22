@@ -19,8 +19,8 @@
     <div class="background">
         <div class="container">
             <div class="wave" alt="물결 배경">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="762" viewBox="0 0 1440 762" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
+                <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="740" viewBox="0 0 1500 740" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" 
                         d="M-5 0L55.2083 15.875C115.417 31.75 235.833 63.5 356.25 174.625C476.667 285.75 597.083 476.25 717.5 428.625C837.917 381 958.333 95.25 1078.75 95.25C1199.17 95.25 1319.58 381 1379.79 523.875L1440 666.75V762H1379.79C1319.58 762 1199.17 762 1078.75 762C958.333 762 837.917 762 717.5 762C597.083 762 476.667 762 356.25 762C235.833 762 115.417 762 55.2083 762H-5V0Z"
                         fill="#8DADFF" />
                 </svg>
@@ -42,7 +42,8 @@
                         <input type="hidden" th:value="${port.portLat}" id="portLat">
                         <input type="hidden" th:value="${port.portLon}" id="portLon">
                         <input type="hidden" th:value="${port.portUrl}" id="pageUrl">
-                        <div class="port-name-weather">
+                        <div class="portInfoDefault">
+                        	<div class="port-name-weather">
                             <div id="port-name" class="portName" th:text="${port.portName}">도착항</div>
                             <div class="weather-info">
                                 <img src="" alt="Weather Icon" id="weatherIcon">
@@ -67,6 +68,7 @@
                                     <div class="berth-total">0</div>
                                 </div>
                             </button>
+                        </div>
                         </div>
                         <div class="accident-statics">전년도 당월 사고 통계</div>
                         <div class="Line1" style="width: 230px; height: 0px; border: 2px #B1AEAE solid"></div>

@@ -36,7 +36,7 @@
 .body {
     width: 100%;
     background-color: white;
-    
+
     margin: 0;
     padding: 0;
     overflow-x: auto;
@@ -48,27 +48,29 @@
     height: 100px;
 
     position: relative;
-    
+
     padding-top: 0;
-    margin: 0 auto;  /* 중앙 정렬 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
     background-color: white;
-	
+
     padding-top: 20px;
 
     font-family: 'KoddiUD OnGothic', sans-serif;
     font-weight: 800;
     text-align: center;
-    
-    
+
+
 }
 
 .all_con {
-    
+
     position: relative;
     width: 1400px;
-    
+
     height: 86px;
-    margin: 0 auto;  /* 중앙 정렬 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
     padding: 0;
     display: flex;
     gap: 40px;
@@ -86,7 +88,7 @@
     object-fit: contain;
     object-position: center;
     width: 262px;
-    height:50px;
+    height: 50px;
     margin: auto 0;
 }
 
