@@ -33,24 +33,28 @@
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
 }
 
-
+.background {
+    width: 1440px;
+    height: 1024px;
+    background: #FFF;
+}
 
 .container {
+    position: relative;
     width: 1440px;
     height: 934px;
     background: #5D7ED3;
 }
 
 .wave {
-    width: 1440px;
-    height: 703px;
+    position: absolute;
     flex-shrink: 0;
     fill: #8DADFF;
 }
 
-.background {
+.innerbackground {
     position: absolute;
-    top: 300px;
+    top: 150px;
     left: 250px;
     width: 939px;
     height: 574px;
@@ -281,6 +285,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 3px;
 }
 
 .phonenum {
@@ -301,9 +306,57 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 3px;
 }
 
+.emailinline {
+    display: flex;
+    align-items: center;
+}
 
+.emailinline input {
+    box-sizing: border-box;
+}
+
+.emailF {
+    width: 130px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
+
+.at {
+    width: 45.677px;
+    color: #808080;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "KoddiUD OnGothic";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#emailchoose {
+    width: 130px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+    margin: 0 15px 0 0;
+}
+
+.email1 {
+    width: 130px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+    background: #FFFEFE;
+}
 
 
 .userType>.label {
