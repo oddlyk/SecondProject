@@ -44,7 +44,7 @@
 }
 
 .allTag {
-	
+
     width: 1500px;
     height: 560px;
     margin: 0 auto;
@@ -65,7 +65,8 @@ div#map {
 
 /* 지도 우측 하단 팝업 */
 .box {
-    position: relative;;
+    position: relative;
+    ;
     width: 345px;
     height: 365px;
     left: 1150px;
@@ -204,337 +205,52 @@ div#map {
 
 
 /* 지도 위 좌표 팝업 */
-.overTheMap{
-width: 600px;
-height: 252px;
+.gm-style-iw .gm-style-iw-c {
+    text-align: center;
+}
+
+.gm-style-iw-chr {
+    height: 30px;
+}
+
+.overTheMap {
+    width: 600px;
+    height: 100px;
+}
+
+.over1,
+.over2 {
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+
+    font-family: 'KoddiUD OnGothic';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#weatherIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.minsize {
+    font-size: 16px;
 }
 
 
-
-/* 말풍선 */
-
-position: absolute;
-width: 396px;
-height: 124.48px;
-left: 0px;
-top: 116px;
-
-background: rgba(14, 14, 14, 0.43);
-
-
-/* Rectangle 1 */
-
-position: absolute;
-left: 0%;
-right: -1.54%;
-top: 46.03%;
-bottom: 15.08%;
-
-background: #D9D9D9;
-border-radius: 10px;
-
-
-/* Polygon 1 */
-
-position: absolute;
-left: 39.74%;
-right: 53.08%;
-top: 95.43%;
-bottom: -16.71%;
-
-background: #D9D9D9;
-transform: matrix(1, 0, 0, -1, 0, 0);
-
-
-/* 속도 */
-
-position: absolute;
-left: 2.31%;
-right: 58.21%;
-top: 67.86%;
-bottom: 21.01%;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 22px;
-line-height: 27px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-
-
-/* 이동 방향 */
-
-position: absolute;
-left: 57.18%;
-right: 2.82%;
-top: 67.86%;
-bottom: 21.03%;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 22px;
-line-height: 27px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-
-
-/* 현재 날씨 */
-
-position: absolute;
-width: 108px;
-height: 38px;
-left: 19px;
-top: 126px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-
-
-/* Rain_fill */
-
-position: absolute;
-width: 45px;
-height: 45px;
-left: 133px;
-top: 119px;
-
-
-
-/* Union */
-
-position: absolute;
-width: 33.75px;
-height: 18.75px;
-left: 5.62px;
-top: 7.5px;
-
-background: #F5F5F5;
-border-radius: 3px;
-
-
-/* Ellipse 91 */
-
-position: absolute;
-left: 12.5%;
-right: 62.5%;
-top: 33.33%;
-bottom: 41.67%;
-
-background: #C4C4C4;
-
-
-/* Ellipse 92 */
-
-position: absolute;
-left: 29.17%;
-right: 29.17%;
-top: 16.67%;
-bottom: 41.67%;
-
-background: #C4C4C4;
-
-
-/* Rectangle 3953 */
-
-position: absolute;
-left: 25%;
-right: 12.5%;
-top: 33.33%;
-bottom: 41.67%;
-
-background: #C4C4C4;
-border-radius: 0px 4px 4px 0px;
-
-
-/* Vector 167 */
-
-position: absolute;
-left: 50%;
-right: 50%;
-top: 70.83%;
-bottom: 20.83%;
-
-border: 4px solid #ABB1FF;
-border-radius: 3px;
-
-
-/* Vector 169 */
-
-position: absolute;
-left: 70.83%;
-right: 29.17%;
-top: 70.83%;
-bottom: 16.67%;
-
-border: 4px solid #ABB1FF;
-border-radius: 3px;
-
-
-/* Vector 168 */
-
-position: absolute;
-left: 29.17%;
-right: 70.83%;
-top: 70.83%;
-bottom: 12.5%;
-
-border: 4px solid #ABB1FF;
-border-radius: 3px;
-
-
-/* 온도 */
-
-position: absolute;
-width: 59px;
-height: 30px;
-left: 193px;
-top: 130px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-/* identical to box height */
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-
-
-/* 풍속 */
-
-position: absolute;
-width: 74px;
-height: 30px;
-left: 267px;
-top: 130px;
-
-font-family: 'KoddiUD OnGothic';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-/* identical to box height */
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
-
-
-
 /* Line 2 */
+.Line2 {
+    width: 20px;
+    height: 0px;
 
-position: absolute;
-width: 27px;
-height: 0px;
-left: 193px;
-top: 171px;
+    border: 1.5px solid #B1AEAE;
+    transform: rotate(90deg);
 
-border: 2px solid #FFFFFF;
-transform: rotate(90deg);
-
-
-/* 확대/축소 */
-
-position: absolute;
-width: 80px;
-height: 142px;
-left: 1346px;
-top: 108px;
-
-
-
-/* 확대/축소 */
-
-position: absolute;
-width: 80px;
-height: 142px;
-left: 1346px;
-top: 108px;
-
-background: rgba(14, 14, 14, 0.43);
-border-radius: 15px;
-
-
-/* 확대 */
-
-position: absolute;
-width: 60px;
-height: 60px;
-left: 1356.5px;
-top: 115px;
-
-
-
-/* Vector 52 */
-
-box-sizing: border-box;
-
-position: absolute;
-left: 50%;
-right: 50%;
-top: 25%;
-bottom: 25%;
-
-border: 2px solid #FFFFFF;
-border-radius: 2px;
-
-
-/* Vector 53 */
-
-box-sizing: border-box;
-
-position: absolute;
-left: 75%;
-right: 25%;
-top: 50%;
-bottom: 0%;
-
-border: 2px solid #FFFFFF;
-border-radius: 2px;
-transform: rotate(90deg);
-
-
-/* 중앙선 */
-
-position: absolute;
-width: 64px;
-height: 0px;
-left: 1354.5px;
-top: 179px;
-
-border: 2px solid #FFFFFF;
-
-
-/* 축소 */
-
-position: absolute;
-width: 31px;
-height: 0px;
-left: 1370.5px;
-top: 215px;
-
-border: 2px solid #FFFFFF;
+}

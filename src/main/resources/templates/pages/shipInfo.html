@@ -35,12 +35,19 @@
         </div>
 
         <!-- 지도 위 좌표 팝업 -->
-        <div id="overTheMap">현재 날씨
-            <p class="weather"><img src="" alt="Weather Icon" id="weatherIcon"></p>
-            <p class="temparature"><span id="tempa">00</span><span class="celsius">°C</span></p>
-            <p class="speed"><span id="windSpeed">0.0</span>m/s</p><br>
-            <p>속도: <span id="shipSpeed" th:text="${nowSpeed}"></span></p>
-            <p>이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
+        <div id="overTheMap" style="width: 300px; height: 100px;">
+            <div class="over1">
+                <p class="overinfo">현재 날씨</p>
+                <p class="weather overinfo" style="height: 40px;"><img src="" alt="Weather Icon" id="weatherIcon"></p>
+                <p class="temparature overinfo"><span id="tempa">00</span><span class="celsius minsize">°C</span></p>
+                <div class="Line2"></div>
+                <p class="speed overinfo"><span id="windSpeed">0.0</span><span class="minsize">m/s</span></p><br>
+            </div>
+            <div class="over2">
+                <p class="overinfo">속도: <span id="shipSpeed" th:text="${nowSpeed}"></span>kn</p>
+                <div class="Line2"></div>
+                <p class="overinfo">이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
+            </div>
         </div>
         <!-- 지도 우측 하단 팝업 -->
         <div class="box">
