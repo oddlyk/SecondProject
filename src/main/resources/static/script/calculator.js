@@ -1,4 +1,3 @@
-
 // 페이지 로드 시 초기 값 설정
 document.addEventListener('DOMContentLoaded', function () {
     const currentPath = window.location.pathname;
@@ -7,11 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentPath === '/calc/calcdetail') {
         calculation();  // 자동 계산 실행
         saveInitialValues();  // 계산 후 초기 값을 저장
+        saveInitialChartValues();  // 계산 후 초기 차트 값을 저장
     }
 });
 
 // 초기 값을 저장하기 위한 객체
 let initialResults = {};
+let initialChartValues = {};
 
 // 계산 결과를 저장하는 함수
 function saveInitialValues() {
@@ -28,6 +29,26 @@ function saveInitialValues() {
         entryExitRatio: document.getElementById('entryExitRatio').innerText,
         securityRatio: document.getElementById('securityRatio').innerText
     };
+}
+
+// 초기 차트 데이터를 저장하는 함수
+function saveInitialChartValues() {
+    initialChartValues = {
+        berthing: Number(document.getElementById('berthing').innerText.replace(/,/g, '')),
+        anchorage: Number(document.getElementById('anchorage').innerText.replace(/,/g, '')),
+        mooring: Number(document.getElementById('mooring').innerText.replace(/,/g, '')),
+        entryExit: Number(document.getElementById('entryExit').innerText.replace(/,/g, '')),
+        security: Number(document.getElementById('security').innerText.replace(/,/g, ''))
+    };
+
+    // 초기 차트 그리기
+    createChart(
+        initialChartValues.berthing,
+        initialChartValues.anchorage,
+        initialChartValues.mooring,
+        initialChartValues.entryExit,
+        initialChartValues.security
+    );
 }
 
 
@@ -137,7 +158,7 @@ function calculation() {
     let total_fee = berthing_fee + anchorage_fee + mooring_fee + entryExitFee + securityFee;
 
     // 각각의 금액 표시
-    document.getElementById('berthing').innerText = Number(anchorage_fee.toFixed(0)).toLocaleString();
+    document.getElementById('berthing').innerText = Number(berthing_fee.toFixed(0)).toLocaleString();
     document.getElementById('anchorage').innerText = Number(anchorage_fee.toFixed(0)).toLocaleString();
     document.getElementById('mooring').innerText = Number(mooring_fee.toFixed(0)).toLocaleString();
     document.getElementById('entryExit').innerText = Number(entryExitFee.toFixed(0)).toLocaleString();
@@ -150,7 +171,102 @@ function calculation() {
     document.getElementById('mooringRatio').innerText = (mooring_fee / total_fee * 100).toFixed(1)
     document.getElementById('entryExitRatio').innerText = (entryExitFee / total_fee * 100).toFixed(1);
     document.getElementById('securityRatio').innerText = (securityFee / total_fee * 100).toFixed(1);
+
+    // 차트 업데이트
+    createChart(berthing_fee, anchorage_fee, mooring_fee, entryExitFee, securityFee);
+
 };
+
+// 차트 업데이트
+// 차트 생성 함수
+function createChart(berthing, anchorage, mooring, entryExit, security) {
+    // 모든 금액의 총합을 계산
+    const totalFees = berthing + anchorage + mooring + entryExit + security;
+
+    // 각각의 금액을 총합에서 차지하는 비율로 계산
+    const berthingRatio = (berthing / totalFees) * 100;
+    const anchorageRatio = (anchorage / totalFees) * 100;
+    const mooringRatio = (mooring / totalFees) * 100;
+    const entryExitRatio = (entryExit / totalFees) * 100;
+    const securityRatio = (security / totalFees) * 100;
+
+    // 차트가 이미 생성되어 있으면 먼저 삭제
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    // Chart.js를 사용하여 horizontal stacked bar 차트 생성
+    const ctx = document.getElementById('bar').getContext('2d');
+    window.myChart = new Chart(ctx, {
+        type: 'bar', // 차트 타입: 막대 그래프
+        data: {
+            labels: ['총 금액'], // 가로 막대 하나만 표시할 것이므로 label은 '총 금액'으로 설정
+            datasets: [{
+                label: '입출항료',
+                data: [entryExitRatio], // 비율로 표현
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                borderRadius: 50 // 막대에 border-radius 추가
+            }, {
+                label: '접안료',
+                data: [berthingRatio],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                borderRadius: 50
+            }, {
+                label: '정박료',
+                data: [anchorageRatio],
+                backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+                borderRadius: 50
+            }, {
+                label: '계선료',
+                data: [mooringRatio],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                borderRadius: 50
+            }, {
+                label: '보안료',
+                data: [securityRatio],
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+                borderRadius: 50
+            }]
+        },
+        options: {
+            responsive: false, // 크기 고정
+            indexAxis: 'y', // 가로형 스택 차트를 위해 y축으로 설정
+            plugins: {
+                legend: {
+                    display: false // 범례 숨김
+                },
+                tooltip: {
+                    enabled: false // 툴팁 비활성화
+                }
+            },
+            scales: {
+                x: {
+                    display: false, // X축 숨김 (눈금선 제거)
+                    stacked: true
+                },
+                y: {
+                    display: false, // Y축 숨김 (눈금선 제거)
+                    stacked: true
+                }
+            }
+        }
+    });
+
+    // 캔버스 크기 조정
+    document.getElementById('bar').style.width = '350px';
+    document.getElementById('bar').style.height = '15px';
+}
+
 
 // 1. 초기화
 function resetToDefault() {
@@ -204,6 +320,16 @@ function resetToDefault() {
         document.getElementById('mooringRatio').innerText = initialResults.mooringRatio;
         document.getElementById('entryExitRatio').innerText = initialResults.entryExitRatio;
         document.getElementById('securityRatio').innerText = initialResults.securityRatio;
+
+        // 차트도 초기화
+        // 초기 차트 값으로 복원
+        createChart(
+            initialChartValues.berthing,
+            initialChartValues.anchorage,
+            initialChartValues.mooring,
+            initialChartValues.entryExit,
+            initialChartValues.security
+        );
     } else {
 
         // 계산 값 초기화

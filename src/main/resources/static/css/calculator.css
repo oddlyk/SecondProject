@@ -475,6 +475,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
 }
 
 .button-save {
@@ -485,6 +486,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
 }
 
 .button-reset {
@@ -495,6 +497,7 @@ input[type="number"] {
     align-items: center;
     background: #2F61B3;
     border-radius: 5px;
+    border: none;
 }
 
 .button-text {
@@ -642,7 +645,7 @@ input[type="number"] {
     gap: 32px;
 }
 
-.bar-chart {
+.bar {
     width: 350px;
     height: 15px;
     left: 818px;
@@ -650,7 +653,6 @@ input[type="number"] {
 
     margin-left: 10px;
     margin-top: 10px;
-    background: #D9D9D9;
     border-radius: 50px;
 }
 
