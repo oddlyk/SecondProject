@@ -48,8 +48,8 @@ public class VoyageController {
 		//선박명, 콜사인, 출발일시, 항해 진행도, 출발항 , 도착항, 도착일시
 		VoyageDTO dto = voyageService.selectVoyageWithCallSign(callSign);
 		log.info("받아온 항해 정보: {}",dto.toString());
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		dto.setArrivalDate(dto.getArrivalDate().plusYears(2));
+		dto.setDepartureDate(dto.getDepartureDate().plusYears(2));
 		
 		log.info("받아온 항해 정보: {}",dto.toString());
 		model.addAttribute("voyage", dto);

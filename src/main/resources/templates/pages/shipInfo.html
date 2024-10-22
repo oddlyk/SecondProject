@@ -59,7 +59,7 @@
                 <div class="DepToArr">
                     <div class="depPort">[[${voyage.departure}]]</div>
                     <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
-                    <div class="proceeding">[[${voyagePer}]]<span class="percent">%</span></div>
+                    <div class="proceeding"><span id="voyagePer">[[${voyagePer}]]</span><span class="percent">%</span></div>
                     <div class="arrPort">[[${voyage.port.portCode}]]</div>
                 </div>
                 <div class="arrDay"> 도착일:
