@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>헤더</title>
+    <title>바다이음</title>
     <!--  -->
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <script>
@@ -54,10 +54,10 @@
                     <a th:href="@{/}" class="nav-link" id="gotoShip">선박 정보</a>
                 </div>
                 <div class="nav-item nav-item-wide">
-                    <a th:href="@{/port/portdetail}" class="nav-link-wide" id="gotoPort">목적지 정보</a>
+                    <a th:href="@{/port/portdetail}" class="nav-link-wide nav-link" id="gotoPort">목적지 정보</a>
                 </div>
                 <div class="nav-item nav-item-tall">
-                    <a th:href="@{/port/calcdetail}" class="nav-link-tall" id="gotoCalc">항만 사용료 계산기</a>
+                    <a th:href="@{/port/calcdetail}" class="nav-link-tall nav-link" id="gotoCalc">항만 사용료<br>계산기</a>
                 </div>
                 <div class="nav-item">
                     <a href="#" class="nav-link">About Us</a>
@@ -69,7 +69,7 @@
                 <ul id="user-ul">
                     <!-- 비로그인 상태 -->
                     <li sec:authorize="isAnonymous()">
-                        <a th:href="@{/user/login}">
+                        <a th:href="@{/user/login}" class="nav-link">
                             <button class="log-button">
                                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/18d8a057f3538cb2faa0c0d8b1e221c4cd0124c6e0e5334f257fdc79dc7c7ce4?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
                                     alt="" class="login-icon">
@@ -96,6 +96,6 @@
             </div>
         </div>
     </header>
-    </body>
+</body>
 
 </html>
