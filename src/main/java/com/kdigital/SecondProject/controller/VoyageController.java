@@ -60,7 +60,10 @@ public class VoyageController {
 		double nowCor = 0;
 		String nowLoc = "";
 		String voyagePer = "0.0";
+		String leftDateS = "";
 		long leftDate = Duration.between(dto.getArrivalDate(),LocalDateTime.now()).toDays();
+		System.out.println(leftDate);
+		leftDateS = Long.toString(leftDate);
 		if(nowdto!=null) {
 			nowLoc="{ \"lat\": "+nowdto.getLatitude()+", \"lng\": "+nowdto.getLongitude()+" }";
 			nowSpeed = nowdto.getSpeed();
@@ -69,9 +72,20 @@ public class VoyageController {
 			voyagePer = getVoyagePer(dto.getVNumber());
 			//남은 일시 계산
 			if (Double.parseDouble(voyagePer)!=100) {
-				leftDate = Duration.between(dto.getArrivalDate(),nowdto.getSignalDate()).toDays();
+				leftDate = Duration.between(dto.getArrivalDate(),nowdto.getSignalDate().plusYears(2)).toDays();
+				leftDateS = Long.toString(leftDate);
+				System.out.println(nowdto.getSignalDate());
 			}
-			System.out.println(leftDate);
+			if(leftDate>0) {
+				if(Double.parseDouble(voyagePer)>=100) {
+					System.out.println(voyagePer);
+					leftDateS = "-0";
+				}else {
+
+					leftDateS = "+"+leftDateS;
+					System.out.println(leftDateS);
+				}
+			}
 		}
 		log.info("현속도: {}",nowSpeed);
 		log.info("이동방향: {}",nowCor);
@@ -80,7 +94,7 @@ public class VoyageController {
 		model.addAttribute("nowCor", nowCor);
 		model.addAttribute("nowLoc", nowLoc);
 		model.addAttribute("voyagePer", voyagePer);
-		model.addAttribute("leftDate", leftDate);
+		model.addAttribute("leftDate", leftDateS);
 		
 		/*
 		 * 

@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>선박 정보</title>
+    <link rel="icon" type="image/png" th:href="@{/images/로고.png}">
+    <title>선박정보</title>
     <link rel="stylesheet" th:href="@{/css/shipInfo.css}">
 
     <script defer th:src="@{/script/shipInfo.js}"></script>
@@ -33,20 +34,24 @@
     	<div id="shipPerInfo"></div>
     	
         <!-- 지도 위 좌표 팝업 -->
-        <div id="overTheMap" style="width: 300px; height: 100px;">
-            <div class="over1">
-                <p class="overinfo">현재 날씨</p>
-                <p class="weather overinfo" style="height: 40px;"><img src="" alt="Weather Icon" id="weatherIcon"></p>
-                <p class="temparature overinfo"><span id="tempa">00</span><span class="celsius minsize">°C</span></p>
-                <div class="Line2"></div>
-                <p class="speed overinfo"><span id="windSpeed">0.0</span><span class="minsize">m/s</span></p><br>
-            </div>
-            <div class="over2">
-                <p class="overinfo">속도: <span id="shipSpeed" th:text="${nowSpeed}"></span>kn</p>
-                <div class="Line2"></div>
-                <p class="overinfo">이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p>
-            </div>
-        </div>
+        
+    	<input type="hidden" id="shipSpeed" th:value="${nowSpeed}">
+    	<input type="hidden" id="nowCor" th:value="${nowCor}">
+    	
+<!--         <div id="overTheMap" style="width: 300px; height: 100px;"> -->
+<!--             <div class="over1"> -->
+<!--                 <p class="overinfo">현재 날씨</p> -->
+<!--                 <p class="weather overinfo" style="height: 40px;"><img src="" alt="Weather Icon" id="weatherIcon"></p> -->
+<!--                 <p class="temparature overinfo"><span id="tempa">00</span><span class="celsius minsize">°C</span></p> -->
+<!--                 <div class="Line2"></div> -->
+<!--                 <p class="speed overinfo"><span id="windSpeed">0.0</span><span class="minsize">m/s</span></p><br> -->
+<!--             </div> -->
+<!--             <div class="over2"> -->
+<!--                 <p class="overinfo">속도: <span id="shipSpeed" th:text="${nowSpeed}"></span>kn</p> -->
+<!--                 <div class="Line2"></div> -->
+<!--                 <p class="overinfo">이동 방향: <span id="shipSpeed" th:text="${nowCor}"></span>°</p> -->
+<!--             </div> -->
+<!--         </div> -->
         <!-- 지도 우측 하단 팝업 -->
         <div class="box">
             <div class="pop-up">
