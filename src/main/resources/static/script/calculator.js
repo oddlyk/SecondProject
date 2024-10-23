@@ -204,36 +204,36 @@ function createChart(berthing, anchorage, mooring, entryExit, security) {
             datasets: [{
                 label: '입출항료',
                 data: [entryExitRatio], // 비율로 표현
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: '#F8CB8A',
+                borderColor: '#F8CB8A',
                 borderWidth: 1,
                 borderRadius: 50 // 막대에 border-radius 추가
             }, {
                 label: '접안료',
                 data: [berthingRatio],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: '#B4E3B3',
+                borderColor: '#B4E3B3',
                 borderWidth: 1,
                 borderRadius: 50
             }, {
                 label: '정박료',
                 data: [anchorageRatio],
-                backgroundColor: 'rgba(255, 206, 86, 0.6)',
-                borderColor: 'rgba(255, 206, 86, 1)',
+                backgroundColor: '#82A4F9',
+                borderColor: '#82A4F9',
                 borderWidth: 1,
                 borderRadius: 50
             }, {
                 label: '계선료',
                 data: [mooringRatio],
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: '#F98284',
+                borderColor: '#F98284',
                 borderWidth: 1,
                 borderRadius: 50
             }, {
                 label: '보안료',
                 data: [securityRatio],
-                backgroundColor: 'rgba(153, 102, 255, 0.6)',
-                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: '#D582F9',
+                borderColor: '#D582F9',
                 borderWidth: 1,
                 borderRadius: 50
             }]
