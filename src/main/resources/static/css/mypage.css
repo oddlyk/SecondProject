@@ -1,286 +1,123 @@
-@charset "UTF-8";
-
-@font-face {
-    font-family: 'KoddiUD OnGothic';
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.otf') format('opentype'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Regular.ttf') format('truetype');
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-@font-face {
-    font-family: 'KoddiUD OnGothic';
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.otf') format('opentype'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'KoddiUD OnGothic';
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
-        url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
-}
-
-
 
 .background {
-    aspect-ratio: 16 / 9;
     position: relative;
     width: 100%;
-    height: 911px;
-    left: 0px;
-    top: 0px;
-    overflow: hidden;
+    min-height: 100vh;
     background: #5D7ED3;
     text-align: center;
+    align-items: center;
+    padding-bottom: 50px;
+    /* 배경과 콘텐츠 사이 여백 유지 */
+    padding-top: 50px;
+    /* mainbox와 background 사이의 간격을 설정 */
 }
 
 .mainbox {
-    aspect-ratio: 16 / 9;
     position: relative;
-    width: 92.3%;
-    height: 911px;
-    left: 4%;
-    top: 5%;
-    text-align: center;
+    width: 1300px;
+    margin: 0 auto;
     background: #FFFFFF;
+    border: none;
     border-radius: 60px;
-    padding-bottom: 20px;
-    overflow: hidden;
+    padding: 20px;
+    height: auto;
+    overflow: visible;
     text-align: center;
 }
 
 .userbox {
     box-sizing: border-box;
-    position: absolute;
-    width: 35.82%;
-    height: 140px;
-    left: 5%;
-    top: 4%;
+    width: 482px;
+    height: 125px;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+
     background: #F9F9F9;
     border: 1px solid #828181;
     border-radius: 25px;
     aspect-ratio: 16 / 9;
 }
 
-.userbox img {
-    position: absolute;
-    width: 15.81%;
-    height: 91.78px;
-    left: 6%;
-    top: 6%;
-}
+.user-1 {
+    width: 100px;
+    height: 110px;
+    text-align: center;
+    align-items: center;
+    padding-left: 23px;
 
-.userbox>.user-type {
-    position: absolute;
-    width: 15.46%;
-    height: 20px;
-    left: 6%;
-    top: 74%;
     font-family: 'KoddiUD OnGothic', sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 17px;
-    line-height: 18px;
-    text-align: center;
-    z-index: 2;
     color: #959494;
 }
 
-.userbox>.name {
-    position: absolute;
-    width: 12.66%;
+.userbox img {
+    width: 87px;
+    height: 85px;
+}
+
+.userbox>.user-type {
+    width: 90px;
+    height: 20px;
+    font-size: 17px;
+    line-height: 18px;
+}
+
+.user-2 {
+    width: 300px;
+    height: 80px;
+    padding-top: 26px;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name {
+    width: 150px;
     height: 32.34px;
-    left: 27%;
-    top: 21%;
+    text-align: left;
     font-family: 'KoddiUD OnGothic', sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 29px;
+    font-size: 24px;
     line-height: 37px;
     color: #000000;
 }
 
-.userbox>.Id {
-    position: absolute;
-    width: 34.08%;
+.Id {
+    width: 250px;
     height: 20.98px;
-    left: 19.2%;
-    top: 55%;
-
+    text-align: left;
     font-family: 'KoddiUD OnGothic', sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 24px;
 
     color: #959494;
 }
 
-.listbox {
-    box-sizing: border-box;
-    position: relative;
-    width: 90%;
-    height: 645px;
-    left: 5%;
-    top: 26.5%;
-    background: #FFFFFF;
-    border: 1px solid #959494;
-    border-radius: 15px;
-    padding: 15px;
-    overflow-y: auto;
-}
-
-.listbox>.list-columns {
-    position: absolute;
-    width: 100%;
-    height: 63.65px;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    overflow-y: auto;
-    padding: 0 15px;
-
-    color: #828181;
-}
-
-.list-columns input {
-    box-sizing: border-box;
-    position: absolute;
-    width: 2.253%;
-    height: 34.2px;
-    margin-left: 3%;
-    margin-top: 1%;
-    border: 1.5px solid #CECBCB;
-    border-radius: 3px;
-}
-
-.list-columns>.column1 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    left: 19%;
-    margin-top: 0.7%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 23.5px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.list-columns>.column2 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    margin-top: 0.7%;
-    left: 36%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 23.5px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.list-columns>.column3 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    margin-top: 0.7%;
-    left: 49%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.list-columns>.column4 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    margin-top: 0.7%;
-    left: 62%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.list-columns>.column5 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    margin-top: 0.7%;
-    left: 75%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.list-columns>.column6 {
-    position: absolute;
-    width: 7.323%;
-    height: 29.45px;
-    margin-top: 0.7%;
-    left: 88%;
-    font-family: 'KoddiUD OnGothic';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 30px;
-    text-align: center;
-    color: #828181;
-}
-
-.listbox hr {
-    border-top: 1px solid #D4D2D2;
-    width: 100%;
-    margin-top: 3.6%;
-}
-
 .delete-btn {
-    position: absolute;
-    width: 5%;
-    height: 50px;
-    z-index: 999;
-    right: 2.5%;
-    top: 21.5%;
-    margin-top: 0%;
+    width: 76px;
+    height: 45px;
+    margin-left: 1150px;
+    margin-top: 20px;
+    margin-bottom: 13px;
+
     background: #DC5555;
     border-radius: 15px;
-    transform: translate(-50%, -50%);
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
     font-weight: 800;
-    font-size: 25px;
+    font-size: 23px;
     line-height: 30px;
     text-align: center;
     border: none;
@@ -288,65 +125,76 @@
     color: #FFFFFF;
 }
 
+.listbox {
+    box-sizing: border-box;
+    width: 1240px;
+    margin-left: 30px;
+    padding-top: 10px;
+    background: #FFFFFF;
+    border: 1px solid #959494;
+    border-radius: 15px;
+    padding: 15px;
+    overflow: visible;
+    height: auto;
+    /* 높이를 자동으로 설정 */
+}
 
-.list-tuple {
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.voyage-table th,
+.voyage-table td {
+    border: none;
+    padding: 15px;
+}
+
+.voyage-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    /* 각 행의 아래에만 경계선을 추가 */
+}
+
+.voyage-table thead {
+    border-bottom: 1px solid #000;
+}
+
+.voyage-table tr:last-child {
+    border-bottom: none;
+    /* 마지막 행의 경계선을 없앰 */
+}
+
+.voyage-table th {
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
     font-weight: 700;
-    font-size: 23px;
-    line-height: 28px;
-    color: #000000;
-
-    display: flex;
-    gap: 2%;
-    width: 100%;
-    align-items: center;
+    font-size: 20px;
+    line-height: 30px;
     text-align: center;
+    color: #828181;
 }
 
-.choose-one {
+th>#choose-all,
+td>.choose-one {
     box-sizing: border-box;
-    width: 2.253%;
-    height: 34.2px;
-    margin-left: 3.1%;
-    margin-top: 1%;
+    width: 23px;
+    height: 23px;
     border: 1.5px solid #CECBCB;
     border-radius: 3px;
 }
 
-.tuple-link {
+.voyage-table td,
+.voyage-table a {
     font-family: 'KoddiUD OnGothic';
     font-style: normal;
-    font-weight: 700;
-    font-size: 21px;
-    display: flex;
-    width: 100%;
-    gap: 40px;
-    justify-content: space-between;
-    line-height: 28px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
     text-align: center;
     text-decoration: none;
-    color: #000000;
-}
-
-.tuple-link>.tuple1 {
-    width: 40%;
-}
-
-.tuple-link>.tuple2 {
-    width: 15%;
-}
-
-.tuple-link>.tuple3 {
-    width: 15%;
-}
-
-.tuple-link>.tuple4 {
-    width: 15%;
-}
-
-.tuple-link>.tuple5 {
-    width: 15%;
+    color: #828181;
+    vertical-align: middle;
+    align-items: center;
 }
 
 .favorite {
@@ -355,14 +203,13 @@
 
 .favorite-custom {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-image: url("../images/star.png");
     background-size: cover;
     cursor: pointer;
-    padding-bottom: 1%;
+    transform: translate(0%, 15%);
 }
-
 
 .favorite:checked+.favorite-custom {
     background-image: url("../images/darkStar.png");
