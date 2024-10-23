@@ -53,7 +53,14 @@ function myMap() {
 			},
 			mapTypeControl: false, // 지형 버튼 제거
 			streetViewControl: false,  // 스트리트 뷰 버튼 제거
-			fullscreenControl: false    // 전체 화면 보기 버튼 제거
+			fullscreenControl: false,    // 전체 화면 보기 버튼 제거
+			styles: [
+			    {
+			      featureType: "poi", // 모든 POI (상점, 관광지, 공원 등)
+			      elementType: "labels.icon", // POI의 아이콘만 숨기기
+			      stylers: [{ visibility: "off" }] // 아이콘 숨기기
+			    }
+			  ]
 		}
 	);
 
