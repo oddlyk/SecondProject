@@ -129,8 +129,10 @@ function calculate_mooring_fee() {
 };
 
 function entry_exit_fee() {
+    let tonnage = document.getElementById('tonnage').value;
     let entry_exit_rate = 135;
-    return entry_exit_rate * 2;
+    let entry_exit_fee = tonnage * entry_exit_rate * 2;
+    return entry_exit_fee;
 }
 
 function security_fee() {
