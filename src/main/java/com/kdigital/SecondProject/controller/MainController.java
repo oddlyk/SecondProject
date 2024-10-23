@@ -198,13 +198,15 @@ public class MainController {
 		//이미 존재하는지 확인
 		result = fvService.isExist(vNumber);
 		if(result) return "exist";
+		
+		List<FavoriteVoyageDTO> fvdtos = fvService.findAll();
+		if(fvdtos.size()>=10) {
+			return "over";
+		}
+		
 		result = false;
 		result = fvService.favorite(vNumber);
 		if(result) {
-			List<FavoriteVoyageDTO> fvdtos = fvService.findAll();
-			if(fvdtos.size()>=10) {
-				return "over";
-			}
 			return "OK";
 		}
 		return "fail";

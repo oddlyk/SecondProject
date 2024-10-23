@@ -10,7 +10,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (document.getElementById('usernameSession') != null) {
-                if (document.getElementById('session_null_check_port').value != null||document.getElementById('session_null_check_port').value != "") {
+                if (document.getElementById('session_null_check_port').value != null || document.getElementById('session_null_check_port').value != "") {
                     console.log(`\n 전해져온 항구: ${document.getElementById('session_null_check_port').value}`);
                     console.log(`\n 전해져온 선박: ${document.getElementById('session_null_check_callsign').value}`);
                     document.getElementById('logo').addEventListener('click', function (event) {
@@ -37,9 +37,9 @@
 
 <body>
     <th:block sec:authorize="isAuthenticated()" th:if="${session_port != null}">
-    	
-	    <input type=hidden th:value=" ${session_port}" id="session_null_check_port">
-	    <input type=hidden th:value="${session_callsign}" id="session_null_check_callsign">
+
+        <input type=hidden th:value=" ${session_port}" id="session_null_check_port">
+        <input type=hidden th:value="${session_callsign}" id="session_null_check_callsign">
         <a th:href="@{/(search_ship=${session_callsign})}" id="getvoyageSession"></a>
         <a th:href="@{/voyage/voyagedetail(callSign=${session_callsign})}" id="getshipSession"></a>
         <a th:href="@{/port/portdetail(port=${session_port})}" id="getPortSession"></a>

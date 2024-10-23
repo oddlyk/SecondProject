@@ -36,11 +36,11 @@
 
 .body {
     width: 100%;
-    
+
     margin: 0;
     padding: 0;
     overflow-x: auto;
-    
+
     text-align: center;
 }
 
@@ -50,10 +50,11 @@
     height: 911px;
     text-align: center;
     background: #718DD4;
-    
-    
+
+
     padding: 0;
-    margin: 0 auto;  /* 중앙 정렬 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
 
     /* 물결 모양 삽입 */
     background-image: url('../images/wave3.svg');

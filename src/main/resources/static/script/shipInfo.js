@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let voyagePer = document.getElementById('voyagePer').textContent;
     if (voyagePer == 0) {
-        alert("아직 시작하지 않은 항해입니다.");
+		document.getElementById('shipPerInfo').innerText = "※아직 시작하지 않은 항해입니다.";
     }
     if (voyagePer == 100) {
-        alert("목적항에 도착하여 종료된 항해입니다.");
+		document.getElementById('shipPerInfo').innerText = "※목적항에 도착하여 종료된 항해입니다.";
     }
 
 });

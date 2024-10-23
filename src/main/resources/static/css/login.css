@@ -38,7 +38,7 @@
     margin: 0;
     padding: 0;
     overflow-x: auto;
-    
+
     text-align: center;
 }
 
@@ -47,21 +47,23 @@
     width: 1500px;
     height: 740px;
     background: #5D7ED3;
-    
+
     padding: 0;
-    margin: 0 auto;  /* 중앙 정렬 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
 }
 
 .container {
     position: relative;
     width: 1500px;
     height: 740px;
-    
+
     padding: 0;
     background: #5D7ED3;
     text-align: center;
-    
-    margin: 0 auto;  /* 중앙 정렬 */
+
+    margin: 0 auto;
+    /* 중앙 정렬 */
 }
 
 .container>.wave {
@@ -78,7 +80,7 @@
     border-radius: 20px;
     outline: none;
     box-sizing: border-box;
-    
+
     width: 977.516px;
     height: 637.7px;
 }

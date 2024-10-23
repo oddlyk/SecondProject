@@ -55,12 +55,12 @@ function myMap() {
 			streetViewControl: false,  // 스트리트 뷰 버튼 제거
 			fullscreenControl: false,    // 전체 화면 보기 버튼 제거
 			styles: [
-			    {
-			      featureType: "poi", // 모든 POI (상점, 관광지, 공원 등)
-			      elementType: "labels.icon", // POI의 아이콘만 숨기기
-			      stylers: [{ visibility: "off" }] // 아이콘 숨기기
-			    }
-			  ]
+				{
+					featureType: "poi", // 모든 POI (상점, 관광지, 공원 등)
+					elementType: "labels.icon", // POI의 아이콘만 숨기기
+					stylers: [{ visibility: "off" }] // 아이콘 숨기기
+				}
+			]
 		}
 	);
 
@@ -86,10 +86,8 @@ function myMap() {
 			let shipInfo = new google.maps.InfoWindow({
 				content: overTheMap
 			});
-			//선박 바로 위 팝업을 연 상태로 시작
 			shipInfo.open(map, marker);
-
-			// 선박을 클릭하면 또 열림
+			// 선박을 클릭하면  열림
 			marker.addListener("click", () => {
 				shipInfo.open(map, marker);
 			});

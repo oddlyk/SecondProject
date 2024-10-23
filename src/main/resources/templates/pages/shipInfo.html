@@ -23,12 +23,15 @@
     <div class="container" th:replace="~{fragment/header(title='헤더')}"></div>
     <input type="hidden" id="GetnowLoc" th:value="${nowLoc}">
     <input type="hidden" id="Getvoyage" th:value="${voyage}">
+    
     <div class="allTag">
         <!-- 구글 지도 표시 -->
         <div class="background">
             <div id="map"></div>
         </div>
-
+	
+    	<div id="shipPerInfo"></div>
+    	
         <!-- 지도 위 좌표 팝업 -->
         <div id="overTheMap" style="width: 300px; height: 100px;">
             <div class="over1">
@@ -79,7 +82,7 @@
         </div>
 
     </div>
-
+	
 </body>
 
 </html>

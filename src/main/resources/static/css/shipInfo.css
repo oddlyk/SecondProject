@@ -59,8 +59,23 @@ div#map {
     background: #6f6f6f;
 }
 
+/* 지도 좌측 상단 팝업 */
+#shipPerInfo {
+    position: relative;
+    width: 500px;
+    height: 365px;
+    left: 10px;
+    top: -550px;
 
-
+    border-radius: 15px;
+    text-align:left;
+    
+    font-family: 'KoddiUD OnGothic';
+    font-weight: 700;
+    font-size: 23px;
+    /* identical to box height */
+    color: red;
+}
 
 
 /* 지도 우측 하단 팝업 */
@@ -70,7 +85,7 @@ div#map {
     width: 345px;
     height: 365px;
     left: 1150px;
-    top: -380px;
+    top: -750px;
 
     background: rgba(14, 14, 14, 0.43);
     border-radius: 15px;

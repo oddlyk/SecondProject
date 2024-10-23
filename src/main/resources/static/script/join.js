@@ -136,24 +136,24 @@ $("#submitBtn").on('click', function () {
     }
     let email = emailF.val() + '@' + emailB.val();
     $('#email').val(email);
-	$.ajax({
-	            url: "/user/emailCheck",
-	            method: "GET",
-	            data: { "email": email },
-	            success: function (resp) {
-	                if (resp === "OK") {
-						$('#joinForm').submit();
-	                } else {
-	                    alert("이미 존재하는 이메일입니다. 다른 이메일을 사용해 주세요.");
-						$("#emailF").val("");
-						$("#emailF").select();
-						return;
-	                }
+    $.ajax({
+        url: "/user/emailCheck",
+        method: "GET",
+        data: { "email": email },
+        success: function (resp) {
+            if (resp === "OK") {
+                $('#joinForm').submit();
+            } else {
+                alert("이미 존재하는 이메일입니다. 다른 이메일을 사용해 주세요.");
+                $("#emailF").val("");
+                $("#emailF").select();
+                return;
+            }
 
-	            },
-	            error: function (resp) {
-	                alert("회원가입이 불가능합니다. 기업과 연락을 취해주세요.");
-					return;
-	            }
-	        });
+        },
+        error: function (resp) {
+            alert("회원가입이 불가능합니다. 기업과 연락을 취해주세요.");
+            return;
+        }
+    });
 })

@@ -67,10 +67,11 @@ public class VoyageController {
 			nowCor = nowdto.getDirection();
 			// 항해 진행률 생성 및 전달
 			voyagePer = getVoyagePer(dto.getVNumber());
-			
-			
 			//남은 일시 계산
-			leftDate = Duration.between(dto.getArrivalDate(),nowdto.getSignalDate()).toDays();
+			if (Double.parseDouble(voyagePer)!=100) {
+				leftDate = Duration.between(dto.getArrivalDate(),nowdto.getSignalDate()).toDays();
+			}
+			System.out.println(leftDate);
 		}
 		log.info("현속도: {}",nowSpeed);
 		log.info("이동방향: {}",nowCor);

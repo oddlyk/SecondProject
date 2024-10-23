@@ -32,12 +32,13 @@
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
 }
+
 .body {
     width: 100%;
     margin: 0;
     padding: 0;
     overflow-x: auto;
-    
+
     text-align: center;
 }
 
@@ -51,21 +52,22 @@
     position: relative;
     width: 1500px;
     height: 740px;
-    
+
     padding: 0;
     background: #5D7ED3;
     text-align: center;
-    
-    margin: 0 auto;  /* 중앙 정렬 */
+
+    margin: 0 auto;
+    /* 중앙 정렬 */
 }
 
-.temp{
+.temp {
     width: 1500px;
     height: 740px;
-	margin:0;
-	padding:0;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    margin: 0 auto;  
+    margin: 0 auto;
 }
 
 .wave {
@@ -166,8 +168,8 @@ img.logo {
 }
 
 .label {
-    width:400px;
-    height:20px;
+    width: 400px;
+    height: 20px;
     color: #808080;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: "KoddiUD OnGothic";
@@ -176,13 +178,13 @@ img.logo {
     font-weight: 700;
     line-height: normal;
     margin: 3px;
-    
+
     display: flex;
 }
 
-.infotip{
-	margin-left:20px;
-	text-align: right;
+.infotip {
+    margin-left: 20px;
+    text-align: right;
 }
 
 .namebox>.username {
@@ -249,7 +251,8 @@ img.logo {
 }
 
 
-.userPwd, .pwdCheckBox {
+.userPwd,
+.pwdCheckBox {
     width: 300.929px;
     height: 25px;
     flex-shrink: 0;

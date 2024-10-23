@@ -37,19 +37,21 @@
     width: 100%;
 }
 
-.footerFake{
-	width: 100%;
-	
+.footerFake {
+    width: 100%;
+
     background-color: rgba(76, 77, 88);
 }
+
 .footer {
-	overflow:hidden;
+    overflow: hidden;
     width: 1500px;
     height: 150px;
 
     position: relative;
-    
-    margin: 0 auto;  /* 중앙 정렬 */
+
+    margin: 0 auto;
+    /* 중앙 정렬 */
 
     background-color: rgba(76, 77, 88);
     padding: 0px;

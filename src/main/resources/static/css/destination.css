@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     overflow-x: auto;
-    
+
     text-align: center;
 }
 
@@ -15,13 +15,14 @@
 
 .container {
     position: relative;
-    
+
     width: 1500px;
     height: 740px;
-    
+
     padding: 0;
     background: #5D7ED3;
-    margin: 0 auto;  /* 중앙 정렬 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
 }
 
 
@@ -151,7 +152,8 @@ select {
     border-radius: 10px;
     background: #FFF;
 }
-.portInfoDefault{
+
+.portInfoDefault {
     width: 100%;
     height: 150px;
     text-align: center;
@@ -413,7 +415,7 @@ select {
 
 
 .toggle-box {
-	text-align: center;
+    text-align: center;
     position: absolute;
     width: 312px;
     height: auto;
