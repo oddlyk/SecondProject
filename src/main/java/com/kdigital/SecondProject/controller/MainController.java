@@ -244,4 +244,18 @@ public class MainController {
 		}
 	}
 	 * */
+	
+	/**
+	 * 기업소개 화면 전달
+	 * */
+	@GetMapping("/aboutUs")
+	public String aboutUs(HttpSession session, Model model) {
+
+		//기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+		   model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+		   model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
+		return "pages/aboutUs";
+	}
 }
