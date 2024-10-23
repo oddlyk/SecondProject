@@ -11,26 +11,29 @@
     <script defer th:src="@{/script/join.js}"></script>
 </head>
 
-<body>
+<body class="body">
     <div class="header" th:replace="~{fragment/header(title='헤더')}"></div>
     <div class="background">
         <div class="container">
-            <div class="wave">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1155" viewBox="0 0 1440 706" fill="none">
-                    <g filter="url(#filter0_f_67_2140)">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M0 505.143L42.5 473.5C102.5 440.024 147.5 348.5 267.5 348.5C387.5 348.5 600 438.19 720 387.976C840 337.762 960 170.381 1080 86.6905C1200 3 1320 3 1380 3H1440V706H1380C1320 706 1200 706 1080 706C960 706 840 706 720 706C600 706 480 706 360 706C240 706 120 706 60 706H0V505.143Z"
-                            fill="#8DADFF" />
-                    </g>
-                    <defs>
-                        <filter id="filter0_f_67_2140" x="-3" y="0" width="1446" height="709"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                            <feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_67_2140" />
-                        </filter>
-                    </defs>
-                </svg>
+            <div class="temp">
+<!--                 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="740" viewBox="0 0 1500 740" fill="none"> -->
+<!--                     <g filter="url(#filter0_f_67_2140)"> -->
+<!--                         <path fill-rule="evenodd" clip-rule="evenodd" -->
+<!--                             d="M0 505.143L42.5 473.5C102.5 440.024 147.5 348.5 267.5 348.5C387.5 348.5 600 438.19 720 387.976C840 337.762 960 170.381 1080 86.6905C1200 3 1320 3 1380 3H1440V706H1380C1320 706 1200 706 1080 706C960 706 840 706 720 706C600 706 480 706 360 706C240 706 120 706 60 706H0V505.143Z" -->
+<!--                             fill="#8DADFF" /> -->
+<!--                     </g> -->
+<!--                     <defs> -->
+<!--                         <filter id="filter0_f_67_2140" x="-3" y="0" width="1500" height="740" -->
+<!--                             filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> -->
+<!--                             <feFlood flood-opacity="0" result="BackgroundImageFix" /> -->
+<!--                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" /> -->
+<!--                             <feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_67_2140" /> -->
+<!--                         </filter> -->
+<!--                     </defs> -->
+<!--                 </svg> -->
+ <img loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/81fd96ec32b73da6bb0e0aa31222124c3e85533cefc6d6084390d5d587750cf8?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
+                class="wave" alt="물결 배경">
                 <div class="innerbackground">
                     <div class="joinbox">
                         <div class="left-box">
@@ -49,17 +52,20 @@
                                     <!-- <div >이름은 2~20자로 입력해주세요.</div> -->
                                 </div>
                                 <div class="idbox">
-                                    <div class="label">아이디</div>
+                                    <div class="label">아이디
+                                    <div class="infotip" id="idInfo"></div>
+                                    </div>
                                     <div class="idbox_inline">
                                         <input type="text" id="userId" class="userId" name="userId" minlength="5"
                                             maxlength="20">
                                         <input type="button" class="idCheck" id="idCheck" value="중복 확인">
                                     </div>
-                                    <div class="label" id="idInfo"></div>
                                     <!-- <div>아이디는 5~20자로 입력해주세요.</div> -->
                                 </div>
                                 <div class="pwdbox">
-                                    <div class="label">비밀번호</div>
+                                    <div class="label">비밀번호
+                                    <div class="infotip" id="pwdInfo"></div>
+                                    </div>
                                     <input type="password" id="userPwd" class="userPwd" name="userPwd" minlength="10"
                                         maxlength="15">
                                     <!-- <p id="pwdRole">사용 불가능</p> -->
@@ -67,7 +73,7 @@
                                 </div>
                                 <div class="pwdCheckBox">
                                     <input type="password" id="pwdCheck" class="pwdCheck" placeholder="비밀번호를 재입력해 주세요">
-                                    <div class="label" id="pwdInfo"></div>
+                                    
                                 </div>
                                 <div class="phone">
                                     <div class="label">전화번호</div>

@@ -114,7 +114,7 @@ $("#submitBtn").on('click', function () {
 
 
     //전화번호 숫자만
-    let phone = $('#phone');
+    let phone = $('#phonenum');
     if (isNaN(phone.val().trim()) || phone.val().trim().length < 9 || phone.val().trim().length > 12) {//문자열이 숫자로 변환될 수 있는 경우에만 false
         alert("전화번호는 숫자만 입력하여 바르게 입력해 주세요.");
         phone.select();

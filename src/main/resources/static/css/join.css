@@ -32,29 +32,51 @@
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.otf') format('opentype'),
         url('https://cdn.jsdelivr.net/gh/fonts-archive/KoddiUDOnGothic/KoddiUDOnGothic-ExtraBold.ttf') format('truetype');
 }
+.body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    
+    text-align: center;
+}
+
 
 .background {
-    width: 1440px;
-    height: 1024px;
-    background: #FFF;
+    width: 100%;
+    height: 740px;
+    background: #5D7ED3;
 }
 
 .container {
     position: relative;
-    width: 1440px;
-    height: 934px;
+    width: 1500px;
+    height: 740px;
+    
+    padding: 0;
     background: #5D7ED3;
+    text-align: center;
+    
+    margin: 0 auto;  /* 중앙 정렬 */
+}
+
+.temp{
+    width: 1500px;
+    height: 740px;
+	margin:0;
+	padding:0;
+    text-align: center;
+    margin: 0 auto;  
 }
 
 .wave {
-    position: absolute;
-    flex-shrink: 0;
-    fill: #8DADFF;
+    width: 100%;
+    height: 740px;
 }
 
 .innerbackground {
-    position: absolute;
-    top: 150px;
+    position: relative;
+    top: -630px;
     left: 250px;
     width: 939px;
     height: 574px;
@@ -70,15 +92,13 @@
     position: absolute;
     width: 334px;
     height: 574px;
-    flex-shrink: 0;
     border-radius: 25px 0px 0px 25px;
     background: #22335F;
 }
 
-.logo {
-    width: 199px;
-    height: 233px;
-    flex-shrink: 0;
+img.logo {
+    width: 250px;
+    height: 250px;
 }
 
 .top-joinbox {
@@ -127,11 +147,9 @@
     right: 32px;
     width: 532px;
     height: 511px;
-    flex-shrink: 0;
     border-radius: 25px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0px 3px 7.7px 0.5px rgba(0, 0, 0, 0.13);
-    z-index: 1;
 }
 
 .joinlist {
@@ -148,8 +166,9 @@
     flex-shrink: 0;
 }
 
-.namebox>.label {
-    width: 42.99px;
+.label {
+    width:400px;
+    height:20px;
     color: #808080;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: "KoddiUD OnGothic";
@@ -158,6 +177,13 @@
     font-weight: 700;
     line-height: normal;
     margin: 3px;
+    
+    display: flex;
+}
+
+.infotip{
+	margin-left:20px;
+	text-align: right;
 }
 
 .namebox>.username {
@@ -176,17 +202,6 @@
     flex-shrink: 0;
 }
 
-.idbox>.label {
-    width: 64.485px;
-    color: #808080;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 3px;
-}
 
 .idbox_inline {
     display: flex;
@@ -234,19 +249,8 @@
     flex-shrink: 0;
 }
 
-.pwdbox>.label {
-    width: 83.293px;
-    color: #808080;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 3px;
-}
 
-.userPwd {
+.userPwd, .pwdCheckBox {
     width: 300.929px;
     height: 25px;
     flex-shrink: 0;
@@ -255,11 +259,6 @@
     background: #FFFEFE;
 }
 
-.pwdCheckBox {
-    width: 408.01px;
-    height: 26px;
-    flex-shrink: 0;
-}
 
 .pwdCheck {
     width: 300.929px;
@@ -276,18 +275,6 @@
     flex-shrink: 0;
 }
 
-.phone>.label {
-    width: 124.939px;
-    color: #808080;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 3px;
-}
-
 .phonenum {
     width: 300.929px;
     height: 25px;
@@ -297,17 +284,6 @@
     background: #FFFEFE;
 }
 
-.email>.label {
-    width: 108.818px;
-    color: #808080;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 3px;
-}
 
 .emailinline {
     display: flex;
@@ -356,18 +332,6 @@
     border-radius: 3px;
     border: 1px solid rgba(128, 128, 128, 0.28);
     background: #FFFEFE;
-}
-
-
-.userType>.label {
-    width: 108.818px;
-    color: #808080;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 }
 
 .typeSelect {
