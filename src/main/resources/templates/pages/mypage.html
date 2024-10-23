@@ -14,10 +14,14 @@
     <div class="background">
         <div class="mainbox">
             <div class="userbox">
-                <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
-                <div class="user-type" th:text="${userType}">사용자 유형</div>
-                <div class="name" id="name" th:text="${userName}">이름</div>
-                <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
+                <div class="user-1">
+                    <img th:src="@{/images/user1.png}" class="user-icon" alt="사용자 유형 아이콘">
+                    <div class="user-type" th:text="${userType}">사용자 유형</div>
+                </div>
+                <div class="user-2">
+                    <div class="name" id="name" th:text="${userName}">이름</div>
+                    <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
+                </div>
             </div>
             <div th:if="!${#lists.isEmpty(voyages)}">
                 <form th:action="@{/user/deleteFavorite}" method="post" id="delete-form">
