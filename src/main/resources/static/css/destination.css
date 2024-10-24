@@ -62,6 +62,7 @@
     /* port-box 내부에 맞춤 */
     color: #000;
     text-align: center;
+    text-align-last: center;
     font-family: "KoddiUD OnGothic";
     font-size: 23px;
     font-weight: 800;
@@ -70,7 +71,9 @@
     appearance: none;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="21" viewBox="0 0 26 21" fill="none"><path d="M13 21L25.1244 0H0.875645L13 21Z" fill="%232D3C63"/></svg>') no-repeat right 10px center;
     background-size: 28px;
-    padding-right: 40px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-top: 0;
 }
 
 /* 기본 드롭다운 화살표 숨기기 */
@@ -123,7 +126,8 @@ select {
     /* 텍스트 색상 */
 }
 
-.port-box select {
+.port-box select,
+.port-box option {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,17 +159,20 @@ select {
 
 .portInfoDefault {
     width: 100%;
-    height: 150px;
+    height: 125px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
 .port-name-weather {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 10px;
+    justify-content: flex-start;
     width: 100%;
-    padding: 0 10px;
+    padding-left: 20px;
+    margin-top: 8px;
 }
 
 #port-name {
@@ -185,6 +192,9 @@ select {
 }
 
 #weather-text {
+    font-family: "KoddiUD OnGothic";
+    font-weight: 400;
+    line-height: normal;
     font-size: 15px;
     font-style: normal;
     color: #000;
@@ -200,8 +210,9 @@ select {
 .port-contact-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 6px;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-left: 20px;
 }
 
 .port-phone {
@@ -211,7 +222,7 @@ select {
     color: #000;
     text-align: center;
     font-family: "KoddiUD OnGothic";
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -223,9 +234,6 @@ select {
     flex-shrink: 0;
     border-radius: 5px;
     background: #6295d0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -247,83 +255,23 @@ select {
     white-space: nowrap;
 }
 
-.processing-wrapper {
-    display: flex;
-    margin-top: 10px;
-    margin-left: 5px;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 10px;
-    width: 95%;
-    background-color: #ffffff;
-    padding: 5px 0;
-}
-
-.processing {
-    width: auto;
-    color: #000;
-    text-align: center;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "KoddiUD OnGothic";
-    font-size: 18px;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 10px;
-}
-
-.berthInfo {
-    width: 80px;
-    height: 27px;
-    border-radius: 5px;
-    flex-shrink: 0;
-    background: #5682B5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.berth-box {
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    color: #FFF;
-    font-family: "KoddiUD OnGothic";
-    font-size: 19px;
-    font-weight: 800;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-
-.berth-working,
-.berth-total {
-    margin: 0 5px;
-}
-
-.berth-slash {
-    margin: 0 5px;
-}
-
 .accident-statics {
     width: 100%;
     height: auto;
     flex-shrink: 0;
-    margin-top: 20px;
     margin-bottom: 10px;
     font-family: "KoddiUD OnGothic";
-    font-size: 23px;
-    font-weight: 700;
+    font-size: 25px;
+    font-weight: 800;
     text-align: center;
+    margin-top: 9px;
 }
 
 .Line1 {
-    width: 90%;
     margin: 0 auto;
     border: 1px solid #B1AEAE;
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .accident-statics-wrapper {
@@ -348,9 +296,9 @@ select {
     padding: 5px 0;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: "KoddiUD OnGothic";
-    font-size: 18px;
+    font-size: 21.5px;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 700;
     line-height: normal;
 }
 
@@ -446,7 +394,7 @@ select {
 .toggle1,
 .toggle2,
 .toggle3 {
-    width: 180px;
+    width: 160px;
     color: #FFF;
     text-align: center;
     font-family: "KoddiUD OnGothic";
