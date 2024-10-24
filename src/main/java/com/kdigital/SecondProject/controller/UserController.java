@@ -75,7 +75,7 @@ public class UserController {
 
 	
 	@GetMapping("/mypage")
-	public String mypage(Model model, Principal principal) {
+	public String mypage(Model model, Principal principal, HttpSession session) {
 	    // 1. 로그인한 유저의 정보 가져오기
 	    String userId = principal.getName();
 	    UserDTO user = userService.selectOne(userId);  // userId 가져오기
@@ -153,6 +153,14 @@ public class UserController {
 	    model.addAttribute("voyages", voyages);
 	    model.addAttribute("voyagePer", voyagePerList);
 	    model.addAttribute("favoriteList", favoriteList);
+	    
+	    
+
+		//기존 세션 확인 및 값 전달
+		if(session.getAttributeNames().hasMoreElements()) {
+			model.addAttribute("session_port",(String) session.getAttribute("session_port"));
+			model.addAttribute("session_callsign",(String) session.getAttribute("session_callSign"));
+		}
 	    
 	    return "pages/mypage";
 	}

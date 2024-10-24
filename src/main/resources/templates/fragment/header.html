@@ -7,32 +7,6 @@
     <title>바다이음</title>
     <!--  -->
     <link rel="stylesheet" th:href="@{/css/header.css}">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (document.getElementById('usernameSession') != null) {
-                if (document.getElementById('session_null_check_port').value != null || document.getElementById('session_null_check_port').value != "") {
-                    console.log(`\n 전해져온 항구: ${document.getElementById('session_null_check_port').value}`);
-                    console.log(`\n 전해져온 선박: ${document.getElementById('session_null_check_callsign').value}`);
-                    document.getElementById('logo').addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('getvoyageSession').click();
-                    });
-                    document.getElementById('gotoShip').addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('getshipSession').click();
-                    });
-                    document.getElementById('gotoPort').addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('getPortSession').click();
-                    });
-                    document.getElementById('gotoCalc').addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('getCalcSession').click();
-                    });
-                }
-            }
-        });
-    </script>
 </head>
 
 <body>
@@ -47,7 +21,7 @@
     </th:block>
     <header class="header">
         <div class="all_con">
-            <a th:href="@{/}" class="logo"><img
+            <a th:href="@{/}" class="logo" id="logo"><img
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8dfec0d885d4ee67f98a3db6e0c794767fd7e9ee2c6714867ad04ed72d7bc14?placeholderIfAbsent=true&apiKey=e2e98420831a4c5e9ded685bb9a9a66b"
                     alt="Company logo" class="logoHeader" id="logoHeader" /></a>
             <nav class="nav-menu">
@@ -97,6 +71,33 @@
             </div>
         </div>
     </header>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementById('usernameSession') != null) {
+                if (document.getElementById('session_null_check_port').value != null || document.getElementById('session_null_check_port').value != "") {
+                    console.log(`\n 전해져온 항구: ${document.getElementById('session_null_check_port').value}`);
+                    console.log(`\n 전해져온 선박: ${document.getElementById('session_null_check_callsign').value}`);
+                    document.getElementById('logo').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getvoyageSession').click();
+                    });
+                    document.getElementById('gotoShip').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getshipSession').click();
+                    });
+                    document.getElementById('gotoPort').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getPortSession').click();
+                    });
+                    document.getElementById('gotoCalc').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('getCalcSession').click();
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
