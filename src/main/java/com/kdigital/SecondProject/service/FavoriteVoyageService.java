@@ -307,7 +307,7 @@ public class FavoriteVoyageService {
 		}
 		UserEntity userEntity = userEntity1.get();
 		log.info("사용자 {}의 전체 선호 항해를 출력합니다.",userId);
-		List<FavoriteVoyageEntity> entityList = favoriteVoyageRepository.findAllByUserEntity_UserId(userId);
+		List<FavoriteVoyageEntity> entityList = favoriteVoyageRepository.findAllByUserIdSortedByTopFavoriteAndFsNumber(userId);
 		log.info("저장된 선호 항해는 총 {}개 입니다.",entityList.size());
 		List<FavoriteVoyageDTO> dtoList = new ArrayList<>();
 		if(!entityList.isEmpty()) {
