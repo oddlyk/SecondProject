@@ -200,7 +200,7 @@ public class MainController {
 		if(result) return "exist";
 		
 		List<FavoriteVoyageDTO> fvdtos = fvService.findAll();
-		if(fvdtos.size()>=10) {
+		if(fvdtos!=null && fvdtos.size()>=10) {
 			return "over";
 		}
 		

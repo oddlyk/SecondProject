@@ -83,7 +83,7 @@
 
 }
 
-.logo {
+img#logoHeader.logoHeader {
     aspect-ratio: 5.24;
     object-fit: contain;
     object-position: center;
