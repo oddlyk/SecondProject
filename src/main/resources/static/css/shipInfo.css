@@ -87,7 +87,7 @@ div#map {
     left: 1150px;
     top: -750px;
 
-    background: rgba(14, 14, 14, 0.43);
+    background: rgba(14, 14, 14, 0.6);
     border-radius: 15px;
     text-align: center;
 }
@@ -176,7 +176,7 @@ div#map {
 .DepToArr {
     width: 100%;
 
-    margin-top: 50px;
+    margin-top: 30px;
     height: 60px;
 
     font-family: 'KoddiUD OnGothic';
@@ -191,6 +191,7 @@ div#map {
     justify-content: space-evenly;
 }
 
+
 /* 운행률 */
 .proceeding {
     width: 100%;
@@ -201,13 +202,22 @@ div#map {
     font-size: 25px;
     color: #FFFFFF;
     text-align: center;
-    margin-bottom: 60px;
+    margin-top: 10px;
+    margin-bottom: 70px;
 }
+
+
+#perInfo{
+	font-size: 18px;
+    font-weight: 400;
+}
+
 
 #voyagePer {
     width: 66px;
     height: 35px;
     margin-left: 20px;
+    font-size: 29px;
 }
 
 .arrDay {

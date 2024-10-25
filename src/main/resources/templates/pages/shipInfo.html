@@ -73,13 +73,14 @@
                     </div>
                     <div class="DepToArr">
                         <div class="depPort">[[${voyage.departure}]]</div>
-                        <img th:src="@{/images/ship.png}" class="shipImg" alt="선박 모양">
+                        <img src="https://img.icons8.com/?size=50&id=41200&format=png&color=ffffff" class="shipImg" alt="선박 모양">
                         <div class="arrPort">[[${voyage.port.portCode}]]</div>
                     </div>
                     <div class="proceeding">
+                    	<span id="perInfo">항해 진행률</span><br>
                         <span id="voyagePer">[[${voyagePer}]]</span><span class="percent">%</span>
                     </div>
-                    <div class="arrDay Day"> 도착일 :&nbsp;
+                    <div class="arrDay Day"> 도착 예정일 :&nbsp;
                         <div class="arrTime" th:text="${voyage.arrivalDate}" id="arrTime">2024/10/15</div>
                     </div>
                 </div>

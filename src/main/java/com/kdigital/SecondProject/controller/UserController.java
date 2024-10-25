@@ -167,17 +167,19 @@ public class UserController {
 
 	
 	private String getVoyagePer(Long vNumber) {
-		LocalDateTime arrivalDate = voyageService.selectOne(vNumber).getArrivalDate();
-		LocalDateTime departureDate = voyageService.selectOne(vNumber).getDepartureDate();
-		LocalDateTime currentSignal = null;
+		VoyageDTO voyage = voyageService.selectOne(vNumber);
+		LocalDateTime arrivalDate = voyage.getArrivalDate();
+		LocalDateTime departureDate = voyage.getDepartureDate();
 		AISDTO aisDTO = aisService.currentAISsignal(vNumber);
 		if(aisDTO==null) {
 			log.info("항해 시작 전");
 			return String.format("%.2f", 0.0);
 		}
-		currentSignal = aisDTO.getSignalDate(); // aisDTO가 null이 아닐 때만 호출
+		LocalDateTime  currentSignal = aisDTO.getSignalDate(); // aisDTO가 null이 아닐 때만 호출
+		// 전체 항해 시간(출발일 ~ 도착일)을 분 단위로 계산
 		long totalVoyageMinutes = Duration.between(departureDate, arrivalDate).toMinutes();
-		long untilTodayMinutes = Duration.between(currentSignal, arrivalDate).toMinutes();
+		// 현재까지의 항해 시간(출발일 ~ 현재 위치 시점)을 분 단위로 계산
+		long untilTodayMinutes = Duration.between(departureDate, currentSignal).toMinutes(); 
 		
 		//현재 항해일 수 / 총 항해일 수 * 100 = 항해 진행률
 		double voyageProgress = ((double) untilTodayMinutes / totalVoyageMinutes) * 100;
