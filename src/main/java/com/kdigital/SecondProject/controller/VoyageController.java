@@ -1,8 +1,10 @@
 package com.kdigital.SecondProject.controller;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -61,8 +63,23 @@ public class VoyageController {
 		String nowLoc = "";
 		String voyagePer = "0.0";
 		String leftDateS = "";
-		long leftDate = Duration.between(dto.getArrivalDate(),LocalDateTime.now()).toDays();
-		leftDateS = Long.toString(leftDate);
+		
+		LocalDateTime today = LocalDate.now().atStartOfDay();
+		LocalDateTime arrivalDate = dto.getArrivalDate().toLocalDate().atStartOfDay();
+
+		long leftDate = ChronoUnit.DAYS.between(today, arrivalDate); //long leftDate = Duration.between(dto.getArrivalDate(),LocalDateTime.now()).toDays();
+		leftDateS = "-"+Long.toString(leftDate);
+		if (leftDate > 0) {
+		    System.out.println("디데이: D-" + leftDate);
+		    leftDateS = "-"+Long.toString(leftDate);
+		} else if (leftDate == 0) {
+		    System.out.println("디데이: 오늘 도착 (D-Day)");
+		    leftDateS = "-DAY";
+		} else {
+		    System.out.println("디데이: D+" + Math.abs(leftDate) + " (이미 종료된 항해)");
+		    leftDateS = "-0";
+		}
+		
 		if(nowdto!=null) {
 			nowLoc="{ \"lat\": "+nowdto.getLatitude()+", \"lng\": "+nowdto.getLongitude()+" }";
 			nowSpeed = nowdto.getSpeed();
@@ -70,25 +87,32 @@ public class VoyageController {
 			// 항해 진행률 생성 및 전달
 			voyagePer = getVoyagePer(dto.getVNumber());
 			//남은 일시 계산
-			System.out.println("도착일: "+dto.getArrivalDate());
-			leftDate = java.time.Period.between(
-				    nowdto.getSignalDate().toLocalDate().plusYears(2),  // 현재 시그널 날짜를 LocalDate로 변환하고 2년 더함
-				    dto.getArrivalDate().toLocalDate()                  // 도착 날짜를 LocalDate로 변환
-				).getDays();  // 남은 일수를 계산 //Duration.between(nowdto.getSignalDate().plusYears(2),dto.getArrivalDate()).toDays();
-			System.out.println("1차 계산된 남은 일수: "+leftDate);
-			if (Double.parseDouble(voyagePer) >= 100) {
-		        // 항해가 완료된 경우
-		        leftDateS = "-0";
-		        System.out.println("100% 달성 항해 -0일");
-		    } else {
-		        // 항해 진행 중인 경우
-		        if (leftDate > 0) {
-		            leftDateS = "-" + leftDate; // 남은 일수 표시
-		        } else {
-		            leftDateS = "+" + Math.abs(leftDate); // 초과 일수 표시
-		        }
-		        System.out.println("남은 일수 또는 초과 일수: " + leftDateS);
-		    }
+			LocalDateTime signalDate = nowdto.getSignalDate().plusYears(2).toLocalDate().atStartOfDay();
+			// 디데이 계산
+			if (signalDate.isAfter(arrivalDate)) {
+			    System.out.println("도착일이 초과되었습니다.");
+			    leftDate = ChronoUnit.DAYS.between(arrivalDate, signalDate); 
+			    leftDateS = "+"+Long.toString(Math.abs(leftDate));
+			}
+			
+//			leftDate = java.time.Period.between(
+//				    nowdto.getSignalDate().toLocalDate().plusYears(2),  // 현재 시그널 날짜를 LocalDate로 변환하고 2년 더함
+//				    dto.getArrivalDate().toLocalDate()                  // 도착 날짜를 LocalDate로 변환
+//				).getDays();  // 남은 일수를 계산 //Duration.between(nowdto.getSignalDate().plusYears(2),dto.getArrivalDate()).toDays();
+//			System.out.println("1차 계산된 남은 일수: "+leftDate);
+//			if (Double.parseDouble(voyagePer) >= 100) {
+//		        // 항해가 완료된 경우
+//		        leftDateS = "-0";
+//		        System.out.println("100% 달성 항해 -0일");
+//		    } else {
+//		        // 항해 진행 중인 경우
+//		        if (leftDate > 0) {
+//		            leftDateS = "-" + leftDate; // 남은 일수 표시
+//		        } else {
+//		            leftDateS = "+" + Math.abs(leftDate); // 초과 일수 표시
+//		        }
+//		        System.out.println("남은 일수 또는 초과 일수: " + leftDateS);
+//		    }
 //			leftDateS = Long.toString(leftDate);
 //			System.out.println(nowdto.getSignalDate());
 //			if(leftDate>0) {

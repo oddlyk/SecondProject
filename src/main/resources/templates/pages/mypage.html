@@ -21,7 +21,7 @@
                 </div>
                 <div class="user-2">
                     <div class="name" id="name" th:text="${userName}">이름</div>
-                    <div class="Id" id="id">아이디 (<span class="userId" id="userId" th:text="${user}"></span>)</div>
+                    <div class="Id" id="id">(<span class="userId" id="userId" th:text="${user}"></span>)</div>
                 </div>
             </div>
             <div th:if="!${#lists.isEmpty(voyages)}">
@@ -72,6 +72,7 @@
                     </table>
                 </form>
             </div>
+        </div>
         </div>
 </body>
 
