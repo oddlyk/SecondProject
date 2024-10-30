@@ -49,7 +49,7 @@ if (isItSearch == 1) {
 				asyns: false, //비동기 처리를 막음 
 				data: sendData,
 				success: function (resp) {
-					if (resp === "OK") alert("괌심 항해로 등록되었습니다.");
+					if (resp === "OK") alert("관심 항해로 등록되었습니다.");
 					if (resp === "over") alert("등록된 항해가 10개가 넘어 저장하지 못했습니다. 마이페이지에서 다른 항해를 제거 후 등록을 시도해 주세요.");
 					if (resp === "exist") alert("이미 등록된 항해입니다.");
 				},
